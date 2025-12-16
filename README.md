@@ -16,3 +16,15 @@
 docker compose up -d --build
 docker compose exec web bin/rails db:create db:migrate
 exit
+```
+
+
+## phpで始まるコマンドを打ちたいとき
+```
+docker compose exec laravel.test bash
+```
+
+## @Vite使用　Blade(HTML)表示
+Docker立ち上げ後、`npm run dev`は必須
+
+http://127.0.0.1/example アクセス可能に
