@@ -28,4 +28,10 @@ class ProfileUpdateRequest extends FormRequest
             'password' => ['required', Password::defaults()],
         ];
     }
+
+public function messages(): array{
+    return[
+        'password.required' =>"パスワードは必ず入力してください"
+    ];
+}
 }

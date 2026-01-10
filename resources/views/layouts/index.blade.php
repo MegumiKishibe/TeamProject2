@@ -1,3 +1,5 @@
+{{-- exampleの大枠 --}}
+
 <!DOCTYPE html>
 <html lang="ja">
 

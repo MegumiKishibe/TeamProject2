@@ -1,10 +1,19 @@
+{{--  http://127.0.0.1:8000/example --}}
+
 @extends('layouts.index')
 
 @section('title', 'title | page')
 
 @section('content')
 
-    <p>You're logged in!</p>
+    <div class="validate-wrapper">バリデーションあるよ
+        @if (session('status'))
+            <div class="validate">
+                <p>{{ session('status') }}</p>
+            </div>
+        @endif
+    </div>
+
     <p>ログイン中のユーザー名：{{ Auth::user()->name }}</p>
     <p>Account:{{ sprintf('%04d', Auth::user()->id) }}</p>
 
