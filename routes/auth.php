@@ -53,9 +53,9 @@ Route::middleware('auth')->group(function () {
     //     ->middleware(['signed', 'throttle:6,1'])
     //     ->name('verification.verify');
 
-    // Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-    //     ->middleware('throttle:6,1')
-    //     ->name('verification.send');
+    Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
+        ->middleware('throttle:6,1')
+        ->name('verification.send');
 
     //アカウント編集
     // Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
