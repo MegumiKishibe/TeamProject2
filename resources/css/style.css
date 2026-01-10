@@ -1,9 +1,16 @@
 body {
   background-color: aqua;
 }
+
 .wrapper {
   width: 90%;
-  margin: 0 auto;
+  margin: 50px auto;
   border: 1px solid black;
   background-color: bisque;
+}
+
+
+.validate-wrapper {
+  background-color: brown;
+  color: aliceblue;
 }
