@@ -69,7 +69,7 @@ body { margin: 0; }
   padding: 44px 18px 34px;
   text-align: center;
 }
-
+/* ===== トップ・登録共通スタイル ===== */
 /* タイトル：スマホ中心に */
 .title{
   margin: 0;
@@ -150,6 +150,45 @@ body { margin: 0; }
 
 .link:hover{ text-decoration: underline; }
 
+/* ===== 新規登録画面専用 ===== */
+/* register は枠線なし版 */
+.card--plain {
+  border: none;
+  box-shadow: 0 14px 30px rgba(15,23,42,0.12);
+}
+
+/* 左上の小さいロゴ */
+.brand-row{
+  text-align: left;
+  margin-bottom: 18px;
+}
+.brand{
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* ページ見出し（新規登録） */
+.page-title{
+  margin: 0 0 28px;
+  font-size: 42px;
+  font-weight: 500; /* 太すぎ防止 */
+  letter-spacing: 0.02em;
+}
+
+/* 入力の間隔を少し広げる */
+.form--spacious{
+  gap: 22px;
+}
+
+/* Sign up ボタンは Login より少し小さめ */
+.btn--md{
+  height: 72px;
+  font-size: 36px;
+  border-radius: 14px;
+}
+
+/* ===== レスポンシブ調整 ===== */
 /* 小さめ端末 */
 @media (max-width: 360px){
   .title{ font-size: 34px; }
