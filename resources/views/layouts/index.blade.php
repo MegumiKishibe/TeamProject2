@@ -22,6 +22,9 @@
 
 
     <div>共通フッダーなど</div>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google.maps_key') }}&language=ja&callback=initMap"
+        async defer></script>
 
 
 </body>
