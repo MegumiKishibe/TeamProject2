@@ -15,3 +15,13 @@ body {
   background-color: brown;
   color: aliceblue;
 }
+
+.marker-label {
+    background-color: #02754B;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+}

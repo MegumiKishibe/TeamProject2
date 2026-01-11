@@ -1,13 +1,24 @@
-@extends('layouts.index')
+<!DOCTYPE html>
+<html lang="ja">
 
-@section('title', 'gest | map')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/style.css'])
+    <title>Document</title>
+</head>
 
-@section('content')
+<body>
     <p>マップだよ</p>
+
+    <a href="{{ route('/') }}"><button>←戻る</button></a>
 
 
     <div id="map" style="width:100%; height:500px"></div>
 
+
+    {{-- #TODO  JSONでのデータ取得に変更する --}}
     <script>
         function initMap() {
             const myLatLng = {
@@ -45,7 +56,7 @@
         `,
             });
 
-            // 👇 ピンクリック時
+            // ピンクリック時
             marker.addListener('click', () => {
                 infoWindow.open(map, marker);
             });
@@ -54,5 +65,11 @@
         }
     </script>
 
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google.maps_key') }}&language=ja&callback=initMap"
+        async defer></script>
 
-@endsection
+
+</body>
+
+</html>
