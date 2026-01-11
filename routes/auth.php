@@ -4,7 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 
-
+// ---------------認証(ログイン・新規など)のファイルです----------------------
 // 未ログイン状態(ゲスト)
 Route::middleware('guest')->group(function () {
 
@@ -24,7 +24,6 @@ Route::middleware('guest')->group(function () {
 
 // ログイン認証済
 Route::middleware('auth')->group(function () {
-
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });

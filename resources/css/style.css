@@ -1,16 +1,17 @@
 body {
-  background-color: aqua;
+  margin: 0;
+  font-size: 16px;
 }
 
 .wrapper {
-  width: 90%;
+  width: 100%;
   margin: 50px auto;
   border: 1px solid black;
   background-color: bisque;
 }
 
 
-.validate-wrapper {
+.text-red-600 {
   background-color: brown;
   color: aliceblue;
 }

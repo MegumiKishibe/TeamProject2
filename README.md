@@ -20,6 +20,7 @@ exit
 
 
 ## phpで始まるコマンドを打ちたいとき
+※コンテナの中に入る
 ```
 docker compose exec laravel.test bash
 ```
