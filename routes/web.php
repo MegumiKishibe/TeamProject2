@@ -39,10 +39,28 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
 
-
+// http://127.0.0.1:8000/author-reviews
 Route::get('/author-reviews', function () {
     return view('author.reviews');
 })->name('author.reviews');
+
+// http://127.0.0.1:8000/author-review-create
+Route::get('/author-review-create', function () {
+    return view('author.review_create');
+})->name('author.review_create');
+
+
+// http://127.0.0.1:8000/author-review-edit
+Route::get('/author-review-edit', function () {
+    return view('author.review_edit');
+})->name('author.review_edit');
+
+
+// http://127.0.0.1:8000/author-myposts
+Route::get('/author-myposts', function () {
+    return view('author.myposts');
+})->name('author.myposts');
+
 
 
 // データベース確認用

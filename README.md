@@ -30,6 +30,7 @@ docker compose exec laravel.test bash
 ```
 
 ## @Vite 使用　 Blade(HTML)表示
+
 ```
 docker-compose exec laravel.test npm run dev
 ```
@@ -58,10 +59,16 @@ Docker 立ち上げ後、`npm run dev`は必須
 | [http://127.0.0.1/example ](http://127.0.0.1/example) | http://127.0.0.1/profile|
 | ![alt text](images/image-2.png)|![alt text](images/image-7.png) |
 
-| 口コミ一覧画面                  |     |
-| ------------------------------- | --- |
-| http://127.0.0.1/author-reviews |     |
-| ![alt text](images/image-8.png) |     |
+| 口コミ一覧画面                  |
+| ------------------------------- |
+| http://127.0.0.1/author-reviews |
+| ![alt text](images/image-8.png) |
+
+| ページ         | リンク                                     |
+| -------------- | ------------------------------------------ |
+| 自分の投稿履歴 | http://127.0.0.1:8000/author-myposts       |
+| 自分の投稿作成 | http://127.0.0.1:8000/author-review-create |
+| 自分の投稿編集 | http://127.0.0.1:8000/author-review-edit   |
 
 ```
 ユーザー名：TestHanako
