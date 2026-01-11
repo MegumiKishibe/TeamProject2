@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <p>マップだよ</p>
+    <h1>マップだよ</h1>
 
     <a href="{{ route('/') }}"><button>←戻る</button></a>
 
@@ -51,7 +51,7 @@
             <div style="min-width:200px">
                 <h4>スターバックスコーヒー 大阪城公園店</h4>
                 <p>大阪市中央区大阪城1-1</p>
-                <a href="/reviews">口コミを見る</a>
+                <a href="/reviews"><button>口コミを見る</button></a>
             </div>
         `,
             });

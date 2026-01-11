@@ -96,4 +96,10 @@
             <a href="{{ route('author.reviews') }}"><button>口コミ一覧へ</button></a>
         </div>
     </div>
+
+    <div class="wrapper">
+        <div>
+            <a href="{{ route('author.myposts') }}"><button>History</button></a>
+        </div>
+    </div>
 @endsection

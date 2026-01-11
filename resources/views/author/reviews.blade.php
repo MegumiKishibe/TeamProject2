@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-@section('title', 'gest | 口コミみる')
+@section('title', 'author | 口コミみる')
 
 @section('content')
 
@@ -39,9 +39,10 @@
     <p>販売ステータス</p>
     <p>メッセージ</p>
 
-    <h1>投稿する</h1>
+    <a href="{{ route('author.review_create') }}"><button>投稿する</button></a>
 
-    <a href="{{ redirect()->back()->getTargetUrl() }}">
+
+    <a href="{{ route('example')}}">
         <button>戻る</button></a>
 
 @endsection
