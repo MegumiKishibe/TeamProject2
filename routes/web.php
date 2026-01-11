@@ -3,9 +3,18 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+
+// ---------------通常ファイルです----------------------
+
+// 未ログイン状態(ゲスト)
+
 Route::get('/', function () {
     return view('welcome');
 })->name('/');
+
+Route::get('/map', function () {
+    return view('gest.map');
+})->name('gest.map');
 
 
 // ログイン認証済

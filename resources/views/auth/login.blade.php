@@ -51,6 +51,6 @@
         </div>
     </form>
     <div class="wrapper">
-        <a href="{{ route('/') }}"><button>ホーム画面へ戻る</button></a>
+        <a href="{{ route('/') }}"><button>←最初の画面へ戻る</button></a>
     </div>
 </x-guest-layout>
