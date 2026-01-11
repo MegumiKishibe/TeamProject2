@@ -33,8 +33,35 @@ docker compose exec laravel.test bash
 
 Docker 立ち上げ後、`npm run dev`は必須
 
-http://127.0.0.1/ 初期画面
+| 初期画面                      |     |
+| ----------------------------- | --- |
+| http://127.0.0.1/             |     |
+| ![alt text](images/image.png) |     |
 
+| 新規登録                        | ログイン                        |
+| ------------------------------- | ------------------------------- |
+| http://127.0.0.1/register       | http://127.0.0.1/login          |
+| ![alt text](images/image-3.png) | ![alt text](images/image-2.png) |
 
-ログイン後:  
-http://127.0.0.1/example アクセス可能に
+■ ゲスト
+| search| 口コミを見る|
+| ---------------------- | --- |
+| [http://127.0.0.1/map ](http://127.0.0.1/map) |http://127.0.0.1/reviews |
+| ![alt text](images/image-4.png) |![alt text](images/image-5.png)|
+
+■ ログインユーザー
+| ホーム画面 | アカウント編集画面|
+| ---------------------- | --- |
+| [http://127.0.0.1/example ](http://127.0.0.1/example) | http://127.0.0.1/profile|
+| ![alt text](image-2.png)|![alt text](images/image-7.png) |
+
+| 口コミ一覧画面                  | アカウント編集画面 |
+| ------------------------------- | ------------------ |
+| http://127.0.0.1/author-reviews |                    |
+| ![alt text](image.png)          |                    |
+
+```
+ユーザー名：TestHanako
+メールアドレス：Test@example.com
+パスワード：Testtest1234
+```
