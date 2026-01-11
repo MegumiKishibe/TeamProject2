@@ -1,0 +1,159 @@
+/* ===== Fonts ===== */
+@import url("https://fonts.bunny.net/css?family=zen-kaku-gothic-new:300,400,500,700&display=swap");
+@import url("https://fonts.bunny.net/css?family=yaldevi:400,600&display=swap");
+
+/* ===== Typography Base ===== */
+:root {
+  --font-base: "Yaldevi", "Zen Kaku Gothic New", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semi: 600;
+
+  --text: #0f172a;
+  --muted: #64748b;
+}
+
+html, body {
+  font-family: var(--font-base);
+  font-weight: var(--fw-regular);
+  color: var(--text);
+  letter-spacing: 0.02em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis-weight: none; /* 擬似太字を防ぐ */
+}
+
+/* ===== モバイル前提の共通 ===== */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; }
+
+:root{
+  --bg: #cfe4df;
+  --card-border: #1f95ff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --input-border: #e5e7eb;
+
+  --btn: #66a896;
+  --btn-text: #ffffff;
+
+  --radius: 18px;
+  --shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
+}
+
+/* iPhoneのSafe Area対応 */
+.page{
+  min-height: 100svh;
+  padding: max(18px, env(safe-area-inset-top))
+           max(14px, env(safe-area-inset-right))
+           max(22px, env(safe-area-inset-bottom))
+           max(14px, env(safe-area-inset-left));
+  background: var(--bg);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-base);
+  font-weight: var(--fw-regular);
+}
+
+/* カードはスマホ幅に最適化 */
+.card{
+  width: 100%;
+  max-width: 430px;            /* スマホの最大幅想定 */
+  background: #fff;
+  border: 3px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 44px 18px 34px;
+  text-align: center;
+}
+
+/* タイトル：スマホ中心に */
+.title{
+  margin: 0;
+  font-size: 38px;
+  font-weight: var(--fw-semi);
+  letter-spacing: 0.06em;
+}
+
+.subtitle{
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.divider{
+  height: 1px;
+  background: #eef2f7;
+  width: 84%;
+  margin: 18px auto 30px;
+}
+
+/* フォーム */
+.form{
+  width: 92%;
+  margin: 0 auto;
+  display: grid;
+  gap: 18px;
+}
+
+.input{
+  width: 100%;
+  height: 56px;
+  border-radius: 10px;
+  border: 1px solid var(--input-border);
+  background: #fff;
+  font-size: 20px;
+  text-align: center;
+  outline: none;
+  box-shadow: 0 6px 12px rgba(15,23,42,0.06);
+  font-weight: var(--fw-regular);
+  letter-spacing: 0.02em;
+}
+
+.input::placeholder{
+  color: #a1a8b3;
+  font-weight: var(--fw-medium);
+}
+
+.btn{
+  height: 84px;
+  border-radius: 16px;
+  border: none;
+  background: var(--btn);
+  color: var(--btn-text);
+  font-size: 44px;
+  font-weight: var(--fw-semi);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 12px 18px rgba(15,23,42,0.14);
+}
+
+.btn:active{ transform: translateY(1px); }
+
+.links{
+  margin-top: 26px;
+  display: grid;
+  gap: 12px;
+}
+
+.link{
+  color: #334155;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: var(--fw-regular);
+}
+
+.link:hover{ text-decoration: underline; }
+
+/* 小さめ端末 */
+@media (max-width: 360px){
+  .title{ font-size: 34px; }
+  .btn{ font-size: 40px; height: 78px; }
+  .input{ font-size: 18px; }
+  .link{ font-size: 16px; }
+}

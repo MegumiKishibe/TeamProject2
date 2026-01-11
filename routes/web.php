@@ -50,3 +50,6 @@ Route::get('/author-reviews', function () {
 // Route::get('/author-reviews', [StarbucksStoreController::class, 'index'])->name('statbucksStore');
 
 require __DIR__ . '/auth.php';
+
+//---top画面確認用 http://127.0.0.1/top---
+Route::view('/top', 'top');
