@@ -6,21 +6,21 @@ use App\Models\Review;
 use App\Models\StarbucksStore;
 use App\Models\Status;
 use Carbon\Carbon;
-use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
-use NunoMaduro\Collision\Adapters\Phpunit\State;
 
 class ReviewsController extends Controller
 {
-
+    // ゲスト：口コミ一覧表示
     public function gestIndex()
     {
         $reviews = Review::with('status')
             ->where('created_at', '>=', Carbon::now()->subWeek())
             ->get();
+        $starbucksStores = StarbucksStore::all();
+        $statuses = Status::all();
 
-        return view('author.reviews', compact('reviews', 'statuses', 'starbucksStores'));
+        return view('gest.reviews', compact('reviews', 'statuses', 'starbucksStores'));
     }
 
     // ユーザー画面：口コミ一覧表示

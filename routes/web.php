@@ -22,10 +22,7 @@ Route::get('/map', function () {
 
 
 // http://127.0.0.1/reviews
-Route::get('/reviews', function () {
-    return view('gest.reviews');
-})->name('gest.reviews');
-
+Route::get('/reviews', [ReviewsController::class, 'gestIndex'])->name('gest.reviews');
 
 // ログイン認証済
 Route::middleware('auth')->group(function () {
