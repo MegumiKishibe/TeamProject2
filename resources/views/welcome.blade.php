@@ -1,4 +1,4 @@
-{{-- http://127.0.0.1:8000 --}}
+{{-- http://127.0.0.1:8000
 
 
 <!DOCTYPE html>
@@ -1530,7 +1530,7 @@
                 @auth
                     <a href="{{ url('/dashboard') }}"
                         class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                        Dashboard
+                        Dashboard <p>ログイン中だよ{{ Auth::user()->name }}</p>
                     </a>
                 @else
                     <a href="{{ route('login') }}"
@@ -1565,4 +1565,4 @@
 
 </body>
 
-</html>
+</html> --}}

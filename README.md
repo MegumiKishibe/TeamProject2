@@ -37,41 +37,24 @@ docker-compose exec laravel.test npm run dev
 
 Docker 立ち上げ後、`npm run dev`は必須
 
-| 初期画面                      |     |
-| ----------------------------- | --- |
-| http://127.0.0.1/             |     |
-| ![alt text](images/image.png) |     |
-
-| 新規登録                        | ログイン                        |
-| ------------------------------- | ------------------------------- |
-| http://127.0.0.1/register       | http://127.0.0.1/login          |
-| ![alt text](images/image-3.png) | ![alt text](images/image-2.png) |
-
-■ ゲスト
-| search| 口コミを見る|
-| ---------------------- | --- |
-| [http://127.0.0.1/map ](http://127.0.0.1/map) |http://127.0.0.1/reviews |
-| ![alt text](images/image-4.png) |![alt text](images/image-5.png)|
-
-■ ログインユーザー
-| ホーム画面 | アカウント編集画面|
-| ---------------------- | --- |
-| [http://127.0.0.1/example ](http://127.0.0.1/example) | http://127.0.0.1/profile|
-| ![alt text](images/image-2.png)|![alt text](images/image-7.png) |
-
-| 口コミ一覧画面                  |
-| ------------------------------- |
-| http://127.0.0.1/author-reviews |
-| ![alt text](images/image-8.png) |
-
-| ページ         | リンク                                     |
-| -------------- | ------------------------------------------ |
-| 自分の投稿履歴 | http://127.0.0.1:8000/author-myposts       |
-| 自分の投稿作成 | http://127.0.0.1:8000/author-review-create |
-| 自分の投稿編集 | http://127.0.0.1:8000/author-review-edit   |
-
 ```
 ユーザー名：TestHanako
 メールアドレス：Test@example.com
 パスワード：Testtest1234
 ```
+
+| 状態   | ページ     | Views                   | リンク                         |
+| ------ | ---------- | ----------------------- | ------------------------------ |
+| ゲスト | ログイン   | auth/top.blade.php      | http://127.0.0.1:8000/login    |
+| ゲスト | 新規登録   | auth/register.blade.php | http://127.0.0.1:8000/register |
+| ゲスト | マップ     | gest/map.blade.php      | http://127.0.0.1/map           |
+| ゲスト | 口コミ閲覧 | gest/reviews.blade.php  | http://127.0.0.1/reviews       |
+
+| 状態     | ページ         | Views             | リンク                                     |
+| -------- | -------------- | ----------------- | ------------------------------------------ |
+| ユーザー | ホーム         | example.blade.php | http://127.0.0.1:8000/example              |
+| ユーザー | アカウント編集 | profile/          | http://127.0.0.1/profile                   |
+| ユーザー | 自分の投稿履歴 | author/           | http://127.0.0.1:8000/author-myposts       |
+| ユーザー | 自分の投稿作成 | author/           | http://127.0.0.1:8000/author-review-create |
+| ユーザー | 自分の投稿編集 | author/           | http://127.0.0.1:8000/author-review-edit   |
+| ユーザー | 口コミ一覧画面 | suthor/           | http://127.0.0.1/author-reviews            |

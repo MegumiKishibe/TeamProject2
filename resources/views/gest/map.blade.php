@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/style.css'])
-    <title>Document</title>
+    <title>gest | map</title>
 </head>
 
 <body>
     <h1>マップだよ</h1>
 
-    <a href="{{ route('/') }}"><button>←戻る</button></a>
+    <a href="{{ route('login') }}"><button>←戻る</button></a>
 
 
     <div id="map" style="width:100%; height:500px"></div>
@@ -64,6 +64,12 @@
 
         }
     </script>
+
+    <div class="wrapper">
+        <div>
+            <a href="{{ route('gest.map') }}"><button>Search→</button></a>
+        </div>
+    </div>
 
     <script
         src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google.maps_key') }}&language=ja&callback=initMap"

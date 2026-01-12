@@ -3,6 +3,9 @@
 @section('title', 'author | 自分の投稿履歴')
 
 @section('content')
+    <p>ログイン中のユーザー名：{{ Auth::user()->name }}</p>
+    <p>Account:{{ sprintf('%04d', Auth::user()->id) }}</p>
+
     <h1>投稿履歴</h1>
 
     <a href="{{ url()->previous() }}"><button>←戻る</button></a>
@@ -23,9 +26,4 @@
             </div>
         </form>
     </div>
-
-
-
-
-
 @endsection
