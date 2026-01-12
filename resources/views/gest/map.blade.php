@@ -54,7 +54,7 @@
                                 <p value="{{ old('id') }}">${store.id}</p>
                                 <h4 value="{{ old('name') }}">${ store.name }</h4>
                                 <p value="{{ old('address') }}">${ store.address }</p>
-                                <a href="/reviews?starbucks_store_id=${store.id}" }}"><button style="color: red;">口コミを見る</button></a>
+                                <a href="/reviews?starbucks_store_id=${store.id}"><button style="color: red;">口コミを見る</button></a>
                             </div>
                             `,
                 });

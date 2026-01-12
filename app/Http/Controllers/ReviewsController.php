@@ -12,9 +12,11 @@ use Illuminate\Support\Facades\Auth as FacadesAuth;
 class ReviewsController extends Controller
 {
     // ゲスト：口コミ一覧表示
-    public function gestIndex()
+    public function gestIndex(Request $request)
     {
-        $reviews = Review::with('status')
+
+        $storeId = $request->input('starbucks_store_id');
+        $reviews = Review::where('starbucks_store_id', $storeId)
             ->where('created_at', '>=', Carbon::now()->subWeek())
             ->get();
         $starbucksStores = StarbucksStore::all();
@@ -24,40 +26,46 @@ class ReviewsController extends Controller
     }
 
     // ユーザー画面：口コミ一覧表示
-    public function authorIndex()
+    public function authorIndex(Request $request)
     {
         $user = auth()->user();
 
-        $statuses = Status::all();
-        $starbucksStores = StarbucksStore::all();
-
-
-        $reviews = Review::with('status')
+        $storeId = $request->input('starbucks_store_id');
+        $reviews = Review::where('starbucks_store_id', $storeId)
             ->where('created_at', '>=', Carbon::now()->subWeek())
             ->get();
 
-        return view('author.reviews', compact('reviews', 'statuses', 'starbucksStores'));
+        $statuses = Status::all();
+        $starbucksStore = StarbucksStore::find($storeId);
+
+        return view('author.reviews', compact('reviews', 'statuses', 'starbucksStore'));
     }
     // ユーザー画面：自分の投稿履歴一覧
-    public function myReviews()
+    public function myReviews(Request $request)
     {
 
         $reviews = Review::with('status')
             ->where('user_id', FacadesAuth::id())
             ->orderBy('created_at', 'desc')
             ->get();
+        $storeId = $request->input('starbucks_store_id');
+        $starbucksStore = StarbucksStore::find($storeId);
+        $starbucksStores = StarbucksStore::all();
+        $statuses = Status::all();
 
-        return view('author.myposts', compact('reviews'));
+        return view('author.myposts', compact('reviews', 'starbucksStores', 'starbucksStore', 'statuses'));
     }
 
     // ユーザー画面：投稿作成ページを表示する
-    public function create()
+    public function create(Request $request)
     {
+        $storeId = request('starbucks_store_id');
+        $starbucksStore = StarbucksStore::find($storeId);
         return view(
             'author.review_create',
             [
                 'statuses' => Status::all(),
-                'starbucksStores' => StarbucksStore::all()
+                'starbucksStore' => $starbucksStore,
             ]
         );
     }
@@ -74,12 +82,14 @@ class ReviewsController extends Controller
         Review::create([
             'user_id' => auth()->id(),
             'status_id' => $validated['status_id'],
-            'starbucks_store_id' => $validated['starbucks_store_id'] ?? null,
+            'starbucks_store_id' => $validated['starbucks_store_id'],
             'product' => $validated['product'],
             'message' => $validated['message'],
         ]);
 
-        return redirect()->route('author.reviews')->with('status', '投稿しました');
+        return redirect()->route('author.reviews', [
+            'starbucks_store_id' => $validated['starbucks_store_id']
+        ])->with('status', '投稿しました');
     }
 
     public function show(string $id)
