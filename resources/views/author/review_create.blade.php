@@ -13,22 +13,14 @@
 
     <form action="{{ route('review.store') }}" method="POST">
         @csrf
-        {{-- #TODO:店名はAPIでスターバックス店舗テーブルから持ってきたデータに変更する --}}
-
         <label>店舗名</label>
-        {{-- #TODO:一旦店舗選択にしているが、のちのち選択選択する --}}
-        <select name="starbucks_store_id">
-            <option value="">選択してください</option>
-            @foreach ($starbucksStores as $store)
-                <option value="{{ $store->id }}" @if (old('starbucks_store_id') == $store->id) selected @endif>
-                    {{ $store->name }}
-                </option>
-            @endforeach
-        </select>
+        <h1>{{ $starbucksStore->name }}</h1>
+        @if (isset($starbucksStore))
+            <input type="hidden" name="starbucks_store_id" value="{{ $starbucksStore->id }}">
+        @endif
         <div>
             <label>商品名</label>
             <input type="text" name="product" value="{{ old('product') }}">
-
         </div>
 
         <div>

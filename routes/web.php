@@ -20,15 +20,17 @@ Route::get('/map', function () {
     return view('gest.map');
 })->name('gest.map');
 
+Route::get('/map', [StarbucksStoreController::class, 'gestMap'])->name('gest.map');
 
 // http://127.0.0.1/reviews
 Route::get('/reviews', [ReviewsController::class, 'gestIndex'])->name('gest.reviews');
 
+
+
+
 // ログイン認証済
 Route::middleware('auth')->group(function () {
-    Route::get('/example', function () {
-        return view('example');
-    })->name('example');
+    Route::get('/example', [StarbucksStoreController::class,'authMap'])->name('example');
 
     // http://127.0.0.1:8000/profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

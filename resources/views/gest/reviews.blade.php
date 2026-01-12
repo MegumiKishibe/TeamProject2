@@ -6,11 +6,15 @@
 
 
     <h1>口コミ一覧</h1>
-    @foreach ($reviews as $review)
+
+
+
+    @forelse($reviews as $review)
+        <h1>{{ $review->starbucksStore->name }}</h1>
         <div class="wrapper">
             <nav>
                 <ul>
-                    <li>{{ $review->starbucksStore->name }}</li>
+
                     <li>商品名：{{ $review->product }}</li>
                     <li>投稿者：{{ $review->user->name }}</li>
                     <li>口コミ投稿日： {{ $review->created_at->format('Y/m/d H:i') }}</li>
@@ -22,8 +26,10 @@
                 </ul>
             </nav>
         </div>
-    @endforeach
+    @empty
+        <p>この店舗の1週間以内のレビューはありません。</p>
+    @endforelse
 
-    <a href="{{ redirect()->back()->getTargetUrl() }}"><button>戻る</button></a>
+    <a href="{{ route('gest.map') }}"><button>戻る</button></a>
 
 @endsection

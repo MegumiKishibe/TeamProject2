@@ -13,13 +13,12 @@
             </div>
         @endif
     </div>
-
+    <h1>{{ $starbucksStore->name }}</h1>
     <h1>口コミ一覧</h1>
-    @foreach ($reviews as $review)
+    @forelse ($reviews as $review)
         <div class="wrapper">
             <nav>
                 <ul>
-                    <li>{{ $review->starbucksStore->name }}</li>
                     <li>商品名：{{ $review->product }}</li>
                     <li>投稿者：{{ $review->user->name }}</li>
                     <li>口コミ投稿日： {{ $review->created_at->format('Y/m/d H:i') }}</li>
@@ -31,9 +30,12 @@
                 </ul>
             </nav>
         </div>
-    @endforeach
+    @empty
+        <p>この店舗の1週間以内のレビューはありません。</p>
+    @endforelse
 
-    <a href="{{ route('review.create') }}"><button>投稿する</button></a>
+    <a
+        href="{{ url('/author-review-create') }}?starbucks_store_id={{ request('starbucks_store_id') }}"><button>投稿する</button></a>
 
 
     <a href="{{ route('example') }}">
