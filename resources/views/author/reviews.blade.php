@@ -3,7 +3,8 @@
 @section('title', 'author | 口コミみる')
 
 @section('content')
-
+    <p>ログイン中のユーザー名：{{ Auth::user()->name }}</p>
+    <p>Account:{{ sprintf('%04d', Auth::user()->id) }}</p>
 
     <h1>データベース確認</h1>
 
@@ -42,7 +43,7 @@
     <a href="{{ route('author.review_create') }}"><button>投稿する</button></a>
 
 
-    <a href="{{ route('example')}}">
+    <a href="{{ route('example') }}">
         <button>戻る</button></a>
 
 @endsection

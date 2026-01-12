@@ -4,6 +4,7 @@
 
 @section('content')
 
+
     <p>Account:{{ sprintf('%04d', Auth::user()->id) }}</p>
     <p>なんばスカイオ店</p>
 

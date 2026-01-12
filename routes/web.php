@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Route;
 // ---------------通常ファイルです----------------------
 
 // 未ログイン状態(ゲスト)
-// http://127.0.0.1/
-Route::get('/', function () {
-    return view('welcome');
-})->name('/');
-
 
 // http://127.0.0.1/map
 Route::get('/map', function () {
@@ -37,39 +32,35 @@ Route::middleware('auth')->group(function () {
     // http://127.0.0.1:8000/profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    // http://127.0.0.1:8000/author-reviews
+    Route::get('/author-reviews', function () {
+        return view('author.reviews');
+    })->name('author.reviews');
+
+    // http://127.0.0.1:8000/author-review-create
+    Route::get('/author-review-create', function () {
+        return view('author.review_create');
+    })->name('author.review_create');
+
+
+    // http://127.0.0.1:8000/author-review-edit
+    Route::get('/author-review-edit', function () {
+        return view('author.review_edit');
+    })->name('author.review_edit');
+
+
+    // http://127.0.0.1:8000/author-myposts
+    Route::get('/author-myposts', function () {
+        return view('author.myposts');
+    })->name('author.myposts');
 });
 
-// http://127.0.0.1:8000/author-reviews
-Route::get('/author-reviews', function () {
-    return view('author.reviews');
-})->name('author.reviews');
-
-// http://127.0.0.1:8000/author-review-create
-Route::get('/author-review-create', function () {
-    return view('author.review_create');
-})->name('author.review_create');
-
-
-// http://127.0.0.1:8000/author-review-edit
-Route::get('/author-review-edit', function () {
-    return view('author.review_edit');
-})->name('author.review_edit');
-
-
-// http://127.0.0.1:8000/author-myposts
-Route::get('/author-myposts', function () {
-    return view('author.myposts');
-})->name('author.myposts');
 
 
 
-// データベース確認用
-// Route::get('/author-reviews', [UserController::class, 'index'])->name('user');
-// Route::get('/author-reviews', [StarbucksStoreController::class, 'index'])->name('statbucksStore');
 
+
+
+// これは最後
 require __DIR__ . '/auth.php';
-
-//---top画面確認用 http://127.0.0.1/top---
-Route::view('/top', 'top');
-//---register画面確認用 http://127.0.0.1/register---
-Route::view('/register', 'register');
