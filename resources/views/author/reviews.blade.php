@@ -15,7 +15,6 @@
     </div>
 
     <h1>口コミ一覧</h1>
-
     @foreach ($reviews as $review)
         <div class="wrapper">
             <nav>

@@ -47,15 +47,16 @@ Route::middleware('auth')->group(function () {
     // ------------口コミ投稿用
     Route::post('/author-review-create', [ReviewsController::class, 'store'])->name('review.store');
 
-
-
     // http://127.0.0.1:8000/author-myposts
     Route::get('/author-myposts', [ReviewsController::class, 'myReviews'])->name('author.myposts');
 
+
     // http://127.0.0.1:8000/author-review-edit
-    Route::get('/author-review-edit', function () {
-        return view('author.review_edit');
-    })->name('review.edit');
+    Route::get('/author-myposts/{id}', [ReviewsController::class, 'edit'])->name('review.edit');
+
+    Route::put('/author-review-edit/{id}', [ReviewsController::class, 'update'])->name('review.update');
+
+    Route::delete('/author-myposts/{id}', [ReviewsController::class, 'destroy'])->name('mypost.delete');
 });
 
 

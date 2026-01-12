@@ -87,33 +87,50 @@ class ReviewsController extends Controller
         //
     }
 
-    // user_id
-    // starbucks_store_id'
-    // 'status_id
-    // product
-    // message'
-
     public function edit(string $id)
     {
-        return view(
-            'author.review_edit',
-            [
-                'statuses' => Status::all(),
-                'starbucksStores' => StarbucksStore::all()
-            ]
-        );
+        $review = Review::where('id', $id)
+            ->where('user_id', auth()->id())
+            ->firstOrFail();
+
+        $starbucksStores = StarbucksStore::all();
+        $statuses = Status::all();
+
+        return view('author.review_edit', compact('review', 'starbucksStores', 'statuses'));
     }
 
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'product' => ['required', 'string', 'max:30'],
+            'status_id' => ['required', 'exists:statuses,id'],
+            'starbucks_store_id' => ['nullable', 'exists:starbucks_stores,id'],
+            'message' => ['required', 'string'],
+        ]);
+        $review = Review::where('id', $id)
+            ->where('user_id', auth()->id())
+            ->firstOrFail();
+
+
+        $review->update([
+            'user_id' => auth()->id(),
+            'status_id' => $validated['status_id'],
+            'starbucks_store_id' => $validated['starbucks_store_id'] ?? null,
+            'product' => $validated['product'],
+            'message' => $validated['message'],
+        ]);
+
+        return redirect()->route('author.myposts')->with('status', '投稿を変更しました');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    //  ユーザー画面：自分の投稿履歴一覧からのみ削除可能
     public function destroy(string $id)
     {
-        //
+        $review = Review::where('id', $id)
+            ->where('user_id', auth()->id())
+            ->firstOrFail();
+
+        $review->delete();
+        return redirect()->route('author.myposts')->with('status', "投稿を削除しました");
     }
 }
