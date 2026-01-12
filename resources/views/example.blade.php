@@ -72,7 +72,7 @@
             <div style="min-width:200px">
                 <h4>スターバックスコーヒー 大阪城公園店</h4>
                 <p>大阪市中央区大阪城1-1</p>
-                <a href="/reviews">口コミを見る</a>
+                <a href="{{route('author.reviews')}}">口コミを見る</a>
             </div>
         `,
             });
