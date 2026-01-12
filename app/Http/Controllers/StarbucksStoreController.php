@@ -2,61 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
 use App\Models\StarbucksStore;
 use Illuminate\Http\Request;
 
 class StarbucksStoreController extends Controller
 {
-    public function index()
+
+    // ゲスト：Google上にピンを表示する
+    public function gestMap()
     {
         $starbucksStores = StarbucksStore::all();
-        return view('author.reviews', compact('starbucksStores'));
+        return view('gest.map', compact('starbucksStores'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    // 詳細ポップアップのリンクから店舗ごとの口コミを開く
+    public function gestIndex()
     {
-        //
+        $storeId = $request->input('starbucks_store_id'); // ボタンから渡されたID
+        $starbucksStores = StarbucksStore::all();
+
+        $reviewsQuery = Review::with('starbucksStore', 'status', 'user');
+
+        if ($storeId) {
+            $reviewsQuery->where('starbucks_store_id', $storeId);
+        }
+
+        $reviews = $reviewsQuery->get();
+        return view('author.reviews', compact('starbucksStores', 'reviews', 'storeId'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
     {
         //
     }
