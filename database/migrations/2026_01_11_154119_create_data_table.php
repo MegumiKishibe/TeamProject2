@@ -31,23 +31,16 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('status_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('starbucks_store_id')->nullable()->constrained()->onDelete('cascade');
+            $table->string('product');
             $table->text('message');
+            $table->unsignedInteger('likes_count')->default(0);
             $table->timestamps();
         });
-        Schema::create('likes', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('review_id')->constrained()->onDelete('cascade');
-            $table->string('ip_address');
-            $table->timestamps();
-        });
+
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('likes');
         Schema::dropIfExists('reviews');
         Schema::dropIfExists('statuses');
         Schema::dropIfExists('starbucks_stores');

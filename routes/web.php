@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\StarbucksStoreController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -10,6 +11,9 @@ use Illuminate\Support\Facades\Route;
 // ---------------通常ファイルです----------------------
 
 // 未ログイン状態(ゲスト)
+Route::get('/', function () {
+    return view('auth.top');
+});
 
 // http://127.0.0.1/map
 Route::get('/map', function () {
@@ -34,26 +38,24 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
     // http://127.0.0.1:8000/author-reviews
-    Route::get('/author-reviews', function () {
-        return view('author.reviews');
-    })->name('author.reviews');
+    // -------------投稿一覧表示(1週間以内)
+    Route::get('/author-reviews', [ReviewsController::class, 'authorIndex'])->name('author.reviews');
 
     // http://127.0.0.1:8000/author-review-create
-    Route::get('/author-review-create', function () {
-        return view('author.review_create');
-    })->name('author.review_create');
+    Route::get('/author-review-create', [ReviewsController::class, 'create'])->name('review.create');
 
+    // ------------口コミ投稿用
+    Route::post('/author-review-create', [ReviewsController::class, 'store'])->name('review.store');
+
+
+
+    // http://127.0.0.1:8000/author-myposts
+    Route::get('/author-myposts', [ReviewsController::class, 'myReviews'])->name('author.myposts');
 
     // http://127.0.0.1:8000/author-review-edit
     Route::get('/author-review-edit', function () {
         return view('author.review_edit');
-    })->name('author.review_edit');
-
-
-    // http://127.0.0.1:8000/author-myposts
-    Route::get('/author-myposts', function () {
-        return view('author.myposts');
-    })->name('author.myposts');
+    })->name('review.edit');
 });
 
 

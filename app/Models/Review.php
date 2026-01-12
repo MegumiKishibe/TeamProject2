@@ -14,17 +14,15 @@ class Review extends Model
         'user_id',
         'status_id',
         'starbucks_store_id',
+        'product',
         'message',
     ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function likes()
-    {
-        return $this->hasMany(Like::class);
-    }
     public function status()
     {
         return $this->belongsTo(Status::class);
