@@ -15,6 +15,12 @@ class StarbucksStoreController extends Controller
         $starbucksStores = StarbucksStore::all();
         return view('gest.map', compact('starbucksStores'));
     }
+
+        public function gestsearchMap()
+    {
+        $starbucksStores = StarbucksStore::all();
+        return view('gest.search', compact('starbucksStores'));
+    }
     // ユーザー：Google上にピンを表示する
     public function authMap()
     {
