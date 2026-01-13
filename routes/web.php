@@ -60,12 +60,13 @@ Route::middleware('auth')->group(function () {
 
 
 //--------UI確認用ルート--------
-//---top画面確認用 http://127.0.0.1/top---
-Route::view('/top', 'top');
 //---register画面確認用 http://127.0.0.1/register---
 Route::view('/register', 'register');
-=======
-
+//---search画面確認用 http://127.0.0.1:8000/search
+Route::get('/search', function () {
+    return view('gest.search');
+})->name('gest.search');
+//-----------------------------
 
 // これは最後
 require __DIR__ . '/auth.php';
