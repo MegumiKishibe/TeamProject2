@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\StarbucksStoreController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -10,67 +11,61 @@ use Illuminate\Support\Facades\Route;
 // ---------------通常ファイルです----------------------
 
 // 未ログイン状態(ゲスト)
-// http://127.0.0.1/
 Route::get('/', function () {
-    return view('welcome');
-})->name('/');
-
+    return view('auth.top');
+});
 
 // http://127.0.0.1/map
 Route::get('/map', function () {
     return view('gest.map');
 })->name('gest.map');
 
+Route::get('/map', [StarbucksStoreController::class, 'gestMap'])->name('gest.map');
 
 // http://127.0.0.1/reviews
-Route::get('/reviews', function () {
-    return view('gest.reviews');
-})->name('gest.reviews');
+Route::get('/reviews', [ReviewsController::class, 'gestIndex'])->name('gest.reviews');
+
+
 
 
 // ログイン認証済
 Route::middleware('auth')->group(function () {
-    Route::get('/example', function () {
-        return view('example');
-    })->name('example');
+    Route::get('/example', [StarbucksStoreController::class,'authMap'])->name('example');
 
     // http://127.0.0.1:8000/profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    // http://127.0.0.1:8000/author-reviews
+    // -------------投稿一覧表示(1週間以内)
+    Route::get('/author-reviews', [ReviewsController::class, 'authorIndex'])->name('author.reviews');
+
+    // http://127.0.0.1:8000/author-review-create
+    Route::get('/author-review-create', [ReviewsController::class, 'create'])->name('review.create');
+
+    // ------------口コミ投稿用
+    Route::post('/author-review-create', [ReviewsController::class, 'store'])->name('review.store');
+
+    // http://127.0.0.1:8000/author-myposts
+    Route::get('/author-myposts', [ReviewsController::class, 'myReviews'])->name('author.myposts');
+
+
+    // http://127.0.0.1:8000/author-review-edit
+    Route::get('/author-myposts/{id}', [ReviewsController::class, 'edit'])->name('review.edit');
+
+    Route::put('/author-review-edit/{id}', [ReviewsController::class, 'update'])->name('review.update');
+
+    Route::delete('/author-myposts/{id}', [ReviewsController::class, 'destroy'])->name('mypost.delete');
 });
 
-// http://127.0.0.1:8000/author-reviews
-Route::get('/author-reviews', function () {
-    return view('author.reviews');
-})->name('author.reviews');
-
-// http://127.0.0.1:8000/author-review-create
-Route::get('/author-review-create', function () {
-    return view('author.review_create');
-})->name('author.review_create');
-
-
-// http://127.0.0.1:8000/author-review-edit
-Route::get('/author-review-edit', function () {
-    return view('author.review_edit');
-})->name('author.review_edit');
-
-
-// http://127.0.0.1:8000/author-myposts
-Route::get('/author-myposts', function () {
-    return view('author.myposts');
-})->name('author.myposts');
-
-
-
-// データベース確認用
-// Route::get('/author-reviews', [UserController::class, 'index'])->name('user');
-// Route::get('/author-reviews', [StarbucksStoreController::class, 'index'])->name('statbucksStore');
-
-require __DIR__ . '/auth.php';
 
 //--------UI確認用ルート--------
 //---top画面確認用 http://127.0.0.1/top---
 Route::view('/top', 'top');
 //---register画面確認用 http://127.0.0.1/register---
 Route::view('/register', 'register');
+=======
+
+
+// これは最後
+require __DIR__ . '/auth.php';
