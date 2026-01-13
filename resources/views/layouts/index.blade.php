@@ -1,4 +1,5 @@
 {{-- exampleの大枠 --}}
+{{-- #TODO不要の場合は削除する --}}
 
 <!DOCTYPE html>
 <html lang="ja">

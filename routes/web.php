@@ -22,6 +22,9 @@ Route::get('/map', function () {
 
 Route::get('/map', [StarbucksStoreController::class, 'gestMap'])->name('gest.map');
 
+// http://127.0.0.1:8000/search
+Route::get('/search', [StarbucksStoreController::class, 'gestsearchMap'])->name('search.map');
+
 // http://127.0.0.1/reviews
 Route::get('/reviews', [ReviewsController::class, 'gestIndex'])->name('gest.reviews');
 
@@ -61,12 +64,7 @@ Route::middleware('auth')->group(function () {
 
 //--------UI確認用ルート--------
 //---register画面確認用 http://127.0.0.1/register---
-Route::view('/register', 'register');
-//---search画面確認用 http://127.0.0.1:8000/search
-Route::get('/search', function () {
-    return view('gest.search');
-})->name('gest.search');
-//-----------------------------
+// Route::view('/register', 'register');
 
 // これは最後
 require __DIR__ . '/auth.php';

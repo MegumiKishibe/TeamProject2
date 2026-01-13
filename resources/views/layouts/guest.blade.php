@@ -1,4 +1,5 @@
 {{-- ログイン前の共通HTML？？ --}}
+{{-- #TODO不要の場合は削除する --}}
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
