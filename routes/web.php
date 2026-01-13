@@ -69,6 +69,7 @@ Route::get('/author-myposts', function () {
 
 require __DIR__ . '/auth.php';
 
+//--------UI確認用ルート--------
 //---top画面確認用 http://127.0.0.1/top---
 Route::view('/top', 'top');
 //---register画面確認用 http://127.0.0.1/register---

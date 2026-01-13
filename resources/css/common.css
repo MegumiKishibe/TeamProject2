@@ -1,35 +1,19 @@
 /* ===== Fonts ===== */
+@import url("https://fonts.bunny.net/css?family=material-symbols-rounded:opsz,wght,FILL,GRAD@24..48,200..700,0..1,-50..200&display=swap");
 @import url("https://fonts.bunny.net/css?family=zen-kaku-gothic-new:300,400,500,700&display=swap");
 @import url("https://fonts.bunny.net/css?family=yaldevi:400,600&display=swap");
 
-/* ===== Typography Base ===== */
+/* ===== Design Tokens / Typography Base ===== */
 :root {
+  /* Fonts */
   --font-base: "Yaldevi", "Zen Kaku Gothic New", system-ui, -apple-system, "Segoe UI", sans-serif;
 
+  /* Weights */
   --fw-regular: 400;
   --fw-medium: 500;
   --fw-semi: 600;
 
-  --text: #0f172a;
-  --muted: #64748b;
-}
-
-html, body {
-  font-family: var(--font-base);
-  font-weight: var(--fw-regular);
-  color: var(--text);
-  letter-spacing: 0.02em;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-synthesis-weight: none; /* 擬似太字を防ぐ */
-}
-
-/* ===== モバイル前提の共通 ===== */
-* { box-sizing: border-box; }
-html, body { height: 100%; }
-body { margin: 0; }
-
-:root{
+  /* Colors */
   --bg: #cfe4df;
   --card-border: #1f95ff;
   --text: #0f172a;
@@ -39,12 +23,30 @@ body { margin: 0; }
   --btn: #66a896;
   --btn-text: #ffffff;
 
+  /* Shape / Shadow */
   --radius: 18px;
   --shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
 }
 
-/* iPhoneのSafe Area対応 */
-.page{
+/* ===== Base ===== */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; }
+
+html, body {
+  font-family: var(--font-base);
+  font-weight: var(--fw-regular);
+  color: var(--text);
+  letter-spacing: 0.02em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* 擬似太字/擬似斜体をなるべく抑える */
+  font-synthesis: none;
+}
+
+/* ===== iPhoneのSafe Area対応 ===== */
+.page {
   min-height: 100svh;
   padding: max(18px, env(safe-area-inset-top))
            max(14px, env(safe-area-inset-right))
@@ -54,14 +56,16 @@ body { margin: 0; }
   color: var(--text);
   display: grid;
   place-items: center;
+
+  /* pageでfontを戻さない */
   font-family: var(--font-base);
   font-weight: var(--fw-regular);
 }
 
-/* カードはスマホ幅に最適化 */
+/* ===== Card ===== */
 .card{
   width: 100%;
-  max-width: 430px;            /* スマホの最大幅想定 */
+  max-width: 430px;
   background: #fff;
   border: 3px solid var(--card-border);
   border-radius: var(--radius);
@@ -69,8 +73,8 @@ body { margin: 0; }
   padding: 44px 18px 34px;
   text-align: center;
 }
-/* ===== トップ・登録共通スタイル ===== */
-/* タイトル：スマホ中心に */
+
+/* ===== Top / Register 共通 ===== */
 .title{
   margin: 0;
   font-size: 38px;
@@ -92,7 +96,6 @@ body { margin: 0; }
   margin: 18px auto 30px;
 }
 
-/* フォーム */
 .form{
   width: 92%;
   margin: 0 auto;
@@ -147,17 +150,14 @@ body { margin: 0; }
   font-size: 18px;
   font-weight: var(--fw-regular);
 }
-
 .link:hover{ text-decoration: underline; }
 
 /* ===== 新規登録画面専用 ===== */
-/* register は枠線なし版 */
 .card--plain {
   border: none;
   box-shadow: 0 14px 30px rgba(15,23,42,0.12);
 }
 
-/* 左上の小さいロゴ */
 .brand-row{
   text-align: left;
   margin-bottom: 18px;
@@ -168,28 +168,181 @@ body { margin: 0; }
   color: var(--text);
 }
 
-/* ページ見出し（新規登録） */
 .page-title{
   margin: 0 0 28px;
   font-size: 42px;
-  font-weight: 500; /* 太すぎ防止 */
+  font-weight: 500;
   letter-spacing: 0.02em;
 }
 
-/* 入力の間隔を少し広げる */
 .form--spacious{
   gap: 22px;
 }
 
-/* Sign up ボタンは Login より少し小さめ */
 .btn--md{
   height: 72px;
   font-size: 36px;
   border-radius: 14px;
 }
 
-/* ===== レスポンシブ調整 ===== */
-/* 小さめ端末 */
+/* ===== Map UI ===== */
+#map {
+  width: 100%;
+  height: 100svh;
+}
+/* ===== Modal menu icons ===== */
+.material-symbols-rounded{
+  font-family: "Material Symbols Rounded" !important;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+.map-modal-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.map-modal-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  height: 96px;
+  border-radius: 16px;
+  text-decoration: none;
+
+  background: #ffffffcc;
+  border: 1px solid #e5e7eb;
+  color: #0f172a;
+
+  box-shadow: 0 10px 18px rgba(15,23,42,0.10);
+  backdrop-filter: blur(8px);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.map-modal-item:active{
+  transform: translateY(1px);
+}
+
+/* アイコン本体（大きめ） */
+.map-icon{
+  font-size: 38px;
+  font-variation-settings:
+    "FILL" 1,
+    "wght" 500,
+    "GRAD" 0,
+    "opsz" 40;
+  line-height: 1;
+}
+
+/* 文字は小さめ */
+.map-label{
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  font-weight: var(--fw-medium);
+  color: #334155;
+}
+
+/* 危険操作は少し赤（Logoutだけ） */
+.map-modal-item[href="/"] .map-icon,
+.map-modal-item[href="/"] .map-label{
+  color: #b91c1c;
+}
+
+
+/* MENUボタン（下中央） */
+.map-menu-btn{
+  position: fixed; /* 要素をビューボードに固定 */
+  left: 50%;
+  bottom: calc(18px + env(safe-area-inset-bottom)); /* iPhoneのSafe Area対応 */
+  transform: translateX(-50%);
+  z-index: 20; /* 重なり順(数値が大きいほど前面) */
+
+  width: min(320px, calc(100vw - 28px));
+  height: 64px;
+  border: none;
+  border-radius: 999px;
+  background: var(--btn); /* --btnカスタムプロパティを使用 22行目*/
+  color: #fff;
+
+  font-size: 18px;
+  font-weight: var(--fw-semi);
+  letter-spacing: 0.08em;
+  box-shadow: 0 14px 24px rgba(15,23,42,0.18);
+}
+
+/* 背景暗くするオーバーレイ */
+.map-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: rgba(15, 23, 42, 0.45);
+  opacity: 0; /* 0は透明、1は不透明 */
+  pointer-events: none; /* クリック無効 */
+  transition: opacity 160ms ease;
+}
+
+/* メニュー本体（中央に浮く） */
+.map-modal{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.98);
+  z-index: 40;
+
+  width: min(320px, calc(100vw - 44px));
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(15,23,42,0.22);
+  padding: 18px;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.map-modal-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.map-modal-item{
+  display: grid;
+  place-items: center;
+  height: 84px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: #0f172a;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  font-weight: var(--fw-medium);
+}
+
+/* 開いた状態（JSで class を付ける想定） */
+.is-open.map-overlay{
+  opacity: 1;
+  pointer-events: auto;
+}
+.is-open.map-modal{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+
+/* ===== Responsive ===== */
 @media (max-width: 360px){
   .title{ font-size: 34px; }
   .btn{ font-size: 40px; height: 78px; }
