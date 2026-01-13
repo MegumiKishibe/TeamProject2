@@ -59,9 +59,12 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
-
-
+//--------UI確認用ルート--------
+//---top画面確認用 http://127.0.0.1/top---
+Route::view('/top', 'top');
+//---register画面確認用 http://127.0.0.1/register---
+Route::view('/register', 'register');
+=======
 
 
 // これは最後

@@ -5,17 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/style.css'])
-    <title>gest | map</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <title>Map</title>
 </head>
 
 <body>
-    <h1>マップだよ</h1>
+    <div id="map"></div>
 
-    <a href="{{ route('login') }}"><button>←戻る</button></a>
+    <button type="button" id="menuOpenBtn" class="map-menu-btn">MENU</button>
 
-    <div id="map" style="width:100%; height:500px"></div>
+    <div id="menuOverlay" class="map-overlay" aria-hidden="true"></div>
 
+    <div id="menuModal" class="map-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="map-modal-grid">
+        <a class="map-modal-item" href="/map" aria-label="Search">
+            <span class="material-symbols-rounded map-icon" aria-hidden="true">search</span>
+            <span class="map-label">Search</span>
+        </a>
+
+        <a class="map-modal-item" href="/reviews" aria-label="History">
+            <span class="material-symbols-rounded map-icon" aria-hidden="true">history</span>
+            <span class="map-label">History</span>
+        </a>
+
+        <a class="map-modal-item" href="/profile" aria-label="Account">
+            <span class="material-symbols-rounded map-icon" aria-hidden="true">person</span>
+            <span class="map-label">Account</span>
+        </a>
+
+        <a class="map-modal-item" href="/" aria-label="Logout">
+            <span class="material-symbols-rounded map-icon" aria-hidden="true">logout</span>
+            <span class="map-label">Logout</span>
+        </a>
+    </div>
+    </div>
+
+    {{-- #TODO  JSONでのデータ取得に変更する --}}   
     <script>
         const stores = @json($starbucksStores);
         console.log(stores);
