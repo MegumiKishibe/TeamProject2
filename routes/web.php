@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\StarbucksStoreController;
@@ -28,6 +29,7 @@ Route::get('/search', [StarbucksStoreController::class, 'gestsearchMap'])->name(
 // http://127.0.0.1/reviews
 Route::get('/reviews', [ReviewsController::class, 'gestIndex'])->name('gest.reviews');
 
+Route::post('reviews/{reviews}/like',[LikeController::class,'store'])->name('reviews.like');
 
 
 
@@ -45,6 +47,7 @@ Route::middleware('auth')->group(function () {
 
     // http://127.0.0.1:8000/author-review-create
     Route::get('/author-review-create', [ReviewsController::class, 'create'])->name('review.create');
+    Route::post('reviews/{reviews}/like',[LikeController::class,'store'])->name('reviews.like');
 
     // ------------口コミ投稿用
     Route::post('/author-review-create', [ReviewsController::class, 'store'])->name('review.store');

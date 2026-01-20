@@ -23,7 +23,10 @@
                     <li>投稿者：{{ $review->user->name }}</li>
                     <li>口コミ投稿日： {{ $review->created_at->format('Y/m/d H:i') }}</li>
                     <li>いいね：{{ $review->likes_count }}
-                        <button>いいねする</button>
+                        <form action="{{ route('reviews.like', $review) }}" method="POST">
+                            @csrf
+                            <button type="submit">いいねする</button>
+                        </form>
                     </li>
                     <li>販売状況：{{ $review->status->name }}</li>
                     <li>{{ $review->message }}</li>
