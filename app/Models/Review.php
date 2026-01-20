@@ -15,6 +15,7 @@ class Review extends Model
         'status_id',
         'starbucks_store_id',
         'product',
+        'likes_count',
         'message',
     ];
 

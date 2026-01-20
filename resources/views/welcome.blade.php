@@ -1,5 +1,5 @@
 {{-- http://127.0.0.1:8000
-
+{{-- #TODO不要の場合は削除する --
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
