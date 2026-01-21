@@ -1312,3 +1312,239 @@ html, body {
   line-height: 1;
   font-variation-settings: "FILL" 0, "wght" 600, "GRAD" 0, "opsz" 24;
 }
+/* ===============================
+   History (一覧)
+=============================== */
+
+.history-list{
+  padding: 18px 22px 20px;
+  display: grid;
+  gap: 14px;
+  overflow-y: auto;
+}
+
+/* 空状態 */
+.history-empty{
+  padding: 40px 22px 34px;
+  text-align: center;
+  display: grid;
+  gap: 12px;
+}
+
+.history-empty-icon{
+  width: 84px;
+  height: 84px;
+  margin: 10px auto 6px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.04);
+  display: grid;
+  place-items: center;
+}
+
+.history-empty-icon .material-symbols-rounded{
+  font-size: 38px;
+  color: rgba(15, 23, 42, 0.35);
+}
+
+.history-empty-title{
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.history-empty-sub{
+  margin: 0 auto;
+  max-width: 28ch;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #64748b;
+}
+
+.history-empty-btn{
+  margin-top: 12px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 52px;
+  padding: 0 18px;
+  border-radius: 18px;
+  background: var(--primary); /* #CC9A06 */
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  box-shadow: 0 12px 18px rgba(15,23,42,0.14);
+}
+
+.history-empty-btn:hover{ background: var(--primary-hover); }
+
+/* 編集ボタン */
+.history-actions{
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.history-edit-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  background: rgba(15, 23, 42, 0.02);
+  color: #0f172a;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.history-edit-btn .material-symbols-rounded{ font-size: 18px; }
+.history-edit-btn:hover{ background: rgba(15, 23, 42, 0.04); }
+.review-menu-row{
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 12px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06); /* うっすら区切り */
+}
+
+.review-menu-btn{
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+
+  background: var(--btn); /* 緑（ログインと同じ） */
+  color: #fff;
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+
+  box-shadow: 0 10px 18px rgba(15,23,42,0.12);
+  cursor: pointer;
+}
+
+.review-menu-btn:active{ transform: translateY(1px); }
+/* ===== History actions ===== */
+.history-actions{
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+/* 編集ボタン（既存があるなら不要。なければこれで整う） */
+.history-edit-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 13px;
+
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  color: #0f172a;
+  box-shadow: 0 10px 16px rgba(15,23,42,0.06);
+}
+
+.history-edit-btn .material-symbols-rounded{
+  font-size: 18px;
+}
+
+/* 削除アイコン（“削除感”は出すが、過度に危険っぽくしない） */
+.history-delete-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  color: #b91c1c; /* うっすら赤＝削除イメージ */
+  box-shadow: 0 10px 16px rgba(15,23,42,0.06);
+
+  cursor: pointer;
+}
+
+.history-delete-btn .material-symbols-rounded{
+  font-size: 20px;
+}
+
+.history-delete-btn:hover{
+  filter: brightness(0.98);
+}
+
+.history-delete-btn:active{
+  transform: translateY(1px);
+}
+
+.history-delete-btn:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(185,28,28,0.18), 0 10px 16px rgba(15,23,42,0.06);
+}
+.frame-title{
+  margin: 0;
+  padding: 8px 22px 0;  /* review-create-main と揃える */
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: 0.04em;
+}
+.frame-title--center{
+  text-align: center;
+  margin: 10px 0 14px;
+}
+/* 店舗名（表示だけ）を控えめなラベル感に */
+.store-display{
+  user-select: none;
+  cursor: default;
+  margin-bottom: 8px;
+
+  /* 色だけ薄くする（フォント/サイズは review-label のまま） */
+  opacity: 0.65;
+}
+.frame-title-center{
+  text-align: center;
+  margin: 18px 0 10px;
+}
+/* ===== Frame title (histories / edit etc.) ===== */
+.frame-title{
+  margin: 10px 0 6px;
+  font-size: 22px;     /* ← create の store 見出し(22px)と同格 */
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+/* 中央寄せ用（あなたが使ってる想定） */
+.frame-title-center{
+  text-align: center;
+}
+/* 履歴カード：店舗名表示 */
+.history-store{
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.history-store-label{
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(15, 23, 42, 0.45); /* うすめ */
+  letter-spacing: 0.08em;
+}
+
+.history-store-name{
+  font-size: 14px;
+  font-weight: 800;
+  color: rgba(15, 23, 42, 0.82); /* 主張しすぎない濃さ */
+}
