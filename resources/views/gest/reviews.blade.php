@@ -3,16 +3,32 @@
 @section('title', 'gest | 口コミみる')
 
 @section('content')
-
+    @if ($reviews->isNotEmpty())
+        <h1>{{ $reviews->first()->starbucksStore->name }}</h1>
+    @endif
 
     <h1>口コミ一覧</h1>
+    <form action="{{ route('gest.reviews') }}" method="GET" id="filter-form">
+        {{-- 店舗IDが必要な場合は隠しデータで送る --}}
+        <input type="hidden" name="starbucks_store_id" value="{{ request('starbucks_store_id') }}">
+
+        <label for="days">表示期間：</label>
+        <select name="days" onchange="document.getElementById('filter-form').submit()">
+            <option value="">1週間以内をすべて表示</option>
+            <option value="1" {{ request('days') == '1' ? 'selected' : '' }}>昨日</option>
+            <option value="2" {{ request('days') == '2' ? 'selected' : '' }}>2日前</option>
+            <option value="3" {{ request('days') == '3' ? 'selected' : '' }}>3日前</option>
+            <option value="4" {{ request('days') == '4' ? 'selected' : '' }}>4日前</option>
+        </select>
+    </form>
 
     @forelse($reviews as $review)
-        <h1>{{ $review->starbucksStore->name }}</h1>
         <div class="wrapper">
             <nav>
                 <ul>
-
+                    @if ($review->created_at->gt(now()->subDay()))
+                        <li style="color: red; font-weight: bold;">🔥 24時間以内！</li>
+                    @endif
                     <li>商品名：{{ $review->product }}</li>
                     <li>投稿者：{{ $review->user->name }}</li>
                     <li>口コミ投稿日： {{ $review->created_at->format('Y/m/d H:i') }}</li>

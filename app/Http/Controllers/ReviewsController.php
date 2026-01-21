@@ -16,9 +16,20 @@ class ReviewsController extends Controller
     {
 
         $storeId = $request->input('starbucks_store_id');
-        $reviews = Review::where('starbucks_store_id', $storeId)
-            ->where('created_at', '>=', Carbon::now()->subWeek())
-            ->get();
+        $days = $request->input('days');
+
+        $query = Review::where('starbucks_store_id', $storeId);
+
+
+        if (isset($days) && $days !== '') {
+            $query = $this->filterByPeriod($days, $query);
+        } else {
+
+            $query->where('created_at', '>=', now()->subWeek());
+        }
+
+        $reviews = $query->orderBy('created_at', 'desc')->get();
+
         $starbucksStores = StarbucksStore::all();
         $statuses = Status::all();
 
@@ -28,12 +39,20 @@ class ReviewsController extends Controller
     // ユーザー画面：口コミ一覧表示
     public function authorIndex(Request $request)
     {
-        $user = auth()->user();
-
         $storeId = $request->input('starbucks_store_id');
-        $reviews = Review::where('starbucks_store_id', $storeId)
-            ->where('created_at', '>=', Carbon::now()->subWeek())
-            ->get();
+        $days = $request->input('days');
+
+        $query = Review::where('starbucks_store_id', $storeId);
+
+        // 期間の絞り込みを実行
+        if (isset($days) && $days !== '') {
+            $query = $this->filterByPeriod($days, $query);
+        } else {
+            $query->where('created_at', '>=', now()->subWeek());
+        }
+
+        // ★ ここを追加！ created_at（投稿日）を desc（新しい順）にする
+        $reviews = $query->orderBy('created_at', 'desc')->get();
 
         $statuses = Status::all();
         $starbucksStore = StarbucksStore::find($storeId);
@@ -92,11 +111,6 @@ class ReviewsController extends Controller
         ])->with('status', '投稿しました');
     }
 
-    public function show(string $id)
-    {
-        //
-    }
-
     public function edit(string $id)
     {
         $review = Review::where('id', $id)
@@ -142,5 +156,17 @@ class ReviewsController extends Controller
 
         $review->delete();
         return redirect()->route('author.myposts')->with('status', "投稿を削除しました");
+    }
+
+
+    // 投稿日ドロップダウン表示
+    public function filterByPeriod($days, $query)
+    {
+
+        if ($days) {
+            $targetDate = now()->subDays($days)->toDateString();
+            $query->whereDate('created_at', $targetDate);
+        }
+        return $query;
     }
 }

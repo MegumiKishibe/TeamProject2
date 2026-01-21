@@ -9,9 +9,9 @@
 </head>
 
 <body class="map-page">
-{{-- TODO:検索機能を作る --}}
+    {{-- #TODO:検索機能を作る --}}
     <div id="map" class="map-canvas" aria-label="Map placeholder"></div>
-    <script>
+    {{-- <script>
         const stores = @json($starbucksStores);
         console.log(stores);
 
@@ -59,24 +59,24 @@
                     infoWindow.open(map, marker);
                 });
 
-                // 選択した店舗にフォーカスする
-                // const selectStore = document.getElementById('store-select');
-                // selectStore.addEventListener('change', function() {
-                //     const selectOption = this.options[this.selectedIndex];
-                //     const lat = parseFloat(selectOption.dataset.lat);
-                //     const lng = parseFloat(selectOption.dataset.lng);
+                選択した店舗にフォーカスする
+                const selectStore = document.getElementById('store-select');
+                selectStore.addEventListener('change', function() {
+                    const selectOption = this.options[this.selectedIndex];
+                    const lat = parseFloat(selectOption.dataset.lat);
+                    const lng = parseFloat(selectOption.dataset.lng);
 
-                //     if (!isNaN(lat) && !isNaN(lng)) {
-                //         map.setCenter({
-                //             lat: lat,
-                //             lng: lng
-                //         });
-                //         map.setZoom(20);
-                //     }
-                // });
+                    if (!isNaN(lat) && !isNaN(lng)) {
+                        map.setCenter({
+                            lat: lat,
+                            lng: lng
+                        });
+                        map.setZoom(20);
+                    }
+                });
             });
         }
-    </script>
+    </script> --}}
 
     <div id="menuOverlay" class="map-overlay" aria-hidden="true"></div>
 
@@ -85,8 +85,9 @@
         <div class="search-bar-inner">
             <span class="material-symbols-rounded search-icon" aria-hidden="true">search</span>
             <input class="search-input" type="search" name="q" placeholder="例：スターバックス 道頓堀" autocomplete="off"
-                inputmode="search" />
+                inputmode="search"  list="store-list"/>
             <button type="button" class="search-btn">検索</button>
+            <datalist id="store-list"></datalist>
         </div>
 
         <div class="search-hint">
@@ -123,6 +124,12 @@
             </a>
         </div>
     </div>
+    <script>
+        window.starbucksStores = @json($starbucksStores);
+    </script>
+
+    @vite('resources/js/search.js')
+
     <script
         src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google.maps_key') }}&language=ja&callback=initMap"
         async defer></script>
