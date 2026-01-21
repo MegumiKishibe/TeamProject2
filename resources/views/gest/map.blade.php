@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    {{-- #TODO  JSONでのデータ取得に変更する --}}   
+    {{-- #TODO  JSONでのデータ取得に変更する --}}
     <script>
         const stores = @json($starbucksStores);
         console.log(stores);
