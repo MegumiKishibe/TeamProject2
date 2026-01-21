@@ -124,8 +124,14 @@ Route::get('/review', function () {
 
 //口コミ投稿-create画面確認用 http://127.0.0.1:8000/create---
 Route::view('/create', 'reviews.create');
-//-----------------------------
-// Route::view('/register', 'register');
+// 履歴一覧（0件表示用）http://127.0.0.1:8000/history-empty---
+Route::view('/history-empty', 'histories.index-empty');
+
+// 履歴一覧（ダミー表示用）http://127.0.0.1:8000/history---
+Route::view('/history', 'histories.index');
+
+// 履歴編集（UI確認用）http://127.0.0.1:8000/history-edit---
+Route::view('/history-edit', 'histories.edit');
 
 // これは最後
 require __DIR__ . '/auth.php';

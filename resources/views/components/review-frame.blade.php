@@ -1,43 +1,34 @@
 @props([
-  'store' => 'なんばスカイオ店',
-  'account' => 'Account No.0001',
-  'active' => 'index', // index | create
+  'store' => '',
+  'account' => '',
+  'active' => null,
+  'nav' => 'menu',
+  'title' => null,
 ])
 
 <div class="review-create-page">
   <div class="review-create-card">
-
-    {{-- ===== header (createと完全共通) ===== --}}
     <header class="review-create-header">
       <div class="review-create-header-row">
         <span class="review-create-brand">まだある？ナビ</span>
         <span class="review-create-account">{{ $account }}</span>
       </div>
 
-      <h1 class="review-create-store">{{ $store }}</h1>
+      {{-- ✅ メインタイトル（中央） --}}
+      @if($title)
+        <h1 class="frame-title frame-title--center">{{ $title }}</h1>
+      @endif
 
-      <div class="review-create-tabs">
-        <a href="/review" class="tab-item {{ $active === 'index' ? 'is-active' : '' }}">
-          <span class="material-symbols-rounded tab-icon">list_alt</span>
-          <span class="tab-label">口コミ一覧</span>
-        </a>
+      {{-- ✅ 店舗名はサブにする --}}
+      <p class="review-create-store">{{ $store }}</p>
 
-        <a href="/create" class="tab-item {{ $active === 'create' ? 'is-active' : '' }}">
-          <span class="material-symbols-rounded tab-icon">edit_note</span>
-          <span class="tab-label">投稿する</span>
-        </a>
-
-        <button type="button" class="tab-item" onclick="history.back()">
-          <span class="material-symbols-rounded tab-icon">arrow_back</span>
-          <span class="tab-label">戻る</span>
-        </button>
-      </div>
+      @if($nav === 'menu')
+        <div class="review-menu-row">
+          <button type="button" class="review-menu-btn">MENU</button>
+        </div>
+      @endif
     </header>
 
-    {{-- ===== body slot ===== --}}
-    <div class="review-frame-body">
-      {{ $slot }}
-    </div>
-
+    {{ $slot }}
   </div>
 </div>
