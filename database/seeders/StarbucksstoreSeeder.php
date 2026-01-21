@@ -8,9 +8,6 @@ use Illuminate\Database\Seeder;
 
 class StarbucksstoreSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $starbucks_stores = [

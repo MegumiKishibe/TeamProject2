@@ -1,4 +1,5 @@
 {{--  http://127.0.0.1:8000/example --}}
+{{-- #TODO不要の場合は削除する --}}
 
 @extends('layouts.index')
 

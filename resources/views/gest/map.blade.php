@@ -14,12 +14,12 @@
 
     <button type="button" id="menuOpenBtn" class="map-menu-btn">MENU</button>
 
-    {{--Overlay--}}
+    {{-- Overlay --}}
     <div id="menuOverlay" class="map-overlay" aria-hidden="true"></div>
-    {{--Modal--}}
+    {{-- Modal --}}
     <div id="menuModal" class="map-modal" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="map-modal-grid">
-            <a class="map-modal-item" href="/map" aria-label="Search">
+            <a class="map-modal-item" href="{{ route('search.map') }}" aria-label="Search">
                 <span class="material-symbols-rounded map-icon" aria-hidden="true">search</span>
                 <span class="map-label">Search</span>
             </a>
@@ -41,7 +41,6 @@
         </div>
     </div>
 
-    {{-- #TODO  JSONでのデータ取得に変更する --}}
     <script>
         const stores = @json($starbucksStores);
         console.log(stores);
