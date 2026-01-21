@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class LikeController extends Controller
 {
-    public function store(Review $review)
+    public function store($id)
     {
+        $review = Review::findOrFail($id);
         $review->increment('likes_count');
-        return back();
+        return back()->with('status', 'いいねしました！');
     }
 }
