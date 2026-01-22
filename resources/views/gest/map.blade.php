@@ -19,7 +19,7 @@
     {{-- Modal --}}
     <div id="menuModal" class="map-modal" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="map-modal-grid">
-            <a class="map-modal-item" href="{{ route('search.map') }}" aria-label="Search">
+            <a class="map-modal-item" href="search" aria-label="Search">
                 <span class="material-symbols-rounded map-icon" aria-hidden="true">search</span>
                 <span class="map-label">Search</span>
             </a>
@@ -107,20 +107,6 @@
             });
         }
     </script>
-
-    <div class="wrapper">
-        <div>
-            <select name="starbucks_store_id" id="store-select">
-                <option>選択してください</option>
-                @foreach ($starbucksStores as $store)
-                    <option value="{{ $store->id }}" data-lat="{{ $store->lat }}" data-lng="{{ $store->lng }}"
-                        @if (old('starbucks_store_id') == $store->id) selected @endif>
-                        {{ $store->name }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
-    </div>
 
     <script
         src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google.maps_key') }}&language=ja&callback=initMap"

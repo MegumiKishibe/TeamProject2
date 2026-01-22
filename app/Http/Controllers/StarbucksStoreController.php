@@ -16,7 +16,7 @@ class StarbucksStoreController extends Controller
         return view('gest.map', compact('starbucksStores'));
     }
 
-        public function gestsearchMap()
+    public function gestsearchMap()
     {
         $starbucksStores = StarbucksStore::all();
         return view('gest.search', compact('starbucksStores'));
