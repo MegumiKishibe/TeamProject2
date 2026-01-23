@@ -38,6 +38,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('example')->with('status', '登録が完了しました');
+        return redirect()->route('author.map')->with('status', '登録が完了しました');
     }
 }

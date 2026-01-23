@@ -34,7 +34,7 @@ Route::post('reviews/{reviews}/like',[LikeController::class,'store'])->name('rev
 
 // ログイン認証済
 Route::middleware('auth')->group(function () {
-    Route::get('/example', [StarbucksStoreController::class,'authMap'])->name('example');
+    Route::get('/user_map', [StarbucksStoreController::class,'authMap'])->name('author.map');
 
     // http://127.0.0.1:8000/profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -115,14 +115,10 @@ Route::middleware('auth')->group(function () {
 //     return view('reviews.index', compact('reviews'));
 // });
 
-
-// // 履歴一覧（0件表示用）http://127.0.0.1:8000/history-empty---
-Route::view('/history-empty', 'histories.index-empty');
-
 // // 履歴一覧（ダミー表示用）http://127.0.0.1:8000/history---
-Route::view('/history', 'histories.index');
+// Route::view('/history', 'histories.index');
 
-// // 履歴編集（UI確認用）http://127.0.0.1:8000/history-edit---
+// 履歴編集（UI確認用）http://127.0.0.1:8000/history-edit---
 // Route::view('/history-edit', 'histories.edit');
 
 // これは最後

@@ -11,6 +11,28 @@
 
 <body>
     <div id="map"></div>
+    {{-- #TODO:ログイン情報を表示するか？ --}}
+    <div>
+        <div class="validate-wrapper">バリデーションあるよ
+            @if (session('status'))
+                <div class="validate">
+                    <p>{{ session('status') }}</p>
+                </div>
+            @endif
+        </div>
+
+        <p>ログイン中のユーザー名：{{ Auth::user()->name }}</p>
+        <p>Account:{{ sprintf('%04d', Auth::user()->id) }}</p>
+        <a href="{{ route('profile.edit') }}"><button>アカウント編集ページへ</button></a>
+
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="logout-button" class="nav-item">ログアウト</button>
+        </form>
+        <a href="{{ route('author.reviews') }}"><button>口コミ一覧へ</button></a>
+
+        <a href="{{ route('author.myposts') }}"><button>History</button></a>
+    </div>
 
     <button type="button" id="menuOpenBtn" class="map-menu-btn">MENU</button>
 
@@ -80,7 +102,7 @@
                             <div style="min-width:200px">
                                 <h4 value="{{ old('name') }}">${ store.name }</h4>
                                 <p value="{{ old('address') }}">${ store.address }</p>
-                                <a href="/reviews?starbucks_store_id=${store.id}"><button style="color: red;">口コミを見る</button></a>
+                                <a href="/author-reviews?starbucks_store_id=${store.id}"><button style="color: red;">口コミを見る</button></a>
                             </div>
                             `,
                 });
@@ -96,8 +118,22 @@
     <script
         src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google.maps_key') }}&language=ja&callback=initMap"
         async defer></script>
-
-
 </body>
 
 </html>
+
+
+{{-- #TODO:最後消す --}}
+{{-- <div class="wrapper">
+    <div>
+        <select name="starbucks_store_id" id="store-select">
+            <option>選択してください</option>
+            @foreach ($starbucksStores as $store)
+                <option value="{{ $store->id }}" data-lat="{{ $store->lat }}" data-lng="{{ $store->lng }}"
+                    @if (old('starbucks_store_id') == $store->id) selected @endif>
+                    {{ $store->name }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+</div> --}}

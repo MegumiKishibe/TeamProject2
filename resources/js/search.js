@@ -43,7 +43,6 @@ window.initMap = function () {
         const infoWindow = new google.maps.InfoWindow({
             content: `
                 <div style="min-width:200px">
-                    <p>${store.id}</p>
                     <h4>${store.name}</h4>
                     <p>${store.address}</p>
                     <a href="/reviews?starbucks_store_id=${store.id}">
