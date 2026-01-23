@@ -66,5 +66,64 @@ Route::middleware('auth')->group(function () {
 });
 
 
+//--------UI確認用ルート--------
+//----edit画面確認用 http://127.0.0.1:8000/edit---
+Route::view('/edit', 'edit');
+
+// //---review画面確認用 http://127.0.0.1:8000/review?empty=1---
+// Route::view('/review', 'reviews.index', [
+//     'reviews' => collect(), // 空コレクション（$reviews->isEmpty() が使える）
+// ]);
+// //---ダミーデータ有りreview画面確認用 http://127.0.0.1:8000/review---
+// Route::view('/review', 'reviews.index');
+// use Illuminate\Support\Carbon;
+
+// Route::get('/review', function () {
+//     // 空表示も見たいとき: /review?empty=1
+//     if (request('empty')) {
+//         $reviews = collect();
+//         return view('reviews.index', compact('reviews'));
+//     }
+
+//     $reviews = collect([
+//         (object)[
+//             'user_name'    => 'Megumi',
+//             'status'       => 'available',
+//             'product_name' => 'ほうじ茶フラペチーノ',
+//             'comment'      => '甘さ控えめ。スッキリ飲めて最高！',
+//             'created_at'   => now()->subMinutes(12),
+//         ],
+//         (object)[
+//             'user_name'    => 'Saki',
+//             'status'       => 'soldout',
+//             'product_name' => '抹茶ラテ',
+//             'comment'      => '夕方にはもう無かったです…',
+//             'created_at'   => now()->subHours(2),
+//         ],
+//         (object)[
+//             'user_name'    => 'Ken',
+//             'status'       => 'available',
+//             'product_name' => 'チョコスコーン',
+//             'comment'      => 'レジ横にまだありました！',
+//             'created_at'   => now()->subHours(5),
+//         ],
+//         (object)[
+//             'user_name'    => 'Rina',
+//             'status'       => 'soldout',
+//             'product_name' => '季節限定ドーナツ',
+//             'comment'      => '12時時点で売り切れでした。',
+//             'created_at'   => now()->subDay(),
+//         ],
+//     ]);
+
+//     return view('reviews.index', compact('reviews'));
+// });
+
+// // 履歴一覧（ダミー表示用）http://127.0.0.1:8000/history---
+// Route::view('/history', 'histories.index');
+
+// 履歴編集（UI確認用）http://127.0.0.1:8000/history-edit---
+// Route::view('/history-edit', 'histories.edit');
+
 // これは最後
 require __DIR__ . '/auth.php';

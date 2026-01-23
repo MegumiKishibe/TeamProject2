@@ -1548,3 +1548,17 @@ html, body {
   font-weight: 800;
   color: rgba(15, 23, 42, 0.82); /* 主張しすぎない濃さ */
 }
+/* brand-row を左右に分ける（左：ブランド / 右：Account No） */
+.brand-row--split{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 右上のアカウント表示 */
+.account-no{
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.04em;
+}
