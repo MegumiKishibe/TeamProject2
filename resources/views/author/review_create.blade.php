@@ -1,50 +1,53 @@
-@extends('layouts.index')
-
-@section('title', 'author | 口コミを投稿する')
-
-@section('content')
-
-    <p>Account:{{ sprintf('%04d', Auth::user()->id) }}</p>
+<x-app-layout>
+    <x-review-frame store="{{ $starbucksStore->name }}" account="Account:{{ sprintf('%04d', Auth::user()->id) }}"
+        active="create">
 
 
-    <h1>投稿する</h1>
+        {{-- #TODO未入力時のバリデーションエラーを表示する --}}
+        <form action="{{ route('review.store') }}" method="POST" class="review-create-form">
+            @csrf
 
-    <a href="{{ route('author.reviews') }}"><button>口コミ一覧へ</button></a>
+            @if (isset($starbucksStore))
+                <input type="hidden" name="starbucks_store_id" value="{{ $starbucksStore->id }}">
+            @endif
 
-    <form action="{{ route('review.store') }}" method="POST">
-        @csrf
-        <label>店舗名</label>
-        <h1>{{ $starbucksStore->name }}</h1>
-        @if (isset($starbucksStore))
-            <input type="hidden" name="starbucks_store_id" value="{{ $starbucksStore->id }}">
-        @endif
-        <div>
-            <label>商品名</label>
-            <input type="text" name="product" value="{{ old('product') }}">
-        </div>
+            <main class="review-create-main">
+                <div class="review-field">
+                    <label class="review-label" for="product">商品名</label>
+                    <input id="product" type="text" name="product" placeholder="ほうじ茶フラペチーノ" class="review-input"
+                        value="{{ old('product') }}">
+                </div>
 
-        <div>
-            <label>販売状況</label>
-            @foreach ($statuses as $status)
-                <label>
-                    <input type="radio" name="status_id" value="{{ $status->id }}"
-                        @if (old('status_id') == $status->id) checked @endif>
-                    {{ $status->name }}
-                </label>
-            @endforeach
-        </div>
+                <div class="review-field">
+                    <label class="review-label" for="status">販売状況</label>
 
-        <div>
-            <label>メッセージ</label>
-            <br>
-            <textarea name="message" cols="30" rows="10">{{ old('message') }}</textarea>
-        </div>
+                    <div class="review-select-wrap">
+                        <select id="status" name="status_id" class="review-select">
+                            <option value="">選択してください</option>
 
-        <div>
-            <button type="submit">Post</button>
-        </div>
-    </form>
+                            @foreach ($statuses as $status)
+                                <option value="{{ $status->id }}" @if (old('status_id') == $status->id) selected @endif>
+                                    {{ $status->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <span class="review-select-caret" aria-hidden="true"></span>
+                    </div>
+                </div>
 
+                <div class="review-field">
+                    <label class="review-label" for="message">メッセージ</label>
+                    <textarea id="message" name="message" rows="6"
+                        placeholder="甘さ控えめ。スッキリ飲めて最高！&#10;ホイップ増量＆ブラウンシュガートッピングが&#10;おすすめです♪" class="review-textarea">{{ old('message') }}</textarea>
+                </div>
+            </main>
 
+            <footer class="review-submit">
+                <button type="submit" class="review-submit-btn">
+                    <span class="review-submit-label">投稿する</span>
+                </button>
+            </footer>
+        </form>
 
-@endsection
+    </x-review-frame>
+</x-app-layout>

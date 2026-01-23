@@ -78,7 +78,7 @@ class ReviewsController extends Controller
     // ユーザー画面：投稿作成ページを表示する
     public function create(Request $request)
     {
-        $storeId = request('starbucks_store_id');
+        $storeId = $request->input('starbucks_store_id');
         $starbucksStore = StarbucksStore::find($storeId);
         return view(
             'author.review_create',
