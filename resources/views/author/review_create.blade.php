@@ -1,11 +1,19 @@
 <x-app-layout>
-    <x-review-frame store="{{ $starbucksStore->name }}" account="Account:{{ sprintf('%04d', Auth::user()->id) }}"
-        active="create">
+    <x-review-frame store="{{ $starbucksStore->name }}" active="create">
 
         <a href="{{ url()->previous() }}">
             <button>戻る</button></a>
 
         {{-- #TODO未入力時のバリデーションエラーを表示する --}}
+        <div class="validate-wrapper">
+            @if (session('status'))
+                <div class="validate">
+                    <p>{{ session('status') }}</p>
+                </div>
+            @endif
+        </div>
+
+
         <form action="{{ route('review.store') }}" method="POST" class="review-create-form">
             @csrf
 

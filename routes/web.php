@@ -28,13 +28,15 @@ Route::get('/search', [StarbucksStoreController::class, 'gestsearchMap'])->name(
 // http://127.0.0.1/reviews
 Route::get('/reviews', [ReviewsController::class, 'gestIndex'])->name('gest.reviews');
 
-Route::post('reviews/{reviews}/like',[LikeController::class,'store'])->name('reviews.like');
+Route::post('reviews/{reviews}/like', [LikeController::class, 'store'])->name('reviews.like');
 
 
 
 // ログイン認証済
 Route::middleware('auth')->group(function () {
-    Route::get('/user_map', [StarbucksStoreController::class,'authMap'])->name('author.map');
+    Route::get('/user_map', [StarbucksStoreController::class, 'authMap'])->name('author.map');
+
+    Route::get('/user_search', [StarbucksStoreController::class, 'authorsearchMap'])->name('author.search');
 
     // http://127.0.0.1:8000/profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -46,7 +48,7 @@ Route::middleware('auth')->group(function () {
 
     // http://127.0.0.1:8000/author-review-create
     Route::get('/author-review-create', [ReviewsController::class, 'create'])->name('review.create');
-    Route::post('reviews/{review}/like',[LikeController::class,'store'])->name('reviews.like');
+    Route::post('reviews/{review}/like', [LikeController::class, 'store'])->name('reviews.like');
 
     // ------------口コミ投稿用
     Route::post('/author-review-create', [ReviewsController::class, 'store'])->name('review.store');

@@ -21,20 +21,17 @@ class StarbucksStoreController extends Controller
         $starbucksStores = StarbucksStore::all();
         return view('gest.search', compact('starbucksStores'));
     }
+
+
     // ユーザー：Google上にピンを表示する
     public function authMap()
     {
         $starbucksStores = StarbucksStore::all();
         return view('author.map', compact('starbucksStores'));
     }
-
-    public function show(string $id)
+    public function authorsearchMap()
     {
-        //
-    }
-
-    public function edit(string $id)
-    {
-        //
+        $starbucksStores = StarbucksStore::all();
+        return view('author.search', compact('starbucksStores'));
     }
 }

@@ -51,7 +51,6 @@ class ReviewsController extends Controller
             $query->where('created_at', '>=', now()->subWeek());
         }
 
-        // ★ ここを追加！ created_at（投稿日）を desc（新しい順）にする
         $reviews = $query->orderBy('created_at', 'desc')->get();
 
         $statuses = Status::all();
@@ -63,10 +62,19 @@ class ReviewsController extends Controller
     public function myReviews(Request $request)
     {
 
-        $reviews = Review::with('status')
-            ->where('user_id', FacadesAuth::id())
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $query = Review::with(['status', 'starbucksStore'])
+            ->where('user_id', FacadesAuth::id());
+
+        $days = $request->input('days');
+        if (isset($days) && $days !== '') {
+            $query = $this->filterByPeriod($days, $query);
+        } else {
+
+            $query->where('created_at', '>=', now()->subWeek());
+        }
+
+        $reviews = $query->orderBy('created_at', 'desc')->get();
+
         $storeId = $request->input('starbucks_store_id');
         $starbucksStore = StarbucksStore::find($storeId);
         $starbucksStores = StarbucksStore::all();
