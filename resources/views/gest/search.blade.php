@@ -9,74 +9,8 @@
 </head>
 
 <body class="map-page">
-    {{-- #TODO:検索機能を作る --}}
+    {{-- map表示 --}}
     <div id="map" class="map-canvas" aria-label="Map placeholder"></div>
-    {{-- <script>
-        const stores = @json($starbucksStores);
-        console.log(stores);
-
-        function initMap() {
-            const map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 13,
-                center: {
-                    lat: parseFloat(stores[2].lat),
-                    lng: parseFloat(stores[2].lng),
-                },
-                mapTypeId: 'roadmap',
-            });
-
-            stores.forEach(store => {
-                const marker = new google.maps.Marker({
-                    position: {
-                        lat: parseFloat(store.lat),
-                        lng: parseFloat(store.lng)
-                    },
-                    map: map,
-                    title: store.name,
-                    label: {
-                        text: store.name,
-                        color: '#02754B',
-                        fontSize: '12px',
-                        fontWeight: 'bold',
-                    },
-                    // iconで好きなピンに変更可能
-                });
-
-                // 詳細ポップアップ
-                const infoWindow = new google.maps.InfoWindow({
-                    content: `
-                            <div style="min-width:200px">
-                                <p value="{{ old('id') }}">${store.id}</p>
-                                <h4 value="{{ old('name') }}">${ store.name }</h4>
-                                <p value="{{ old('address') }}">${ store.address }</p>
-                                <a href="/reviews?starbucks_store_id=${store.id}"><button style="color: red;">口コミを見る</button></a>
-                            </div>
-                            `,
-                });
-
-                // ピンクリック時
-                marker.addListener('click', () => {
-                    infoWindow.open(map, marker);
-                });
-
-                選択した店舗にフォーカスする
-                const selectStore = document.getElementById('store-select');
-                selectStore.addEventListener('change', function() {
-                    const selectOption = this.options[this.selectedIndex];
-                    const lat = parseFloat(selectOption.dataset.lat);
-                    const lng = parseFloat(selectOption.dataset.lng);
-
-                    if (!isNaN(lat) && !isNaN(lng)) {
-                        map.setCenter({
-                            lat: lat,
-                            lng: lng
-                        });
-                        map.setZoom(20);
-                    }
-                });
-            });
-        }
-    </script> --}}
 
     <div id="menuOverlay" class="map-overlay" aria-hidden="true"></div>
 
@@ -85,7 +19,7 @@
         <div class="search-bar-inner">
             <span class="material-symbols-rounded search-icon" aria-hidden="true">search</span>
             <input class="search-input" type="search" name="q" placeholder="例：スターバックス 道頓堀" autocomplete="off"
-                inputmode="search"  list="store-list"/>
+                inputmode="search" list="store-list" />
             <button type="button" class="search-btn">検索</button>
             <datalist id="store-list"></datalist>
         </div>

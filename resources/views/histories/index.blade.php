@@ -1,4 +1,4 @@
-@php
+{{-- @php
   // UI確認用ダミーデータ（あとでコントローラから渡す想定）
   $histories = $histories ?? collect([
     (object)[
@@ -16,9 +16,9 @@
       'created_at'   => '2026/01/21 18:48'
     ],
   ]);
-@endphp
+@endphp --}}
 
-<x-app-layout>
+{{-- <x-app-layout>
   <x-review-frame
     account="Account No.0001"
     active="history"
@@ -27,15 +27,16 @@
   >
     <main class="history-list">
       @foreach ($histories as $h)
+
         <article class="review-index-card history-card">
-          <div class="review-index-card-head">
+          <div class="review-index-card-head"> --}}
             {{-- ✅ 左：店舗名だけ表示（ユーザー名・アイコンは無し） --}}
-            <div class="history-store">
+            {{-- <div class="history-store">
               <span class="history-store-name">{{ $h->store_name }}</span>
-            </div>
+            </div> --}}
 
             {{-- 右：日時 --}}
-            <time class="review-index-time">{{ $h->created_at }}</time>
+            {{-- <time class="review-index-time">{{ $h->created_at }}</time>
           </div>
 
           @if ($h->status === 'available')
@@ -61,4 +62,4 @@
       @endforeach
     </main>
   </x-review-frame>
-</x-app-layout>
+</x-app-layout> --}}

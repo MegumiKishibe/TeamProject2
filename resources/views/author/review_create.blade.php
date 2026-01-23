@@ -2,6 +2,8 @@
     <x-review-frame store="{{ $starbucksStore->name }}" account="Account:{{ sprintf('%04d', Auth::user()->id) }}"
         active="create">
 
+        <a href="{{ url()->previous() }}">
+            <button>戻る</button></a>
 
         {{-- #TODO未入力時のバリデーションエラーを表示する --}}
         <form action="{{ route('review.store') }}" method="POST" class="review-create-form">

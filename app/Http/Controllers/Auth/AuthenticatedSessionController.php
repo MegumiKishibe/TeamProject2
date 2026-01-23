@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('example'))->with('status', 'ログインしました');;
+        return redirect()->intended(route('author.map'))->with('status', 'ログインしました');;
     }
 
     /**

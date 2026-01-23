@@ -25,7 +25,7 @@ class StarbucksStoreController extends Controller
     public function authMap()
     {
         $starbucksStores = StarbucksStore::all();
-        return view('example', compact('starbucksStores'));
+        return view('author.map', compact('starbucksStores'));
     }
 
     public function show(string $id)

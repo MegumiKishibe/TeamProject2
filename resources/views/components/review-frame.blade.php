@@ -24,7 +24,7 @@
 
             @if ($nav === 'menu')
                 <div class="review-menu-row">
-                    <a href="{{ route('example') }}">
+                    <a href="{{ route('author.reviews') }}">
                         <button type="button" class="review-menu-btn">MENU</button></a>
                 </div>
             @endif

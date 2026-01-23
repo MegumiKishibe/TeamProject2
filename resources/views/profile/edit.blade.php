@@ -64,7 +64,7 @@
     </div>
 
     <div class="wrapper">
-        <a href="{{ route('example') }}"><button>ホーム画面へ戻る</button></a>
+        <a href="{{ route('author.map') }}"><button>ホーム画面へ戻る</button></a>
     </div>
 
 </x-app-layout>
