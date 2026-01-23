@@ -1,15 +1,6 @@
 <x-app-layout>
-    <x-review-frame account="" active="history" nav="menu" title="投稿履歴">
-
-        <a href="{{ route('author.map') }}"><button>戻るボタン</button></a>
-
-        {{-- #TODO:口コミ表示ページでは共通で店舗名を表示できるように --}}
-        @if ($reviews->isNotEmpty())
-            <h1>{{ $reviews->first()->starbucksStore->name }}</h1>
-        @endif
-        <p>ログイン中のユーザー名：{{ Auth::user()->name }}</p>
-        <p>Account:{{ sprintf('%04d', Auth::user()->id) }}</p>
-
+    <x-review-frame active="history" nav="menu"
+        title="投稿履歴">
         <div class="validate-wrapper">
             @if (session('status'))
                 <div class="validate">
@@ -18,16 +9,8 @@
             @endif
         </div>
 
-        <a href="{{ route('author.map') }}">
-            <button>戻る</button></a>
-
-        {{-- <a
-            href="{{ url('/author-review-create') }}?starbucks_store_id={{ request('starbucks_store_id') }}"><button>投稿する</button></a> --}}
-
         <main class="history-list">
-
-            {{-- #TODO:一覧での絞り込み上手くいってないかも --}}
-            <form action="{{ route('gest.reviews') }}" method="GET" id="filter-form">
+            <form action="{{ route('author.myposts') }}" method="GET" id="filter-form">
                 <input type="hidden" name="starbucks_store_id" value="{{ request('starbucks_store_id') }}">
 
                 <label for="days">表示期間：</label>
@@ -42,6 +25,7 @@
             @forelse ($reviews as $review)
                 <article class="review-index-card history-card">
                     <div class="review-index-card-head">
+                        <h1>{{ $review->starbucksStore->name }}</h1>
                         <div class="history-store">
                             <span class="">
                                 @if ($review->created_at->gt(now()->subDay()))
@@ -53,18 +37,16 @@
 
 
                     <div>
-                        {{-- #TODOバックエンドでタグ色の表示を変更？ --}}
-                        <div class="review-index-status is-available">販売状況：{{ $review->status->name }}</div>
+                        <div class="review-index-status {{ $review->status_id == 1 ? 'is-available' : 'is-soldout' }}">
+                            販売状況：{{ $review->status->name }}
+                        </div>
+
                         <time class="review-index-time">{{ $review->created_at->format('Y/m/d H:i') }}</time>
                     </div>
 
                     <div>
                         <div class="review-index-product">商品名：{{ $review->product }}</div>
                         <p>いいね：{{ $review->likes_count }}
-                        <form action="{{ route('reviews.like', $review) }}" method="POST">
-                            @csrf
-                            <button type="submit" style="background-color: bisque">いいねする</button>
-                        </form>
                         </p>
                     </div>
                     <div>

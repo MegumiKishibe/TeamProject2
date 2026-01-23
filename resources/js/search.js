@@ -1,6 +1,6 @@
 window.initMap = function () {
     const stores = window.starbucksStores;
-
+    const loginStatus = typeof isLoggedIn !== "undefined" ? isLoggedIn : false;
     if (!stores || stores.length === 0) {
         console.error("店舗データが見つかりません");
         return;
@@ -25,6 +25,12 @@ window.initMap = function () {
     const markers = [];
 
     stores.forEach((store) => {
+        const linkUrl = loginStatus
+            ? `/author-reviews?starbucks_store_id=${store.id}`
+            : `/reviews?starbucks_store_id=${store.id}`;
+        const btnText = "口コミを見る";
+        const btnColor = "#007042";
+
         const marker = new google.maps.Marker({
             position: {
                 lat: parseFloat(store.lat),
@@ -45,8 +51,19 @@ window.initMap = function () {
                 <div style="min-width:200px">
                     <h4>${store.name}</h4>
                     <p>${store.address}</p>
-                    <a href="/reviews?starbucks_store_id=${store.id}">
-                        <button style="color: red; cursor: pointer;">口コミを見る</button>
+                    <a href="${linkUrl}" style="text-decoration: none;">
+                        <button type="button" style="
+                            width: 100%;
+                            color: white; 
+                            background-color: ${btnColor}; 
+                            cursor: pointer; 
+                            border: none; 
+                            padding: 8px; 
+                            border-radius: 4px;
+                            font-weight: bold;
+                        ">
+                            ${btnText}
+                        </button>
                     </a>
                 </div>
             `,

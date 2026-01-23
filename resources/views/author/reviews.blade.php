@@ -1,19 +1,5 @@
 <x-app-layout>
-    <x-review-frame account="" active="history" nav="menu" title="">
-
-        <a href="{{ route('gest.map') }}"><button>戻るボタン</button></a>
-
-        {{-- #TODO:口コミ表示ページでは共通で店舗名を表示できるように --}}
-        @if ($reviews->isNotEmpty())
-            <h1>{{ $reviews->first()->starbucksStore->name }}</h1>
-        @endif
-
-        <p>ログイン中のユーザー名：{{ Auth::user()->name }}</p>
-        <p>Account:{{ sprintf('%04d', Auth::user()->id) }}</p>
-
-        <a href="{{ route('author.map') }}">
-            <button>戻る</button></a>
-
+    <x-review-frame active="history" nav="menu" :store="$reviews->first()?->starbucksStore->name">
         <a
             href="{{ url('/author-review-create') }}?starbucks_store_id={{ request('starbucks_store_id') }}"><button>投稿する</button></a>
 
@@ -24,8 +10,10 @@
                 </div>
             @endif
         </div>
+
+        {{-- #TODO:絞り機能おかしい、なおす --}}
         @if ($reviews->isNotEmpty())
-            <form action="{{ route('gest.reviews') }}" method="GET" id="filter-form">
+            <form action="{{ route('author.reviews') }}" method="GET" id="filter-form">
                 <input type="hidden" name="starbucks_store_id" value="{{ request('starbucks_store_id') }}">
 
                 <label for="days">表示期間：</label>
@@ -45,17 +33,19 @@
                     <div class="review-index-card-head">
                         <div class="history-store">
                             <p>投稿者：{{ $review->user->name }}</p>
+                            {{-- #TODO:24時間デザインお願いします --}}
                             <span class="">
                                 @if ($review->created_at->gt(now()->subDay()))
-                                    <li style="color: red; font-weight: bold;">🔥 24時間以内！</li>
+                                    <button style="color: red; font-weight: bold;">🔥 24時間以内！</button>
                                 @endif
                             </span>
                         </div>
                     </div>
 
                     <div>
-                        {{-- #TODOバックエンドでタグ色の表示を変更？ --}}
-                        <div class="review-index-status is-available">販売状況：{{ $review->status->name }}</div>
+                        <div class="review-index-status {{ $review->status_id == 1 ? 'is-available' : 'is-soldout' }}">
+                            販売状況：{{ $review->status->name }}
+                        </div>
                         <time class="review-index-time">{{ $review->created_at->format('Y/m/d H:i') }}</time>
                     </div>
 

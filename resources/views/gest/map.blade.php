@@ -11,8 +11,8 @@
 
 <body>
     <div id="map"></div>
-
     <button type="button" id="menuOpenBtn" class="map-menu-btn">MENU</button>
+
 
     {{-- Overlay --}}
     <div id="menuOverlay" class="map-overlay" aria-hidden="true"></div>

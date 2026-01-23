@@ -1,8 +1,5 @@
 <x-app-layout>
-    <x-histories.frame store="" account="Account:{{ sprintf('%04d', Auth::user()->id) }}" title=""
-        :hide-store="true">
-
-        <button><a href="{{ route('author.myposts') }}">口コミ一覧へ戻る</a></button>
+    <x-histories.frame title="" :hide-store="true">
         @error('name')
             <div class="validate-wrapper">
                 <div class="validate">

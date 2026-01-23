@@ -1,13 +1,6 @@
 <x-app-layout>
-    <x-review-frame account="" active="history" nav="menu" title="">
-
-        <a href="{{ route('gest.map') }}"><button>戻るボタン</button></a>
-
-        {{-- #TODO:口コミ表示ページでは共通で店舗名を表示できるように --}}
-        @if ($reviews->isNotEmpty())
-            <h1>{{ $reviews->first()->starbucksStore->name }}</h1>
-        @endif
-
+    <x-review-frame  active="history" nav="menu" title=""
+        :store="$reviews->first()?->starbucksStore->name">
 
         <main class="history-list">
             <form action="{{ route('gest.reviews') }}" method="GET" id="filter-form">
