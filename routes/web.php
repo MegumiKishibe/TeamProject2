@@ -65,6 +65,8 @@ Route::middleware('auth')->group(function () {
 
 
 //--------UI確認用ルート--------
+//----edit画面確認用 http://127.0.0.1:8000/edit---
+Route::view('/edit', 'edit');
 
 // //---review画面確認用 http://127.0.0.1:8000/review?empty=1---
 // Route::view('/review', 'reviews.index', [
