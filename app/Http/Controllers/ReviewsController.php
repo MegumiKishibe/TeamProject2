@@ -14,17 +14,17 @@ class ReviewsController extends Controller
     // ゲスト：口コミ一覧表示
     public function gestIndex(Request $request)
     {
-
         $storeId = $request->input('starbucks_store_id');
         $days = $request->input('days');
 
-        $query = Review::where('starbucks_store_id', $storeId);
+        // --- ここを追加！ 今選んでいる店舗の情報を取得する ---
+        $currentStore = StarbucksStore::find($storeId);
 
+        $query = Review::where('starbucks_store_id', $storeId);
 
         if (isset($days) && $days !== '') {
             $query = $this->filterByPeriod($days, $query);
         } else {
-
             $query->where('created_at', '>=', now()->subWeek());
         }
 
@@ -33,7 +33,7 @@ class ReviewsController extends Controller
         $starbucksStores = StarbucksStore::all();
         $statuses = Status::all();
 
-        return view('gest.reviews', compact('reviews', 'statuses', 'starbucksStores'));
+        return view('gest.reviews', compact('reviews', 'statuses', 'starbucksStores', 'currentStore'));
     }
 
     // ユーザー画面：口コミ一覧表示
@@ -42,6 +42,7 @@ class ReviewsController extends Controller
         $storeId = $request->input('starbucks_store_id');
         $days = $request->input('days');
 
+        $currentStore = StarbucksStore::find($storeId);
         $query = Review::where('starbucks_store_id', $storeId);
 
         // 期間の絞り込みを実行
@@ -56,7 +57,7 @@ class ReviewsController extends Controller
         $statuses = Status::all();
         $starbucksStore = StarbucksStore::find($storeId);
 
-        return view('author.reviews', compact('reviews', 'statuses', 'starbucksStore'));
+        return view('author.reviews', compact('reviews', 'statuses', 'starbucksStore', 'currentStore'));
     }
     // ユーザー画面：自分の投稿履歴一覧
     public function myReviews(Request $request)

@@ -1,70 +1,67 @@
 {{-- http://127.0.0.1:8000/profile --}}
 
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            アカウント編集画面
-        </h2>
-    </x-slot>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>新規登録 | まだある？ナビ</title>
 
-    {{-- バリデーメッセージ用 --}}
-    <div class="validate-wrapper">バリデーションあるよ
-        @if (session('status'))
-            <div class="validate">
-                <p>{{ session('status') }}</p>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+
+<body class="page">
+    <main class="card card--plain">
+        <div class="brand-row brand-row--split">
+            <div class="brand jp">まだある？ナビ</div>
+            <div class="account-no en">Account:{{ sprintf('%04d', Auth::user()->id) }}</div>
+        </div>
+
+        <h1 class="page-title jp">アカウント編集</h1>
+
+        {{-- #TODO:バリデーションメッセージ追加わすれない、リクエスト作る --}}
+        <div class="validate-wrapper">バリデーションあるよ
+            @if (session('status'))
+                <div class="validate">
+                    <p>{{ session('status') }}</p>
+                </div>
+            @endif
+            <x-input-error :messages="$errors->get('password')" />
+        </div>
+
+        <form class="form form--spacious" method="POST" action="{{ route('profile.update') }}">
+            @csrf
+            @method('patch')
+
+            <div class="field">
+                <input id="name" class="input en" type="text" name="name" placeholder="Username"
+                    autocomplete="username" value="{{ old('name', $user->name) }}" required autofocus>
+                <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
-        @endif
-        <x-input-error :messages="$errors->get('password')" />
-    </div>
 
 
+            <div class="field">
+                <input class="input en" type="password" name="password" placeholder="Password"
+                    autocomplete="new-password" value="{{ old('password') }}" id="update_password_password" />
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            </div>
 
-    <div class="py-12">
-        <section>
-            <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
-                @csrf
-                @method('patch')
 
-                {{-- user_name -------------------------------------------------------- --}}
-                <div>
-                    <x-input-label for="name" :value="__('Name')" />
-                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full"
-                        :value="old('name', $user->name)" required autofocus autocomplete="name" />
-                    <x-input-error class="mt-2" :messages="$errors->get('name')" />
-                </div>
+            <div class="field">
+                <input class="input en" type="email" name="email" placeholder="Email" autocomplete="email"
+                    value="{{ old('email', $user->email) }}" id="email" required />
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            </div>
 
-                {{-- email -------------------------------------------------------- --}}
+            <div class="btn btn--md en">
+                <button>{{ __('Save') }}</button>
 
-                <div>
-                    <x-input-label for="email" :value="__('Email')" />
-                    <x-text-input id="email" name="email" type="email" class="mt-1 block w-full"
-                        :value="old('email', $user->email)" required autocomplete="username" />
-                    <x-input-error class="mt-2" :messages="$errors->get('email')" />
-                </div>
-                {{-- パスワード -------------------------------------------------------- --}}
-                <div>
-                    <x-input-label for="update_password_password" :value="__('New Password')" />
-                    <x-text-input id="update_password_password" name="password" type="password"
-                        class="mt-1 block w-full" autocomplete="new-password" />
-
-                </div>
-                {{-- 保存ボタン --}}
-
-                <div class="flex items-center gap-4">
-                    <x-primary-button>{{ __('Save') }}</x-primary-button>
-
-                    @if (session('status') === 'password-updated')
-                        <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
-                            class="text-sm text-gray-600">{{ __('Saved.') }}</p>
-                    @endif
-
-                </div>
-            </form>
-        </section>
-    </div>
-
-    <div class="wrapper">
-        <a href="{{ route('author.map') }}"><button>ホーム画面へ戻る</button></a>
-    </div>
-
-</x-app-layout>
+                @if (session('status') === 'password-updated')
+                    <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
+                        class="text-sm text-gray-600">{{ __('Saved.') }}</p>
+                @endif
+            </div>
+        </form>
+        <div class="links">
+            <a class="link en" href="{{ route('author.search') }}">MENU</a>
+        </div>
+    </main>
+</body>

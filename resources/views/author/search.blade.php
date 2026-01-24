@@ -25,7 +25,7 @@
         </div>
 
         <div class="search-hint">
-            検索結果は地図担当が後で反映します
+            {{-- 検索結果は地図担当が後で反映します --}}
         </div>
     </header>
 
@@ -52,10 +52,18 @@
                 <span class="map-label">Account</span>
             </a>
 
-            <a class="map-modal-item" href="/" aria-label="Logout">
-                <span class="material-symbols-rounded map-icon" aria-hidden="true">logout</span>
-                <span class="map-label">Logout</span>
-            </a>
+            {{-- #TODO:Logoutがうまく表示されません --}}
+            <div class="map-modal-item-form">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="map-modal-item logout-button">
+                        <span class="material-symbols-rounded map-icon" aria-hidden="true">logout</span>
+                        <span class="map-label">Logout</span>
+                    </button>
+                </form>
+            </div>
+
+
         </div>
     </div>
     <script>
@@ -65,9 +73,7 @@
 
     @vite('resources/js/search.js')
 
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google.maps_key') }}&language=ja&callback=initMap"
-        async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google.maps_key') }}&language=ja"></script>
 
 </body>
 

@@ -31,7 +31,7 @@
                 <div class="review-menu-row">
                     @auth
                         {{-- ログイン中 --}}
-                        <a href="{{ route('author.map') }}">
+                        <a href="{{ route('author.search') }}">
                             <button type="button" class="review-menu-btn">MENU</button>
                         </a>
                     @else
