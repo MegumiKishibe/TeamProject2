@@ -1,17 +1,22 @@
 <x-app-layout>
     <x-review-frame store="{{ $starbucksStore->name }}" active="create">
 
-        {{-- #TODO:ひとつ前に戻るボタンが必要 or 口コミ一覧ページへ切り替える --}}
+        {{-- #TODO:ひとつ前に戻るボタンが必要 or 口コミ --}}
         <a href="{{ url()->previous() }}">
             <button>戻る</button></a>
 
-        {{-- #TODOバリデーションエラーを表示する 未入力時 --}}
         <div class="validate-wrapper">
-            @if (session('status'))
-                <div class="validate">
-                    <p>{{ session('status') }}</p>
-                </div>
-            @endif
+            @error('message')
+                <div class="validate">{{ $message }}</div>
+            @enderror
+
+            @error('product')
+                <div class="validate">{{ $message }}</div>
+            @enderror
+
+            @error('status_id')
+                <div class="validate">{{ $message }}</div>
+            @enderror
         </div>
 
 

@@ -1775,8 +1775,10 @@ body {
 /* ----------------ここから追加してます-------------------- */
 /* バリデーション */
 .text-red-600 {
-  background-color: brown;
-  color: #fff;
+  margin: 0 auto;
+  color: brown;
+  width: 90%;
+  text-align: center;
 }
 
 /* マップのピン */
@@ -1814,4 +1816,53 @@ body {
   color: #00704A;
   font-size: 24px;
   vertical-align: middle;
+}
+
+
+/* バリデーション */
+.toast-notification {
+  position: fixed;
+  /* 画面に対して固定 */
+  top: 20px;
+  /* 上から20pxの位置 */
+  left: 50%;
+  /* 真ん中に寄せる */
+  transform: translateX(-50%);
+  /* 完全に中央揃え */
+  z-index: 9999;
+  /* 一番手前に表示 */
+
+  background-color: #00704A;
+  /* スタバグリーンにしてみたよ！ */
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  /* カプセル型の丸み */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  /* ふわっと浮いてる影 */
+
+  min-width: 250px;
+  text-align: center;
+  font-weight: bold;
+
+  /* アニメーション：上から降りてくる */
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    top: -100px;
+    opacity: 0;
+  }
+
+  to {
+    top: 20px;
+    opacity: 1;
+  }
+}
+
+/* 消えるときのアニメーション用 */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }

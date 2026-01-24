@@ -12,7 +12,7 @@
 
         <div class="validate-wrapper">
             @if (session('status'))
-                <div class="validate">
+                <div class="validate toast-notification" id="status-toast">
                     <p>{{ session('status') }}</p>
                 </div>
             @endif

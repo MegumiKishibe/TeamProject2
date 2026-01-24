@@ -8,6 +8,24 @@
             </div>
         @enderror
 
+        <div class="validate-wrapper">
+            @error('starbucks_store_id')
+                <div class="text-red-600">{{ $message }}</div>
+            @enderror
+            @error('message')
+                <div class="text-red-600">{{ $message }}</div>
+            @enderror
+
+            @error('product')
+                <div class="text-red-600">{{ $message }}</div>
+            @enderror
+
+            @error('status_id')
+                <div class="text-red-600">{{ $message }}</div>
+            @enderror
+        </div>
+
+
 
         <form action="{{ route('review.update', ['id' => $review->id]) }}" method="POST" class="review-create-form">
             @csrf

@@ -17,14 +17,13 @@
 
         <h1 class="page-title jp">アカウント編集</h1>
 
-        {{-- #TODO:バリデーションメッセージ追加わすれない、リクエスト作る --}}
-        <div class="validate-wrapper">バリデーションあるよ
+
+        <div class="validate-wrapper">
             @if (session('status'))
                 <div class="validate">
                     <p>{{ session('status') }}</p>
                 </div>
             @endif
-            <x-input-error :messages="$errors->get('password')" />
         </div>
 
         <form class="form form--spacious" method="POST" action="{{ route('profile.update') }}">
