@@ -28,7 +28,7 @@
     {{-- Modal --}}
     <div id="menuModal" class="map-modal" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="map-modal-grid">
-            <a class="map-modal-item" href="{{route('author.search')}}" aria-label="Search">
+            <a class="map-modal-item" href="{{ route('author.search') }}" aria-label="Search">
                 <span class="material-symbols-rounded map-icon" aria-hidden="true">search</span>
                 <span class="map-label">Search</span>
             </a>
@@ -86,16 +86,16 @@
                         fontSize: '12px',
                         fontWeight: 'bold',
                     },
-                    // #TODO:iconで好きなピンに変更可能
+
                 });
 
-                // #TODO:popup何かデザインできないか
+
                 // 詳細ポップアップ
                 const infoWindow = new google.maps.InfoWindow({
                     content: `
-                            <div style="min-width:200px">
-                                <h4 value="{{ old('name') }}">${ store.name }</h4>
-                                <p value="{{ old('address') }}">${ store.address }</p>
+                            <div style="max-width:200px">
+                                <h1 class="map-infowindow">${store.name}</h1>
+                                <p class="map-infowindow-p">${store.address}</p>
                                 <a href="/author-reviews?starbucks_store_id=${store.id}"><button style="color: red;">口コミを見る</button></a>
                             </div>
                             `,

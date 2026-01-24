@@ -1,6 +1,5 @@
 <x-app-layout>
-    <x-review-frame active="history" nav="menu"
-        title="投稿履歴">
+    <x-review-frame active="history" nav="menu" title="投稿履歴">
         <div class="validate-wrapper">
             @if (session('status'))
                 <div class="validate">
@@ -22,39 +21,47 @@
                     <option value="4" {{ request('days') == '4' ? 'selected' : '' }}>4日前</option>
                 </select>
             </form>
+
             @forelse ($reviews as $review)
                 <article class="review-index-card history-card">
                     <div class="review-index-card-head">
-                        <h1>{{ $review->starbucksStore->name }}</h1>
                         <div class="history-store">
+                            <h1>{{ $review->starbucksStore->name }}</h1>
+                            {{-- #TODO:24時間デザインお願いします --}}
                             <span class="">
                                 @if ($review->created_at->gt(now()->subDay()))
-                                    <li style="color: red; font-weight: bold;">🔥 24時間以内！</li>
+                                    {{-- 24時間以内の場合 --}}
+                                    <p style="color: red; font-weight: bold; margin: 0;">🔥新着</p>
+                                @else
+                                    {{-- 24時間より前の場合 --}}
+                                    <time class="review-index-time" style="color: #666; font-size: 0.9em;">
+                                        {{ $review->created_at->format('Y/m/d H:i') }}
+                                    </time>
                                 @endif
                             </span>
                         </div>
                     </div>
 
-
-                    <div>
-                        <div class="review-index-status {{ $review->status_id == 1 ? 'is-available' : 'is-soldout' }}">
-                            販売状況：{{ $review->status->name }}
+                    <div class="review-index-likes">
+                        <div class="review-index-likes-btn">
+                            <span class="material-symbols-rounded likes-icon"
+                                aria-hidden="true">favorite</span>{{ $review->likes_count }}
                         </div>
-
-                        <time class="review-index-time">{{ $review->created_at->format('Y/m/d H:i') }}</time>
                     </div>
 
-                    <div>
-                        <div class="review-index-product">商品名：{{ $review->product }}</div>
-                        <p>いいね：{{ $review->likes_count }}
-                        </p>
-                    </div>
-                    <div>
-                        <p class="review-index-comment">{{ $review->message }}</p>
+                    <div class="review-index-product">商品名：{{ $review->product }}</div>
+
+                    <div class="review-index-status {{ $review->status_id == 1 ? 'is-available' : 'is-soldout' }}">
+                        販売状況：{{ $review->status->name }}
                     </div>
 
+                    <p class="review-index-comment">{{ $review->message }}</p>
+
+
+                    {{-- #TODO:削除するボタンが上手く表示されない --}}
                     <div class="history-actions">
-                        <a href="{{ route('review.edit', ['id' => $review->id]) }}" class="history-edit-btn"><button>
+                        <a href="{{ route('review.edit', ['id' => $review->id]) }}">
+                            <button class="history-edit-btn">
                                 <span class="material-symbols-rounded">edit</span>編集する</button></a>
                         <form action="{{ route('mypost.delete', ['id' => $review->id]) }}" method="POST">
                             @csrf
@@ -64,17 +71,25 @@
                         </form>
                     </div>
                 </article>
-            @empty
-                <main class="history-empty">
-                    <div class="history-empty-icon" aria-hidden="true">
-                        <span class="material-symbols-rounded">history</span>
-                    </div>
 
-                    <p class="history-empty-title">履歴がまだありません</p>
-                    <p class="history-empty-sub">
-                        店舗の在庫状況を投稿すると、ここに履歴として残ります。
-                    </p>
-                </main>
+            @empty
+                <div class="no-reviews">
+                    @if (request('days'))
+                        <main class="history-empty">
+                            <div class="history-empty-icon" aria-hidden="true">
+                                <span class="material-symbols-rounded">history</span>
+                            </div>
+                            <p class="history-empty-title">{{ request('days') }}日前の投稿はありません。</p>
+                        </main>
+                    @else
+                        <main class="history-empty">
+                            <div class="history-empty-icon" aria-hidden="true">
+                                <span class="material-symbols-rounded">history</span>
+                            </div>
+                            <p>1週間前の投稿はありません。</p>
+                        </main>
+                    @endif
+                </div>
             @endforelse
 
         </main>

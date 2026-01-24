@@ -38,19 +38,13 @@ window.initMap = function () {
             },
             map: map,
             title: store.name,
-            label: {
-                text: store.name,
-                color: "#02754B",
-                fontSize: "12px",
-                fontWeight: "bold",
-            },
         });
 
         const infoWindow = new google.maps.InfoWindow({
             content: `
-                <div style="min-width:200px">
-                    <h4>${store.name}</h4>
-                    <p>${store.address}</p>
+                <div style="max-width:200px">
+                    <h1 class="map-infowindow">${store.name}</h1>
+                    <p class="map-infowindow-p">${store.address}</p>
                     <a href="${linkUrl}" style="text-decoration: none;">
                         <button type="button" style="
                             width: 100%;

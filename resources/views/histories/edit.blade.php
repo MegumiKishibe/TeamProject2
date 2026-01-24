@@ -1,13 +1,13 @@
-@php
+{{-- @php
   // UI確認用（あとで controller から $review が来る想定）
   $review = $review ?? (object)[
     'product_name' => 'ほうじ茶フラペチーノ',
     'status' => 'available',
     'comment' => "甘さ控えめ。スッキリ飲めて最高！\nホイップ増量＆ブラウンシュガートッピングが\nおすすめです♪",
   ];
-@endphp
+@endphp --}}
 
-<x-app-layout>
+{{-- <x-app-layout>
   <x-histories.frame
     store="なんばスカイオ店"
     account="Account No.0001"
@@ -15,19 +15,19 @@
     :hide-store="true"
   >
     <form action="#" method="POST" class="review-create-form">
-      @csrf
+      @csrf --}}
       {{-- 本当は edit なら PUT/PATCH にする（UI確認なら不要でもOK） --}}
       {{-- @method('PATCH') --}}
 
       {{-- 以下は投稿履歴で選択した口コミの編集フォームを表示 --}}
-      <main class="review-create-main">
-        <div class="review-field">
+      {{-- <main class="review-create-main">
+        <div class="review-field"> --}}
           {{-- ✅ 店舗名（表示のみ） --}}
-          <div class="review-label store-display" aria-hidden="true">
+          {{-- <div class="review-label store-display" aria-hidden="true">
             {{ $store ?? 'なんばスカイオ店' }}
-          </div>
+          </div> --}}
 
-          <label class="review-label" for="product">商品名</label>
+          {{-- <label class="review-label" for="product">商品名</label>
           <input
             id="product"
             type="text"
@@ -66,4 +66,4 @@
       </footer>
     </form>
   </x-histories.frame>
-</x-app-layout>
+</x-app-layout> --}}

@@ -10,18 +10,3 @@ body {
   background-color: bisque;
 }
 
-
-.text-red-600 {
-  background-color: brown;
-  color: #fff;
-}
-
-.marker-label {
-    background-color: #02754B;
-    color: #fff;
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-size: 12px;
-    text-align: center;
-    white-space: nowrap;
-}

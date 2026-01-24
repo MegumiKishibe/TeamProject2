@@ -1,6 +1,14 @@
 <x-app-layout>
-    <x-review-frame  active="history" nav="menu" title=""
-        :store="$reviews->first()?->starbucksStore->name">
+    <x-review-frame active="history" nav="menu" :store="$currentStore?->name">
+
+        {{-- #TODOバリデーション --}}
+        <div class="validate-wrapper">
+            @if (session('status'))
+                <div class="validate">
+                    <p>{{ session('status') }}</p>
+                </div>
+            @endif
+        </div>
 
         <main class="history-list">
             <form action="{{ route('gest.reviews') }}" method="GET" id="filter-form">
@@ -21,38 +29,61 @@
                     <div class="review-index-card-head">
                         <div class="history-store">
                             <p>投稿者：{{ $review->user->name }}</p>
+                            {{-- #TODO:24時間デザインお願いします --}}
                             <span class="">
                                 @if ($review->created_at->gt(now()->subDay()))
-                                    <li style="color: red; font-weight: bold;">🔥 24時間以内！</li>
+                                    {{-- 24時間以内の場合 --}}
+                                    <p style="color: red; font-weight: bold; margin: 0;">🔥新着</p>
+                                @else
+                                    {{-- 24時間より前の場合 --}}
+                                    <time class="review-index-time" style="color: #666; font-size: 0.9em;">
+                                        {{ $review->created_at->format('Y/m/d H:i') }}
+                                    </time>
                                 @endif
                             </span>
                         </div>
                     </div>
 
-                    <div>
-                        {{-- #TODOバックエンドでタグ色の表示を変更？ --}}
-                        <div class="review-index-status is-available">販売状況：{{ $review->status->name }}</div>
-                        <time class="review-index-time">{{ $review->created_at->format('Y/m/d H:i') }}</time>
+                    <div class="review-index-likes">
+                        <div class="review-index-likes-btn">
+                            <form action="{{ route('reviews.like', $review) }}" method="POST">
+                                @csrf
+                                <button type="submit"><span class="material-symbols-rounded likes-icon"
+                                        aria-hidden="true">favorite</span></button>
+                            </form>
+                            <p>{{ $review->likes_count }}</p>
+                        </div>
                     </div>
 
-                    <div>
-                        <div class="review-index-product">商品名：{{ $review->product }}</div>
-                        <p>いいね：{{ $review->likes_count }}
-                        <form action="{{ route('reviews.like', $review) }}" method="POST">
-                            @csrf
-                            <button type="submit" style="background-color: bisque">いいねする</button>
-                        </form>
-                        </p>
-                    </div>
-                    <div>
-                        <p class="review-index-comment">{{ $review->message }}</p>
-                    </div>
+                    <div class="review-index-product">商品名：{{ $review->product }}</div>
+
+                    <div class="review-index-status is-available">販売状況：{{ $review->status->name }}</div>
+
+                    <p class="review-index-comment">{{ $review->message }}</p>
                 </article>
+
             @empty
-                <p>この店舗の1週間以内のレビューはありません。</p>
+                <div class="no-reviews">
+                    @if (request('days'))
+                        <main class="history-empty">
+                            <div class="history-empty-icon" aria-hidden="true">
+                                <span class="material-symbols-rounded">history</span>
+                            </div>
+                            <p class="history-empty-title">{{ request('days') }}日前の投稿はありません。</p>
+                        </main>
+                    @else
+                        <main class="history-empty">
+                            <div class="history-empty-icon" aria-hidden="true">
+                                <span class="material-symbols-rounded">history</span>
+                            </div>
+                            <p>この店舗の1週間以内のレビューはありません。</p>
+                        </main>
+                    @endif
+                </div>
             @endforelse
 
 
         </main>
+
     </x-review-frame>
 </x-app-layout>
