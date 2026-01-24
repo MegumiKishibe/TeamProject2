@@ -10,6 +10,7 @@ export default defineConfig({
                 "resources/js/app.js",
                 "resources/css/style.css",
                 "resources/js/search.js",
+                "resources/js/validate-fade.js"
             ],
             refresh: true,
         }),

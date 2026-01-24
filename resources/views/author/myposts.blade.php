@@ -1,8 +1,9 @@
 <x-app-layout>
     <x-review-frame active="history" nav="menu" title="投稿履歴">
+
         <div class="validate-wrapper">
             @if (session('status'))
-                <div class="validate">
+                <div class="validate toast-notification" id="status-toast">
                     <p>{{ session('status') }}</p>
                 </div>
             @endif
@@ -26,7 +27,7 @@
                 <article class="review-index-card history-card">
                     <div class="review-index-card-head">
                         <div class="history-store">
-                            <h1>{{ $review->starbucksStore->name }}</h1>
+                            <h1>{{ $review->starbucksStore->name ?? '店舗不明' }}</h1>
                             {{-- #TODO:24時間デザインお願いします --}}
                             <span class="">
                                 @if ($review->created_at->gt(now()->subDay()))

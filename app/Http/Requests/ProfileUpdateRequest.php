@@ -29,9 +29,10 @@ class ProfileUpdateRequest extends FormRequest
         ];
     }
 
-public function messages(): array{
-    return[
-        'password.required' =>"パスワードは必ず入力してください"
-    ];
-}
+    public function messages(): array
+    {
+        return [
+            'password.required' => "パスワードが空欄です。",
+        ];
+    }
 }

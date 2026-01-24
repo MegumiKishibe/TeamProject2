@@ -1,7 +1,6 @@
 <x-app-layout>
     <x-review-frame active="history" nav="menu" :store="$currentStore?->name">
 
-        {{-- #TODOバリデーション --}}
         <div class="validate-wrapper">
             @if (session('status'))
                 <div class="validate">

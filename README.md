@@ -29,7 +29,7 @@ exit
 docker compose exec laravel.test bash
 ```
 
-## @Vite 使用　 Blade(HTML)表示
+## @Vite 使用 Blade(HTML)表示
 
 ```
 docker-compose exec laravel.test npm run dev
@@ -56,7 +56,7 @@ Docker 立ち上げ後、`npm run dev`は必須
 パスワード：password
 ```
 
-ユーザー③
+ユーザー③ ※シーダーに登録がないため作成してください
 
 ```
 まったりラテ子
@@ -80,4 +80,4 @@ password
 | ユーザー | 自分の投稿履歴編集 | author/ | http://127.0.0.1/author-myposts/{id} |
 | ユーザー | 口コミ一覧画面 | author/ | http://127.0.0.1/author-reviews/{store_id} |
 | ユーザー | 自分の投稿作成 | author/ | http://127.0.0.1:8000/author-review-create/{store_id} |
-| 未　ユーザー | アカウント編集 | profile/ edit.blade.php| http://127.0.0.1/profile |
+| ユーザー | アカウント編集 | profile/ edit.blade.php| http://127.0.0.1/profile |

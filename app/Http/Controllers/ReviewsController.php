@@ -17,7 +17,6 @@ class ReviewsController extends Controller
         $storeId = $request->input('starbucks_store_id');
         $days = $request->input('days');
 
-        // --- ここを追加！ 今選んでいる店舗の情報を取得する ---
         $currentStore = StarbucksStore::find($storeId);
 
         $query = Review::where('starbucks_store_id', $storeId);
@@ -137,7 +136,7 @@ class ReviewsController extends Controller
         $validated = $request->validate([
             'product' => ['required', 'string', 'max:30'],
             'status_id' => ['required', 'exists:statuses,id'],
-            'starbucks_store_id' => ['nullable', 'exists:starbucks_stores,id'],
+            'starbucks_store_id' => ['required', 'exists:starbucks_stores,id'],
             'message' => ['required', 'string'],
         ]);
         $review = Review::where('id', $id)

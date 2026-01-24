@@ -34,9 +34,6 @@ class RegisterRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => "ユーザー名を入力してください",
-            'email.requred' => "メールアドレスを入力してください",
-            'password.required' => "パスワードを入力してください",
             'unique.email' => "すでにメールアドレスは登録されています"
 
         ];
