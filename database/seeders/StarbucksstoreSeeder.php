@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\StarbucksStore;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class StarbucksstoreSeeder extends Seeder
@@ -162,7 +161,6 @@ class StarbucksstoreSeeder extends Seeder
                 'lng' => 135.49874129719763,
             ],
         ];
-
 
         foreach ($starbucks_stores as $starbucks_store) {
             StarbucksStore::firstOrCreate($starbucks_store);

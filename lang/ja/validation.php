@@ -152,15 +152,14 @@ return [
     */
 
     'attributes' => [
-        'name' => "ユーザー名",
-        'email' => "メールアドレス",
-        'password' => "パスワード",
+        'name' => 'ユーザー名',
+        'email' => 'メールアドレス',
+        'password' => 'パスワード',
 
-        'product'            => '商品名',
-        'status_id'          => '販売状況',
+        'product' => '商品名',
+        'status_id' => '販売状況',
         'starbucks_store_id' => '店舗',
-        'message'            => 'メッセージ',
-
+        'message' => 'メッセージ',
 
     ],
 

@@ -11,12 +11,10 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-
     public function create(): View
     {
         return view('auth.top');
     }
-
 
     public function store(LoginRequest $request): RedirectResponse
     {
@@ -24,12 +22,14 @@ class AuthenticatedSessionController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials, true)) {
             $request->session()->regenerate();
+
             return redirect()->route('author.search')->with('status', 'ログインしました');
         }
 
         // 失敗した時用
         return back()->withErrors(['email' => '認証に失敗しました']);
     }
+
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
@@ -38,6 +38,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('login')->with('status', 'ログアウトしました');;
+        return redirect('login')->with('status', 'ログアウトしました');
     }
 }

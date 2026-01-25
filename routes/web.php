@@ -1,12 +1,10 @@
 <?php
 
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\StarbucksStoreController;
 use Illuminate\Support\Facades\Route;
-
 
 // ---------------通常ファイルです----------------------
 
@@ -25,8 +23,6 @@ Route::get('/search', [StarbucksStoreController::class, 'guestSearchMap'])->name
 Route::get('/reviews', [ReviewsController::class, 'guestIndex'])->name('guest.reviews');
 
 Route::post('reviews/{reviews}/like', [LikeController::class, 'store'])->name('guest.reviews.like');
-
-
 
 // ログイン認証済
 Route::middleware('auth')->group(function () {
@@ -52,7 +48,6 @@ Route::middleware('auth')->group(function () {
     // http://127.0.0.1:8000/author-myposts
     Route::get('/author-myposts', [ReviewsController::class, 'myReviews'])->name('author.myposts');
 
-
     // http://127.0.0.1:8000/author-review-edit
     Route::get('/author-myposts/{id}', [ReviewsController::class, 'edit'])->name('review.edit');
 
@@ -62,4 +57,4 @@ Route::middleware('auth')->group(function () {
 });
 
 // これは最後
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

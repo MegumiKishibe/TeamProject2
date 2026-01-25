@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Review;
 use App\Models\StarbucksStore;
 use App\Models\Status;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
@@ -58,6 +57,7 @@ class ReviewsController extends Controller
 
         return view('author.reviews', compact('reviews', 'statuses', 'starbucksStore', 'currentStore'));
     }
+
     // ユーザー画面：自分の投稿履歴一覧
     public function myReviews(Request $request)
     {
@@ -88,6 +88,7 @@ class ReviewsController extends Controller
     {
         $storeId = $request->input('starbucks_store_id');
         $starbucksStore = StarbucksStore::find($storeId);
+
         return view(
             'author.review_create',
             [
@@ -115,7 +116,7 @@ class ReviewsController extends Controller
         ]);
 
         return redirect()->route('author.reviews', [
-            'starbucks_store_id' => $validated['starbucks_store_id']
+            'starbucks_store_id' => $validated['starbucks_store_id'],
         ])->with('status', '投稿しました');
     }
 
@@ -143,7 +144,6 @@ class ReviewsController extends Controller
             ->where('user_id', auth()->id())
             ->firstOrFail();
 
-
         $review->update([
             'user_id' => auth()->id(),
             'status_id' => $validated['status_id'],
@@ -163,9 +163,9 @@ class ReviewsController extends Controller
             ->firstOrFail();
 
         $review->delete();
-        return redirect()->route('author.myposts')->with('status', "投稿を削除しました");
-    }
 
+        return redirect()->route('author.myposts')->with('status', '投稿を削除しました');
+    }
 
     // 投稿日ドロップダウン表示
     public function filterByPeriod($days, $query)
@@ -175,6 +175,7 @@ class ReviewsController extends Controller
             $targetDate = now()->subDays($days)->toDateString();
             $query->whereDate('created_at', $targetDate);
         }
+
         return $query;
     }
 }

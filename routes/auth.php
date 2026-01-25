@@ -11,6 +11,7 @@ Route::get('/', function () {
         // ログイン済みなら検索画面へ！
         return redirect()->route('author.search');
     }
+
     // 未ログインならログイン画面へ！
     return redirect()->route('login');
 });

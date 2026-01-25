@@ -10,6 +10,7 @@ class StarbucksStore extends Model
     use HasFactory;
 
     protected $table = 'starbucks_stores';
+
     protected $fillable = [
         'name',
         'address',

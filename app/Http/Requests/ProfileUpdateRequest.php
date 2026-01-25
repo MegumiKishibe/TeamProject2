@@ -32,7 +32,7 @@ class ProfileUpdateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'password.required' => "パスワードが空欄です。",
+            'password.required' => 'パスワードが空欄です。',
         ];
     }
 }

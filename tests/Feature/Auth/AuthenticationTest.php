@@ -51,6 +51,7 @@ class AuthenticationTest extends TestCase
         $this->assertGuest();
         $response->assertRedirect('/login');
     }
+
     public function test_authenticated_users_are_redirected_when_accessing_login_screen(): void
     {
         // 1. テスト用のユーザーを作成
