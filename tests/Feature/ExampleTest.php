@@ -14,6 +14,10 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        // 2. 200 (成功) ではなく、302 (リダイレクト) を期待するように変更
+        $response->assertStatus(302);
+
+        // 3. さらに「ログイン画面に飛ばされたか」まで確認すると完璧！
+        $response->assertRedirect('/login');
     }
 }
