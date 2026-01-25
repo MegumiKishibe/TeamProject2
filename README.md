@@ -88,3 +88,14 @@ password
 | ユーザー | 口コミ一覧画面 | author/review.blade.php | http://127.0.0.1/author-reviews/{store_id} |
 | ユーザー | 自分の投稿作成 | author/revview_create | http://127.0.0.1:8000/author-review-create/{store_id} |
 | ユーザー | アカウント編集 | profile/ edit.blade.php| http://127.0.0.1/profile |
+
+
+## テスト
+✅Unit/Featureテスト
+```
+php artisan test
+```
+✅Laravel Pint (PHPコードのスタイル修正)
+```
+php ./vendor/bin/pint
+```

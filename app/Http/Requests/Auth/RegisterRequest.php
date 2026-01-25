@@ -3,12 +3,6 @@
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Auth\Events\Lockout;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Str;
-use Illuminate\Validation\ValidationException;
-
 
 class RegisterRequest extends FormRequest
 {
@@ -34,7 +28,7 @@ class RegisterRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'unique.email' => "すでにメールアドレスは登録されています"
+            'unique.email' => 'すでにメールアドレスは登録されています',
 
         ];
     }
