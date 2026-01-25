@@ -13,6 +13,13 @@
     <div id="map" class="map-canvas" aria-label="Map placeholder"></div>
 
     <div id="menuOverlay" class="map-overlay" aria-hidden="true"></div>
+    <div class="validate-wrapper">
+        @if (session('status'))
+            <div class="validate toast-notification" id="status-toast">
+                <p>{{ session('status') }}</p>
+            </div>
+        @endif
+    </div>
 
     {{-- 検索UI --}}
     <header class="search-bar" role="search">

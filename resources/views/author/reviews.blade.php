@@ -1,15 +1,6 @@
 <x-app-layout>
     <x-review-frame active="history" nav="menu" :store="$currentStore?->name">
 
-        {{-- #TODO:投稿するボタンを作る --}}
-        <a href="{{ url('/author-review-create') }}?starbucks_store_id={{ request('starbucks_store_id') }}"
-            style="text-decoration: none;">
-            <button class="review-create-btn">
-                <span class="material-symbols-rounded" style="vertical-align: middle;">edit_square</span>
-                <span style="vertical-align: middle;">投稿する</span>
-            </button>
-        </a>
-
         <div class="validate-wrapper">
             @if (session('status'))
                 <div class="validate toast-notification" id="status-toast">
@@ -19,29 +10,41 @@
         </div>
 
         <main class="history-list">
-            <form action="{{ route('author.reviews') }}" method="GET" id="filter-form">
-                <input type="hidden" name="starbucks_store_id" value="{{ request('starbucks_store_id') }}">
+            <div class="filter-container">
+                <form action="{{ route('author.reviews') }}" method="GET" id="filter-form">
+                    <input type="hidden" name="starbucks_store_id" value="{{ request('starbucks_store_id') }}">
+                    <select name="days" onchange="document.getElementById('filter-form').submit()"
+                        class="select-custom">
+                        <option value="">1週間以内をすべて表示</option>
+                        <option value="1" {{ request('days') == '1' ? 'selected' : '' }}>昨日</option>
+                        <option value="2" {{ request('days') == '2' ? 'selected' : '' }}>2日前</option>
+                        <option value="3" {{ request('days') == '3' ? 'selected' : '' }}>3日前</option>
+                        <option value="4" {{ request('days') == '4' ? 'selected' : '' }}>4日前</option>
+                    </select>
+                </form>
 
-                <label for="days">表示期間：</label>
-                <select name="days" onchange="document.getElementById('filter-form').submit()">
-                    <option value="">1週間以内をすべて表示</option>
-                    <option value="1" {{ request('days') == '1' ? 'selected' : '' }}>昨日</option>
-                    <option value="2" {{ request('days') == '2' ? 'selected' : '' }}>2日前</option>
-                    <option value="3" {{ request('days') == '3' ? 'selected' : '' }}>3日前</option>
-                    <option value="4" {{ request('days') == '4' ? 'selected' : '' }}>4日前</option>
-                </select>
-            </form>
+                <a href="{{ url('/author-review-create') }}?starbucks_store_id={{ request('starbucks_store_id') }}"
+                    style="text-decoration: none;">
+                    <button class="review-create-btn">
+                        <span class="material-symbols-rounded">edit_square</span>
+                        <span>投稿する</span>
+                    </button>
+                </a>
+
+            </div>
 
             @forelse($reviews as $review)
                 <article class="review-index-card history-card">
                     <div class="review-index-card-head">
                         <div class="history-store">
-                            <p>投稿者：{{ $review->user->name }}</p>
-                            {{-- #TODO:24時間デザインお願いします --}}
-                            <span class="">
+                            <p>{{ $review->user->name }}</p>
+                            <span>
                                 @if ($review->created_at->gt(now()->subDay()))
                                     {{-- 24時間以内の場合 --}}
-                                    <p style="color: red; font-weight: bold; margin: 0;">🔥新着</p>
+                                    <div class="new-arrival">
+                                        <p class="new-arrival-badge">New</p>
+                                        <p>{{ $review->created_at->format('H:i') }}</p>
+                                    </div>
                                 @else
                                     {{-- 24時間より前の場合 --}}
                                     <time class="review-index-time" style="color: #666; font-size: 0.9em;">
