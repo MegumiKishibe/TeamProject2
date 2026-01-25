@@ -11,7 +11,7 @@
 
         <main class="history-list">
             <div class="filter-container">
-                <form action="{{ route('gest.reviews') }}" method="GET" id="filter-form">
+                <form action="{{ route('guest.reviews') }}" method="GET" id="filter-form">
                     <input type="hidden" name="starbucks_store_id" value="{{ request('starbucks_store_id') }}">
                     <select name="days" onchange="document.getElementById('filter-form').submit()"
                         class="select-custom">
@@ -50,7 +50,7 @@
 
                     <div class="review-index-likes">
                         <div class="review-index-likes-btn">
-                            <form action="{{ route('reviews.like', $review) }}" method="POST">
+                            <form action="{{ route('guest.reviews.like', $review) }}" method="POST">
                                 @csrf
                                 <button type="submit"><span class="material-symbols-rounded likes-icon"
                                         aria-hidden="true">favorite</span></button>

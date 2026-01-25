@@ -2,28 +2,29 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use Illuminate\Support\Facades\Auth as FacadesAuth; // これが効いてるね！
 use Illuminate\Support\Facades\Route;
 
-// ---------------認証(ログイン・新規など)のファイルです----------------------
-// 未ログイン状態(ゲスト)
+// 1. ログインしてる人もしてない人も、まずここを通る設定
+Route::get('/', function () {
+    if (FacadesAuth::check()) {
+        // ログイン済みなら検索画面へ！
+        return redirect()->route('author.search');
+    }
+    // 未ログインならログイン画面へ！
+    return redirect()->route('login');
+});
+
+// 2. 未ログイン状態(ゲスト)のみアクセス可能
 Route::middleware('guest')->group(function () {
-
-    // http://127.0.0.1:8000/register
-    Route::get('register', [RegisteredUserController::class, 'create'])
-        ->name('register');
-
+    Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
     Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
 
-    // http://127.0.0.1:8000/login
-    Route::get('login', [AuthenticatedSessionController::class, 'create'])
-        ->name('login');
-
+    Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
     Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
 });
 
-
-// ログイン認証済
+// 3. ログイン認証済のみアクセス可能
 Route::middleware('auth')->group(function () {
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-        ->name('logout');
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
