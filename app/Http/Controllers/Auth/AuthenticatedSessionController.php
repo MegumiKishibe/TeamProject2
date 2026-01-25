@@ -11,29 +11,25 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
     public function create(): View
     {
         return view('auth.top');
     }
 
-    /**
-     * Handle an incoming authentication request.
-     */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
 
-        $request->session()->regenerate();
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials, true)) {
+            $request->session()->regenerate();
 
-        return redirect()->intended(route('author.map'))->with('status', 'ログインしました');;
+            return redirect()->route('author.search')->with('status', 'ログインしました');
+        }
+
+        // 失敗した時用
+        return back()->withErrors(['email' => '認証に失敗しました']);
     }
 
-    /**
-     * Destroy an authenticated session.
-     */
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
@@ -42,6 +38,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('login')->with('status', 'ログアウトしました');;
+        return redirect('login')->with('status', 'ログアウトしました');
     }
 }

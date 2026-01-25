@@ -11,7 +11,6 @@ use Illuminate\Validation\ValidationException;
 
 class LoginRequest extends FormRequest
 {
-
     public function authorize(): bool
     {
         return true;
@@ -25,22 +24,31 @@ class LoginRequest extends FormRequest
         ];
     }
 
-
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
 
+        // 1. まずは「ユーザーがいるか」だけをチェック
+        $user = \App\Models\User::where('email', $this->email)->first();
+
+        if (! $user) {
+            // ユーザーがいなかった場合（テスト1）
+            throw ValidationException::withMessages([
+                'email' => 'ユーザーの登録がありません。新規登録をしてはじめよう！',
+            ]);
+        }
+
+        // 2. ユーザーはいたので、パスワードが合っているかチェック（テスト2）
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => "ユーザーの登録がありません、新規登録をしてはじめよう",
+                'password' => 'パスワードが間違っています。もう一度入力してね。',
             ]);
         }
 
         RateLimiter::clear($this->throttleKey());
     }
-
 
     public function ensureIsNotRateLimited(): void
     {
@@ -62,9 +70,8 @@ class LoginRequest extends FormRequest
 
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')) . '|' . $this->ip());
+        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
     }
-
 
     public function messages(): array
     {

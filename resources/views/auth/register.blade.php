@@ -17,14 +17,6 @@
 
         <h1 class="page-title jp">新規登録</h1>
 
-        {{-- #TODO:バリデーションメッセージ追加わすれない、リクエスト作る --}}
-        <div class="validate-wrapper">
-            @if (session('status'))
-                <div class="validate">
-                    <p>{{ session('status') }}</p>
-                </div>
-            @endif
-        </div>
 
         <form class="form form--spacious" method="POST" action="{{ route('register') }}"> @csrf
             <div class="field">
@@ -52,6 +44,7 @@
             <a class="link en" href="{{ route('login') }}">Login</a>
         </div>
     </main>
+
 </body>
 
 </html>

@@ -1,8 +1,5 @@
 <x-app-layout>
-    <x-histories.frame store="" account="Account:{{ sprintf('%04d', Auth::user()->id) }}" title=""
-        :hide-store="true">
-
-        <button><a href="{{ route('author.myposts') }}">口コミ一覧へ戻る</a></button>
+    <x-histories.frame title="" :hide-store="true">
         @error('name')
             <div class="validate-wrapper">
                 <div class="validate">
@@ -10,6 +7,24 @@
                 </div>
             </div>
         @enderror
+
+        <div class="validate-wrapper">
+            @error('starbucks_store_id')
+                <div class="text-red-600">{{ $message }}</div>
+            @enderror
+            @error('message')
+                <div class="text-red-600">{{ $message }}</div>
+            @enderror
+
+            @error('product')
+                <div class="text-red-600">{{ $message }}</div>
+            @enderror
+
+            @error('status_id')
+                <div class="text-red-600">{{ $message }}</div>
+            @enderror
+        </div>
+
 
 
         <form action="{{ route('review.update', ['id' => $review->id]) }}" method="POST" class="review-create-form">

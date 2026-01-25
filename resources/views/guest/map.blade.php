@@ -11,8 +11,8 @@
 
 <body>
     <div id="map"></div>
-
     <button type="button" id="menuOpenBtn" class="map-menu-btn">MENU</button>
+
 
     {{-- Overlay --}}
     <div id="menuOverlay" class="map-overlay" aria-hidden="true"></div>
@@ -64,23 +64,26 @@
                     },
                     map: map,
                     title: store.name,
-                    label: {
-                        text: store.name,
-                        color: '#02754B',
-                        fontSize: '12px',
-                        fontWeight: 'bold',
-                    },
-                    // iconで好きなピンに変更可能
                 });
 
-                // #TODO:popup何かデザデザインできないか
+
                 // 詳細ポップアップ
                 const infoWindow = new google.maps.InfoWindow({
                     content: `
-                            <div style="min-width:200px">
-                                <h4 value="{{ old('name') }}">${ store.name }</h4>
-                                <p value="{{ old('address') }}">${ store.address }</p>
-                                <a href="/reviews?starbucks_store_id=${store.id}"><button style="color: red;">口コミを見る</button></a>
+                            <div style="max-width:200px">
+                                <h1 class="map-infowindow">${store.name}</h1>
+                                <p class="map-infowindow-p">${store.address}</p>
+                                    <a href="/reviews?starbucks_store_id=${store.id}">
+                                        <button style="width: 100%;
+                                            color: white; 
+                                            background-color: ${btnColor}; 
+                                            cursor: pointer; 
+                                            border: none; 
+                                            padding: 8px; 
+                                            border-radius: 4px;
+                                            font-weight: bold;
+                                            color: #007042;">口コミを見る</button>
+                                    </a>
                             </div>
                             `,
                 });

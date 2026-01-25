@@ -12,12 +12,16 @@
   --fw-semi: 600;
 
   /* ログイン画面に合わせる */
-  --bg: #cfe4df;          /* 背景ミント */
-  --btn: #66a896;         /* ボタンの緑 */
+  --bg: #cfe4df;
+  /* 背景ミント */
+  --btn: #66a896;
+  /* ボタンの緑 */
   --btn-text: #ffffff;
   --primary: #CC9A06;
-  --primary-hover: #B88905;  /* 少し濃い */
-  --primary-active: #A97E04; /* さらに濃い */
+  --primary-hover: #B88905;
+  /* 少し濃い */
+  --primary-active: #A97E04;
+  /* さらに濃い */
 
   --text: #0f172a;
   --muted: #64748b;
@@ -26,12 +30,23 @@
   --radius: 18px;
   --shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
 }
-/* ===== Base ===== */
-* { box-sizing: border-box; }
-html, body { height: 100%; }
-body { margin: 0; }
 
-html, body {
+/* ===== Base ===== */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+html,
+body {
   font-family: var(--font-base);
   font-weight: var(--fw-regular);
   color: var(--text);
@@ -46,10 +61,7 @@ html, body {
 /* ===== iPhoneのSafe Area対応 ===== */
 .page {
   min-height: 100svh;
-  padding: max(18px, env(safe-area-inset-top))
-           max(14px, env(safe-area-inset-right))
-           max(22px, env(safe-area-inset-bottom))
-           max(14px, env(safe-area-inset-left));
+  padding: max(18px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) max(22px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
   background: var(--bg);
   color: var(--text);
   display: grid;
@@ -61,7 +73,7 @@ html, body {
 }
 
 /* ===== Card ===== */
-.card{
+.card {
   width: 100%;
   max-width: 430px;
   background: #fff;
@@ -71,11 +83,14 @@ html, body {
   padding: 44px 18px 34px;
   text-align: center;
 }
+
 /* === Card: 青枠 → うっすら境界線（上品） === */
 .page .card,
 .review-create-card {
-  border: 1px solid rgba(15, 23, 42, 0.08);  /* うっすらグレー */
-  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.10); /* 影は自然に */
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  /* うっすらグレー */
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.10);
+  /* 影は自然に */
 }
 
 /* darkモード側（うっすら白の線） */
@@ -87,48 +102,52 @@ html, body {
 
 /* ===== ▼ ===== */
 /* ▼が外に飛び出ないようにする */
-.review-select-wrap{
-  position: relative;   /* すでにあってもOK */
-  overflow: hidden;     /* これが効く：はみ出しを切る */
-  border-radius: 12px;  /* selectと同じ角丸に合わせる */
+.review-select-wrap {
+  position: relative;
+  /* すでにあってもOK */
+  overflow: hidden;
+  /* これが効く：はみ出しを切る */
+  border-radius: 12px;
+  /* selectと同じ角丸に合わせる */
 }
 
 /* アイコン位置を内側に寄せる（念のため） */
-.review-select-icon{
-  right: 14px;          /* 4 -> 14 くらいにすると安定 */
+.review-select-icon {
+  right: 14px;
+  /* 4 -> 14 くらいにすると安定 */
 }
 
 
 /* ===== Top / Register 共通 ===== */
-.title{
+.title {
   margin: 0;
   font-size: 38px;
   font-weight: var(--fw-semi);
   letter-spacing: 0.06em;
 }
 
-.subtitle{
+.subtitle {
   margin: 12px 0 0;
   color: var(--muted);
   font-size: 14px;
   font-weight: 300;
 }
 
-.divider{
+.divider {
   height: 1px;
   background: #eef2f7;
   width: 84%;
   margin: 18px auto 30px;
 }
 
-.form{
+.form {
   width: 92%;
   margin: 0 auto;
   display: grid;
   gap: 18px;
 }
 
-.input{
+.input {
   width: 100%;
   height: 56px;
   border-radius: 10px;
@@ -137,17 +156,17 @@ html, body {
   font-size: 20px;
   text-align: center;
   outline: none;
-  box-shadow: 0 6px 12px rgba(15,23,42,0.06);
+  box-shadow: 0 6px 12px rgba(15, 23, 42, 0.06);
   font-weight: var(--fw-regular);
   letter-spacing: 0.02em;
 }
 
-.input::placeholder{
+.input::placeholder {
   color: #a1a8b3;
   font-weight: var(--fw-medium);
 }
 
-.btn{
+.btn {
   height: 84px;
   border-radius: 16px;
   border: none;
@@ -158,56 +177,69 @@ html, body {
   letter-spacing: 0.04em;
   cursor: pointer;
   margin-top: 10px;
-  box-shadow: 0 12px 18px rgba(15,23,42,0.14);
+  box-shadow: 0 12px 18px rgba(15, 23, 42, 0.14);
 }
 
-.btn:active{ transform: translateY(1px); }
+.btn:active {
+  transform: translateY(1px);
+}
 
-.links{
+.links {
   margin-top: 26px;
   display: grid;
   gap: 12px;
 }
 
-.link{
+.link {
   color: #334155;
   text-decoration: none;
   font-size: 18px;
   font-weight: var(--fw-regular);
 }
-.link:hover{ text-decoration: underline; }
+
+.link:hover {
+  text-decoration: underline;
+}
 
 /* ===== 新規登録画面専用 ===== */
 .card--plain {
   border: none;
-  box-shadow: 0 14px 30px rgba(15,23,42,0.12);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
 }
 
-.brand-row{
+.brand-row {
   text-align: left;
   margin-bottom: 18px;
 }
-.brand{
+
+.brand {
   font-size: 16px;
   font-weight: 500;
   color: var(--text);
 }
 
-.page-title{
+.page-title {
   margin: 0 0 28px;
   font-size: 42px;
   font-weight: 500;
   letter-spacing: 0.02em;
 }
 
-.form--spacious{
+.form--spacious {
   gap: 22px;
 }
 
-.btn--md{
+.btn--md {
   height: 72px;
   font-size: 36px;
   border-radius: 14px;
+}
+
+.btn.btn--md.en {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
 }
 
 /* ===== Map UI ===== */
@@ -215,8 +247,9 @@ html, body {
   width: 100%;
   height: 100svh;
 }
+
 /* ===== Modal menu icons ===== */
-.material-symbols-rounded{
+.material-symbols-rounded {
   font-family: "Material Symbols Rounded" !important;
   font-weight: normal;
   font-style: normal;
@@ -230,13 +263,13 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-.map-modal-grid{
+.map-modal-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px;
 }
 
-.map-modal-item{
+.map-modal-item {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -251,17 +284,17 @@ html, body {
   border: 1px solid #e5e7eb;
   color: #0f172a;
 
-  box-shadow: 0 10px 18px rgba(15,23,42,0.10);
+  box-shadow: 0 10px 18px rgba(15, 23, 42, 0.10);
   backdrop-filter: blur(8px);
   -webkit-tap-highlight-color: transparent;
 }
 
-.map-modal-item:active{
+.map-modal-item:active {
   transform: translateY(1px);
 }
 
 /* アイコン本体（大きめ） */
-.map-icon{
+.map-icon {
   font-size: 38px;
   font-variation-settings:
     "FILL" 1,
@@ -272,7 +305,7 @@ html, body {
 }
 
 /* 文字は小さめ */
-.map-label{
+.map-label {
   font-size: 12px;
   letter-spacing: 0.08em;
   font-weight: var(--fw-medium);
@@ -281,45 +314,51 @@ html, body {
 
 /* 危険操作は少し赤（Logoutだけ） */
 .map-modal-item[href="/"] .map-icon,
-.map-modal-item[href="/"] .map-label{
+.map-modal-item[href="/"] .map-label {
   color: #b91c1c;
 }
 
 
 /* MENUボタン（下中央） */
-.map-menu-btn{
-  position: fixed; /* 要素をビューボードに固定 */
+.map-menu-btn {
+  position: fixed;
+  /* 要素をビューボードに固定 */
   left: 50%;
-  bottom: calc(18px + env(safe-area-inset-bottom)); /* iPhoneのSafe Area対応 */
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  /* iPhoneのSafe Area対応 */
   transform: translateX(-50%);
-  z-index: 20; /* 重なり順(数値が大きいほど前面) */
+  z-index: 20;
+  /* 重なり順(数値が大きいほど前面) */
 
   width: min(320px, calc(100vw - 28px));
   height: 64px;
   border: none;
   border-radius: 999px;
-  background: var(--btn); /* --btnカスタムプロパティを使用 22行目*/
+  background: var(--btn);
+  /* --btnカスタムプロパティを使用 22行目*/
   color: #fff;
 
   font-size: 18px;
   font-weight: var(--fw-semi);
   letter-spacing: 0.08em;
-  box-shadow: 0 14px 24px rgba(15,23,42,0.18);
+  box-shadow: 0 14px 24px rgba(15, 23, 42, 0.18);
 }
 
 /* 背景暗くするオーバーレイ */
-.map-overlay{
+.map-overlay {
   position: fixed;
   inset: 0;
   z-index: 30;
   background: rgba(15, 23, 42, 0.45);
-  opacity: 0; /* 0は透明、1は不透明 */
-  pointer-events: none; /* クリック無効 */
+  opacity: 0;
+  /* 0は透明、1は不透明 */
+  pointer-events: none;
+  /* クリック無効 */
   transition: opacity 160ms ease;
 }
 
 /* メニュー本体 */
-.map-modal{
+.map-modal {
   position: fixed;
   left: 50%;
   top: 50%;
@@ -329,7 +368,7 @@ html, body {
   width: min(320px, calc(100vw - 44px));
   background: #fff;
   border-radius: 18px;
-  box-shadow: 0 24px 60px rgba(15,23,42,0.22);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
   padding: 18px;
 
   opacity: 0;
@@ -337,13 +376,13 @@ html, body {
   transition: opacity 160ms ease, transform 160ms ease;
 }
 
-.map-modal-grid{
+.map-modal-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px;
 }
 
-.map-modal-item{
+.map-modal-item {
   display: grid;
   place-items: center;
   height: 84px;
@@ -356,31 +395,34 @@ html, body {
 }
 
 /* 開いた状態（JSで class を付ける） */
-.is-open.map-overlay{
+.is-open.map-overlay {
   opacity: 1;
   pointer-events: auto;
 }
-.is-open.map-modal{
+
+.is-open.map-modal {
   opacity: 1;
   pointer-events: auto;
   transform: translate(-50%, -50%) scale(1);
 }
+
 /* ===== Search Page (UI only) ===== */
-.map-page{
+.map-page {
   margin: 0;
   height: 100svh;
   overflow: hidden;
 }
 
 /* ここに地図が入る想定の領域 */
-.map-canvas{
+.map-canvas {
   width: 100%;
   height: 100svh;
-  background: #dbeafe; /* 仮の背景（地図が来たら見えなくなる） */
+  background: #dbeafe;
+  /* 仮の背景（地図が来たら見えなくなる） */
 }
 
 /* 検索バー（上固定） */
-.search-bar{
+.search-bar {
   position: fixed;
   top: calc(12px + env(safe-area-inset-top));
   left: 0;
@@ -389,7 +431,7 @@ html, body {
   padding: 0 14px;
 }
 
-.search-bar-inner{
+.search-bar-inner {
   display: grid;
   grid-template-columns: 28px 1fr auto;
   gap: 10px;
@@ -398,19 +440,19 @@ html, body {
   width: 100%;
   border-radius: 18px;
   padding: 12px 12px;
-  background: rgba(255,255,255,0.85);
-  border: 1px solid rgba(229,231,235,0.9);
-  box-shadow: 0 14px 24px rgba(15,23,42,0.10);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  box-shadow: 0 14px 24px rgba(15, 23, 42, 0.10);
   backdrop-filter: blur(10px);
 }
 
-.search-icon{
+.search-icon {
   font-size: 22px;
   color: #334155;
   font-variation-settings: "FILL" 1, "wght" 500, "GRAD" 0, "opsz" 24;
 }
 
-.search-input{
+.search-input {
   width: 100%;
   border: none;
   outline: none;
@@ -420,11 +462,11 @@ html, body {
   color: var(--text);
 }
 
-.search-input::placeholder{
+.search-input::placeholder {
   color: #64748b;
 }
 
-.search-btn{
+.search-btn {
   height: 34px;
   padding: 0 14px;
   border: none;
@@ -436,27 +478,42 @@ html, body {
   letter-spacing: 0.06em;
 }
 
-.search-btn:active{ transform: translateY(1px); }
+.search-btn:active {
+  transform: translateY(1px);
+}
 
-.search-hint{
+.search-hint {
   margin-top: 8px;
   padding: 0 4px;
   font-size: 11px;
-  color: rgba(15,23,42,0.65);
+  color: rgba(15, 23, 42, 0.65);
 }
 
 
 /* ===== Responsive ===== */
-@media (max-width: 360px){
-  .title{ font-size: 34px; }
-  .btn{ font-size: 40px; height: 78px; }
-  .input{ font-size: 18px; }
-  .link{ font-size: 16px; }
+@media (max-width: 360px) {
+  .title {
+    font-size: 34px;
+  }
+
+  .btn {
+    font-size: 40px;
+    height: 78px;
+  }
+
+  .input {
+    font-size: 18px;
+  }
+
+  .link {
+    font-size: 16px;
+  }
 }
 
 /* =====review =====*/
 
 @layer components {
+
   /* タブ全体（ボタン） */
   .tab-item {
     @apply flex flex-col items-center pb-2 transition-colors;
@@ -482,6 +539,7 @@ html, body {
   .tab-item.is-active {
     @apply border-b-2 border-slate-700;
   }
+
   .tab-item.is-active .tab-icon,
   .tab-item.is-active .tab-label {
     @apply text-slate-700;
@@ -492,13 +550,16 @@ html, body {
   .dark .tab-label {
     @apply text-slate-400;
   }
+
   .dark .tab-item:hover .tab-icon,
   .dark .tab-item:hover .tab-label {
     @apply text-slate-200;
   }
+
   .dark .tab-item.is-active {
     @apply border-slate-200;
   }
+
   .dark .tab-item.is-active .tab-icon,
   .dark .tab-item.is-active .tab-label {
     @apply text-slate-200;
@@ -507,11 +568,10 @@ html, body {
 
 /* ===１投稿=１枠=== */
 @layer components {
+
   /* 投稿1件の枠 */
   .review-card {
-    @apply bg-white dark:bg-slate-800 rounded-xl p-4
-           border border-slate-200 dark:border-slate-700
-           shadow-sm;
+    @apply bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 shadow-sm;
   }
 
   /* ヘッダ部分 */
@@ -545,103 +605,103 @@ html, body {
     @apply mt-2 text-slate-800 dark:text-slate-100 leading-relaxed;
   }
 }
+
 /* ===== Review Create Page Layout ===== */
 @layer components {
+
   /* ===== Review Create Page Layout ===== */
-  .review-create-page{
-    @apply bg-background-light text-slate-800 min-h-screen flex justify-center items-start p-4
-           dark:bg-background-dark dark:text-slate-100;
+  .review-create-page {
+    @apply bg-background-light text-slate-800 min-h-screen flex justify-center items-start p-4 dark:bg-background-dark dark:text-slate-100;
   }
 
-  .review-create-frame{
-    @apply w-full max-w-md bg-white dark:bg-card-dark shadow-2xl overflow-hidden relative flex flex-col
-           border-slate-200 dark:border-slate-800;
+  .review-create-frame {
+    @apply w-full max-w-md bg-white dark:bg-card-dark shadow-2xl overflow-hidden relative flex flex-col border-slate-200 dark:border-slate-800;
     border-width: 8px;
     border-radius: 40px;
     height: 844px;
   }
 
-  .review-header{ @apply pt-10 pb-4 px-6; }
+  .review-header {
+    @apply pt-10 pb-4 px-6;
+  }
 
-  .review-header-row{
+  .review-header-row {
     @apply flex justify-between items-center mb-6;
   }
-  .review-brand{
+
+  .review-brand {
     @apply text-xs font-medium text-slate-500 dark:text-slate-400;
   }
-  .review-account{
+
+  .review-account {
     @apply text-xs font-bold text-slate-800 dark:text-slate-200;
   }
 
-  .review-store-title{
+  .review-store-title {
     @apply text-2xl font-bold text-center text-primary dark:text-slate-200 mb-8;
   }
 
-  .review-tabs{
+  .review-tabs {
     @apply grid grid-cols-3 gap-4 border-b border-slate-100 dark:border-slate-700;
   }
 
-  .review-create-main{
+  .review-create-main {
     @apply flex-1 px-6 pt-6 pb-6 overflow-y-auto;
   }
 
-  .review-form{ @apply space-y-6; }
-  .review-field{ @apply space-y-2; }
+  .review-form {
+    @apply space-y-6;
+  }
 
-  .review-label{
+  .review-field {
+    @apply space-y-2;
+  }
+
+  .review-label {
     @apply block text-sm font-bold text-slate-700 dark:text-slate-200;
   }
 
-  .review-input{
-    @apply w-full h-14 px-4 rounded-xl bg-slate-50 dark:bg-slate-800
-           border border-slate-200 dark:border-slate-700
-           text-base transition-all
-           placeholder-slate-300 dark:placeholder-slate-600
-           focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary;
+  .review-input {
+    @apply w-full h-14 px-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-base transition-all placeholder-slate-300 dark:placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary;
   }
 
-  .review-select-wrap{ @apply relative; }
-
-  .review-select{
-    @apply w-full h-14 px-4 pr-10 rounded-xl bg-slate-50 dark:bg-slate-800
-           border border-slate-200 dark:border-slate-700
-           text-base transition-all appearance-none
-           focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary;
+  .review-select-wrap {
+    @apply relative;
   }
 
-  .review-select-icon{
+  .review-select {
+    @apply w-full h-14 px-4 pr-10 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-base transition-all appearance-none focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary;
+  }
+
+  .review-select-icon {
     @apply absolute inset-y-0 right-4 flex items-center pointer-events-none text-slate-400;
   }
 
-  .review-textarea{
-    @apply w-full p-4 rounded-xl bg-slate-50 dark:bg-slate-800
-           border border-slate-200 dark:border-slate-700
-           text-base leading-relaxed resize-none transition-all
-           placeholder-slate-300 dark:placeholder-slate-600
-           focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary;
+  .review-textarea {
+    @apply w-full p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-base leading-relaxed resize-none transition-all placeholder-slate-300 dark:placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary;
   }
 
-  .review-submit{
+  .review-submit {
     @apply px-6 pb-8 pt-4 bg-white dark:bg-card-dark;
   }
 
-  .review-submit-btn{
-    @apply w-full h-16 bg-primary hover:opacity-90 active:scale-95 transition-all
-           rounded-2xl flex items-center justify-center shadow-lg;
+  .review-submit-btn {
+    @apply w-full h-16 bg-primary hover:opacity-90 active:scale-95 transition-all rounded-2xl flex items-center justify-center shadow-lg;
   }
 
-  .review-submit-label{
+  .review-submit-label {
     @apply text-white text-2xl font-bold tracking-wider;
   }
 
-  .review-home-indicator{
-    @apply absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1.5
-           bg-slate-300 dark:bg-slate-700 rounded-full;
+  .review-home-indicator {
+    @apply absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full;
   }
 }
+
 @layer components {
+
   /* 投稿ページ：外側背景（ログイン画面と同じ） */
-  .review-create-page{
+  .review-create-page {
     min-height: 100svh;
     display: flex;
     justify-content: center;
@@ -652,7 +712,7 @@ html, body {
   }
 
   /* iPhone枠 */
-  .review-create-frame{
+  .review-create-frame {
     width: 100%;
     max-width: 430px;
     height: 844px;
@@ -660,19 +720,39 @@ html, body {
     flex-direction: column;
 
     background: #fff;
-    border: 8px solid rgba(226,232,240,1); /* slate-200相当 */
+    border: 8px solid rgba(226, 232, 240, 1);
+    /* slate-200相当 */
     border-radius: 40px;
-    box-shadow: 0 24px 60px rgba(15,23,42,0.18);
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
     overflow: hidden;
     position: relative;
   }
 
   /* header */
-  .review-create-header{ padding: 40px 24px 16px; }
-  .review-header-row{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
-  .review-brand{ font-size: 12px; font-weight: 500; color: #64748b; }
-  .review-account{ font-size: 12px; font-weight: 700; color: #0f172a; }
-  .review-store-title{
+  .review-create-header {
+    padding: 40px 24px 0;
+  }
+
+  .review-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .review-brand {
+    font-size: 12px;
+    font-weight: 500;
+    color: #64748b;
+  }
+
+  .review-account {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .review-store-title {
     margin: 0 0 32px;
     font-size: 24px;
     font-weight: 800;
@@ -680,40 +760,58 @@ html, body {
     color: #0f172a;
   }
 
-  .review-tabs{
+  .review-tabs {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
-    border-bottom: 1px solid rgba(241,245,249,1);
+    border-bottom: 1px solid rgba(241, 245, 249, 1);
   }
 
   /* main */
-  .review-create-main{ flex: 1; padding: 24px 24px 24px; overflow-y: auto; }
-  .review-form{ display: grid; gap: 24px; }
-  .review-field{ display: grid; gap: 8px; }
-  .review-label{ font-size: 14px; font-weight: 800; color: #334155; }
+  .review-create-main {
+    flex: 1;
+    padding: 24px 24px 24px;
+    overflow-y: auto;
+  }
+
+  .review-form {
+    display: grid;
+    gap: 24px;
+  }
+
+  .review-field {
+    display: grid;
+    gap: 8px;
+  }
+
+  .review-label {
+    font-size: 14px;
+    font-weight: 800;
+    color: #334155;
+  }
 
   /* input/select/textarea：ログインの入力に寄せる */
   .review-input,
   .review-select,
-  .review-textarea{
+  .review-textarea {
     width: 100%;
     border-radius: 16px;
-    border: 1px solid rgba(226,232,240,1);
-    background: rgba(239,246,255,0.65); /* 薄い水色寄せ */
+    border: 1px solid rgba(226, 232, 240, 1);
+    background: rgba(239, 246, 255, 0.65);
+    /* 薄い水色寄せ */
     color: #0f172a;
     outline: none;
     transition: box-shadow 160ms ease, border-color 160ms ease;
   }
 
   .review-input,
-  .review-select{
+  .review-select {
     height: 56px;
     padding: 0 16px;
     font-size: 18px;
   }
 
-  .review-textarea{
+  .review-textarea {
     padding: 16px;
     font-size: 16px;
     line-height: 1.7;
@@ -722,17 +820,26 @@ html, body {
 
   .review-input:focus,
   .review-select:focus,
-  .review-textarea:focus{
-    border-color: rgba(31,149,255,0.55); /* --card-border寄り */
-    box-shadow: 0 0 0 4px rgba(31,149,255,0.18);
+  .review-textarea:focus {
+    border-color: rgba(31, 149, 255, 0.55);
+    /* --card-border寄り */
+    box-shadow: 0 0 0 4px rgba(31, 149, 255, 0.18);
   }
 
-  .review-select-wrap{ position: relative; }
-  .review-select{ appearance: none; padding-right: 44px; }
-  .review-select-icon{
+  .review-select-wrap {
+    position: relative;
+  }
+
+  .review-select {
+    appearance: none;
+    padding-right: 44px;
+  }
+
+  .review-select-icon {
     position: absolute;
     right: 16px;
-    top: 0; bottom: 0;
+    top: 0;
+    bottom: 0;
     display: flex;
     align-items: center;
     color: #94a3b8;
@@ -740,28 +847,39 @@ html, body {
   }
 
   /* footer submit：ログインの緑ボタンに合わせる */
-  .review-submit{ padding: 16px 24px 32px; background: #fff; }
-  .review-submit-btn{
+  .review-submit {
+    padding: 16px 24px 32px;
+    background: #fff;
+  }
+
+  .review-submit-btn {
     width: 100%;
     height: 80px;
     border: none;
     border-radius: 24px;
     background: var(--btn);
     color: var(--btn-text);
-    box-shadow: 0 18px 28px rgba(15,23,42,0.18);
+    box-shadow: 0 18px 28px rgba(15, 23, 42, 0.18);
     cursor: pointer;
     transition: transform 120ms ease, filter 120ms ease;
   }
-  .review-submit-btn:hover{ filter: brightness(0.98); }
-  .review-submit-btn:active{ transform: scale(0.98); }
 
-  .review-submit-label{
-    font-size: 44px;  /* Login の「Login」サイズ感 */
+  .review-submit-btn:hover {
+    filter: brightness(0.98);
+  }
+
+  .review-submit-btn:active {
+    transform: scale(0.98);
+  }
+
+  .review-submit-label {
+    font-size: 44px;
+    /* Login の「Login」サイズ感 */
     font-weight: 700;
     letter-spacing: 0.04em;
   }
 
-  .review-home-indicator{
+  .review-home-indicator {
     position: absolute;
     left: 50%;
     bottom: 8px;
@@ -769,15 +887,16 @@ html, body {
     width: 128px;
     height: 6px;
     border-radius: 999px;
-    background: rgba(203,213,225,1);
+    background: rgba(203, 213, 225, 1);
   }
 }
+
 @layer components {
-  .review-submit{
+  .review-submit {
     @apply px-6 pb-8 pt-4 bg-white dark:bg-slate-900;
   }
 
-  .review-submit-btn{
+  .review-submit-btn {
     /* サイズ感を小さく */
     @apply w-full flex items-center justify-center rounded-xl shadow-md transition;
     height: 56px;
@@ -786,16 +905,16 @@ html, body {
     background: var(--primary);
   }
 
-  .review-submit-btn:hover{
+  .review-submit-btn:hover {
     background: var(--primary-hover);
   }
 
-  .review-submit-btn:active{
+  .review-submit-btn:active {
     background: var(--primary-active);
     transform: scale(0.99);
   }
 
-  .review-submit-label{
+  .review-submit-label {
     /* フォント大きすぎ問題を解決 */
     @apply font-bold;
     font-size: 18px;
@@ -803,6 +922,7 @@ html, body {
     color: #fff;
   }
 }
+
 /* ===============================
    Review Create Page（投稿画面）
    - ログイン画面の配色寄せ
@@ -810,28 +930,32 @@ html, body {
    - ボタン#CC9A06
 =============================== */
 
-:root{
+:root {
   --review-accent: #CC9A06;
   --review-accent-hover: #B88905;
-  --review-field-bg: #EAF2FF;   /* ログインの薄い水色っぽい入力背景 */
+  --review-field-bg: #EAF2FF;
+  /* ログインの薄い水色っぽい入力背景 */
   --review-field-border: #D7E3F6;
 }
 
-.review-create-page{
+.review-create-page {
   min-height: 100svh;
   padding: 18px 14px;
-  background: var(--bg);   /* #cfe4df */
+  background: var(--bg);
+  /* #cfe4df */
   color: var(--text);
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 
-.review-create-card{
+.review-create-card {
   width: min(430px, 100%);
   background: #fff;
-  border: 3px solid var(--card-border); /* #1f95ff */
-  border-radius: var(--radius);         /* 18px */
+  border: 3px solid var(--card-border);
+  /* #1f95ff */
+  border-radius: var(--radius);
+  /* 18px */
   box-shadow: var(--shadow);
   overflow: hidden;
   display: flex;
@@ -839,39 +963,40 @@ html, body {
 }
 
 /* header */
-.review-create-header{
+.review-create-header {
   padding: 26px 22px 10px;
 }
 
-.review-create-header-row{
+.review-create-header-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 14px;
 }
 
-.review-create-brand{
+.review-create-brand {
   font-size: 12px;
   font-weight: 500;
   color: var(--muted);
 }
 
-.review-create-account{
+.review-create-account {
   font-size: 12px;
   font-weight: 700;
   color: var(--text);
 }
 
-.review-create-store{
+.review-create-store {
   margin: 0 0 16px;
-  font-size: 22px;     /* でかすぎ抑える */
+  font-size: 22px;
+  /* でかすぎ抑える */
   font-weight: 800;
   text-align: center;
   color: var(--text);
   letter-spacing: 0.02em;
 }
 
-.review-create-tabs{
+.review-create-tabs {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
@@ -880,18 +1005,24 @@ html, body {
 }
 
 /* タブは既存 .tab-item/.tab-icon/.tab-label を使いつつ、この画面だけ少し小さく */
-.review-create-tabs .tab-icon{ font-size: 26px; }
-.review-create-tabs .tab-label{ font-size: 11px; }
+.review-create-tabs .tab-icon {
+  font-size: 26px;
+}
+
+.review-create-tabs .tab-label {
+  font-size: 11px;
+}
 
 /* form layout */
-.review-create-form{
+.review-create-form {
   display: flex;
   flex-direction: column;
   flex: 1;
-  min-height: 0; /* overflow-yを効かせるため */
+  min-height: 0;
+  /* overflow-yを効かせるため */
 }
 
-.review-create-main{
+.review-create-main {
   padding: 18px 22px 14px;
   overflow-y: auto;
   flex: 1;
@@ -899,9 +1030,12 @@ html, body {
   gap: 16px;
 }
 
-.review-field{ display: grid; gap: 8px; }
+.review-field {
+  display: grid;
+  gap: 8px;
+}
 
-.review-label{
+.review-label {
   font-size: 14px;
   font-weight: 800;
   color: #334155;
@@ -909,7 +1043,7 @@ html, body {
 
 .review-input,
 .review-select,
-.review-textarea{
+.review-textarea {
   width: 100%;
   border-radius: 16px;
   border: 1px solid var(--review-field-border);
@@ -920,14 +1054,16 @@ html, body {
 }
 
 .review-input,
-.review-select{
-  height: 52px;         /* 少し小さく */
+.review-select {
+  height: 52px;
+  /* 少し小さく */
   padding: 0 16px;
-  font-size: 16px;      /* でかすぎ抑える */
+  font-size: 16px;
+  /* でかすぎ抑える */
   font-weight: 500;
 }
 
-.review-textarea{
+.review-textarea {
   padding: 14px 16px;
   font-size: 14px;
   line-height: 1.7;
@@ -936,7 +1072,7 @@ html, body {
 }
 
 .review-input::placeholder,
-.review-textarea::placeholder{
+.review-textarea::placeholder {
   color: #9AA6B2;
   font-weight: 500;
 }
@@ -944,18 +1080,22 @@ html, body {
 /* focus */
 .review-input:focus,
 .review-select:focus,
-.review-textarea:focus{
+.review-textarea:focus {
   border-color: var(--review-accent);
   box-shadow: 0 0 0 4px rgba(204, 154, 6, 0.18);
 }
 
 /* select icon */
-.review-select-wrap{ position: relative; }
-.review-select{
+.review-select-wrap {
+  position: relative;
+}
+
+.review-select {
   appearance: none;
   padding-right: 44px;
 }
-.review-select-icon{
+
+.review-select-icon {
   position: absolute;
   right: 14px;
   top: 50%;
@@ -966,44 +1106,49 @@ html, body {
 }
 
 /* submit */
-.review-submit{
+.review-submit {
   padding: 14px 22px 20px;
   background: #fff;
   border-top: 1px solid #EEF2F7;
 }
 
-.review-submit-btn{
+.review-submit-btn {
   width: 100%;
-  height: 56px;                 /* でかすぎ抑える */
+  height: 56px;
+  /* でかすぎ抑える */
   border: none;
   border-radius: 18px;
-  background: var(--review-accent);     /* #CC9A06 */
-  box-shadow: 0 12px 18px rgba(15,23,42,0.14);
+  background: var(--review-accent);
+  /* #CC9A06 */
+  box-shadow: 0 12px 18px rgba(15, 23, 42, 0.14);
   cursor: pointer;
   transition: transform 120ms ease, filter 120ms ease, background 120ms ease;
 }
 
-.review-submit-btn:hover{
+.review-submit-btn:hover {
   background: var(--review-accent-hover);
 }
 
-.review-submit-btn:active{
+.review-submit-btn:active {
   transform: translateY(1px);
 }
 
-.review-submit-label{
+.review-submit-label {
   color: #fff;
-  font-size: 18px;     /* でかすぎ抑える */
+  font-size: 18px;
+  /* でかすぎ抑える */
   font-weight: 800;
   letter-spacing: 0.12em;
 }
+
 /* selectの右側に▼を“背景画像”として入れる（はみ出しゼロ） */
-.review-select{
+.review-select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 
-  padding-right: 44px; /* ▼の分の余白 */
+  padding-right: 44px;
+  /* ▼の分の余白 */
 
   background-repeat: no-repeat;
   background-position: right 14px center;
@@ -1014,22 +1159,28 @@ html, body {
 }
 
 /* 角丸を揃えたい場合（任意だけどおすすめ） */
-.review-select-wrap{
+.review-select-wrap {
   border-radius: 12px;
 }
+
 /* --- Select wrapper --- */
-.review-select-wrap{
+.review-select-wrap {
   position: relative;
 }
 
 /* --- Select itself --- */
-.review-select{
+.review-select {
   width: 100%;
-  height: 56px;               /* h-14相当 */
-  padding: 0 48px 0 16px;     /* 右を広めにして▼の場所を確保 */
-  border-radius: 999px;       /* 角丸が大きいなら。違うならお好みで */
-  border: 1px solid #dbe3ef;  /* 薄い境界線 */
-  background: #f3f7ff;        /* 薄い水色系（ログインの雰囲気に寄せる） */
+  height: 56px;
+  /* h-14相当 */
+  padding: 0 48px 0 16px;
+  /* 右を広めにして▼の場所を確保 */
+  border-radius: 999px;
+  /* 角丸が大きいなら。違うならお好みで */
+  border: 1px solid #dbe3ef;
+  /* 薄い境界線 */
+  background: #f3f7ff;
+  /* 薄い水色系（ログインの雰囲気に寄せる） */
   color: #0f172a;
   font-size: 18px;
   outline: none;
@@ -1040,7 +1191,7 @@ html, body {
 }
 
 /* --- Caret (▼) --- */
-.review-select-caret{
+.review-select-caret {
   position: absolute;
   right: 18px;
   top: 50%;
@@ -1051,25 +1202,30 @@ html, body {
   /* CSSで三角形を作る */
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
-  border-top: 8px solid #94a3b8;  /* slate-400くらい */
+  border-top: 8px solid #94a3b8;
+  /* slate-400くらい */
 
-  pointer-events: none; /* クリックはselectに通す */
+  pointer-events: none;
+  /* クリックはselectに通す */
 }
 
 /* フォーカス時の見た目（任意） */
-.review-select:focus{
-  border-color: rgba(204,154,6,0.6);          /* #CC9A06系 */
-  box-shadow: 0 0 0 4px rgba(204,154,6,0.18);
+.review-select:focus {
+  border-color: rgba(204, 154, 6, 0.6);
+  /* #CC9A06系 */
+  box-shadow: 0 0 0 4px rgba(204, 154, 6, 0.18);
 }
+
 /* index の body領域（headerの下） */
-.review-frame-body{
+.review-frame-body {
   flex: 1;
-  min-height: 0; /* overflowを効かせる */
+  min-height: 0;
+  /* overflowを効かせる */
   display: flex;
 }
 
 /* 投稿0件 */
-.review-index-empty{
+.review-index-empty {
   width: 100%;
   padding: 22px;
   display: flex;
@@ -1079,28 +1235,30 @@ html, body {
   gap: 18px;
 }
 
-.review-index-empty-icon{
+.review-index-empty-icon {
   width: 140px;
   height: 140px;
   border-radius: 999px;
-  background: rgba(239,246,255,0.65);
-  border: 1px solid rgba(15,23,42,0.08);
+  background: rgba(239, 246, 255, 0.65);
+  border: 1px solid rgba(15, 23, 42, 0.08);
   display: grid;
   place-items: center;
 }
-.review-index-empty-icon .material-symbols-rounded{
+
+.review-index-empty-icon .material-symbols-rounded {
   font-size: 64px;
   color: #cbd5e1;
 }
 
-.review-index-empty-title{
+.review-index-empty-title {
   margin: 0;
   font-size: 16px;
   font-weight: 700;
   color: #475569;
   text-align: center;
 }
-.review-index-empty-sub{
+
+.review-index-empty-sub {
   margin: 0;
   font-size: 13px;
   color: #94a3b8;
@@ -1108,7 +1266,7 @@ html, body {
   line-height: 1.7;
 }
 
-.review-index-empty-btn{
+.review-index-empty-btn {
   width: 100%;
   height: 56px;
   border-radius: 18px;
@@ -1119,29 +1277,35 @@ html, body {
   font-weight: 800;
   letter-spacing: 0.08em;
   text-decoration: none;
-  box-shadow: 0 12px 18px rgba(15,23,42,0.14);
+  box-shadow: 0 12px 18px rgba(15, 23, 42, 0.14);
 }
-.review-index-empty-btn:hover{ background: var(--primary-hover); }
+
+.review-index-empty-btn:hover {
+  background: var(--primary-hover);
+}
 
 /* 投稿あり（一覧） */
-.review-index-list{
+.review-index-list {
   width: 100%;
   padding: 16px 16px 20px;
   overflow-y: auto;
   display: grid;
   gap: 12px;
 }
+
 /* 名前の左に人アイコン */
-.review-user{
+.review-user {
   display: inline-flex;
   align-items: center;
   gap: 8px;
 }
 
-.review-user-icon{
-  font-size: 20px;         /* お好みで 18〜22 */
+.review-user-icon {
+  font-size: 20px;
+  /* お好みで 18〜22 */
   line-height: 1;
-  color: #94a3b8;          /* slate-400 */
+  color: #94a3b8;
+  /* slate-400 */
   font-variation-settings:
     "FILL" 1,
     "wght" 500,
@@ -1149,46 +1313,48 @@ html, body {
     "opsz" 24;
 }
 
-.dark .review-user-icon{
-  color: #64748b;          /* dark側は少し濃く */
+.dark .review-user-icon {
+  color: #64748b;
+  /* dark側は少し濃く */
 }
+
 /* ===============================
    Review Index / 共通ヘッダーの統一（上書き）
    ※ common.css の一番下に追加
 =============================== */
 
 /* もし未定義なら足す（青枠の原因になりがち） */
-:root{
+:root {
   --card-border: rgba(15, 23, 42, 0.08);
 }
 
 /* create/index 共通：カードは“超うっすら境界線” */
-.review-create-card{
+.review-create-card {
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
   box-shadow: 0 16px 34px rgba(15, 23, 42, 0.10);
 }
 
 /* タブ直下の線を“背景ミント”に */
-.review-create-tabs{
+.review-create-tabs {
   border-bottom: 1px solid var(--bg);
   padding-bottom: 10px;
 }
 
 /* タブ：押しやすく＆選択中は背景ミント */
-.review-create-tabs .tab-item{
+.review-create-tabs .tab-item {
   padding: 10px 0;
   border-radius: 14px;
 }
 
 /* 既存の「下線active」を無効化して、背景で選択表現 */
-.review-create-tabs .tab-item.is-active{
+.review-create-tabs .tab-item.is-active {
   background: var(--bg);
   border-bottom: none;
 }
 
 .review-create-tabs .tab-item.is-active .tab-icon,
-.review-create-tabs .tab-item.is-active .tab-label{
+.review-create-tabs .tab-item.is-active .tab-label {
   color: #0f172a;
 }
 
@@ -1196,7 +1362,7 @@ html, body {
    Review Index 一覧
 =============================== */
 
-.review-index-main{
+.review-index-main {
   padding: 16px 22px 22px;
   display: grid;
   gap: 14px;
@@ -1204,41 +1370,42 @@ html, body {
 }
 
 /* 1投稿カード：枠線を背景ミントと同じ色に */
-.review-index-card{
+.review-index-card {
   background: #fff;
-  border: 1px solid var(--bg); /* ←これ */
+  border: 1px solid var(--bg);
+  /* ←これ */
   border-radius: 18px;
   padding: 16px;
-  box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
 }
 
-.review-index-card-head{
+.review-index-card-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.review-index-user{
+.review-index-user {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.review-index-user-name{
+.review-index-user-name {
   font-size: 20px;
   font-weight: 800;
   color: #0f172a;
 }
 
-.review-index-time{
+.review-index-time {
   font-size: 12px;
   color: #94a3b8;
   font-weight: 500;
 }
 
 /* ステータス（画像みたいなピルに寄せ） */
-.review-index-status{
+.review-index-status {
   display: inline-flex;
   align-items: center;
   border-radius: 999px;
@@ -1248,33 +1415,36 @@ html, body {
   margin: 2px 0 8px;
 }
 
-.review-index-status.is-available{
+.review-index-status.is-available {
   background: rgba(207, 228, 223, 0.75);
   color: #0f766e;
 }
 
-.review-index-status.is-soldout{
+.review-index-status.is-soldout {
   background: rgba(254, 226, 226, 0.85);
   color: #b91c1c;
 }
 
-.review-index-product{
-  font-size: 14px;
+.review-index-product {
+  font-size: 16px;
   color: #475569;
+  padding: 5px 0;
 }
 
-.review-index-comment{
+.review-index-comment {
   margin-top: 10px;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.65;
   color: #0f172a;
 }
+
+
 
 /* ===============================
    六角形＋person（確実に中に表示）
 =============================== */
 
-.user-hex{
+.user-hex {
   width: 38px;
   height: 38px;
   position: relative;
@@ -1284,7 +1454,7 @@ html, body {
 }
 
 /* 外枠（六角形） */
-.user-hex::before{
+.user-hex::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -1294,29 +1464,32 @@ html, body {
 }
 
 /* 内側（白） */
-.user-hex::after{
+.user-hex::after {
   content: "";
   position: absolute;
   inset: 3px;
   clip-path: polygon(25% 6%, 75% 6%, 96% 50%, 75% 94%, 25% 94%, 4% 50%);
   background: #fff;
-  z-index: 2; /* ←白は真ん中 */
+  z-index: 2;
+  /* ←白は真ん中 */
 }
 
 /* person を一番上にする */
-.user-hex .material-symbols-rounded{
+.user-hex .material-symbols-rounded {
   position: relative;
-  z-index: 3; /* ←これが重要 */
+  z-index: 3;
+  /* ←これが重要 */
   font-size: 20px;
   color: #0f172a;
   line-height: 1;
   font-variation-settings: "FILL" 0, "wght" 600, "GRAD" 0, "opsz" 24;
 }
+
 /* ===============================
    History (一覧)
 =============================== */
 
-.history-list{
+.history-list {
   padding: 18px 22px 20px;
   display: grid;
   gap: 14px;
@@ -1324,14 +1497,14 @@ html, body {
 }
 
 /* 空状態 */
-.history-empty{
+.history-empty {
   padding: 40px 22px 34px;
   text-align: center;
   display: grid;
   gap: 12px;
 }
 
-.history-empty-icon{
+.history-empty-icon {
   width: 84px;
   height: 84px;
   margin: 10px auto 6px;
@@ -1341,19 +1514,19 @@ html, body {
   place-items: center;
 }
 
-.history-empty-icon .material-symbols-rounded{
+.history-empty-icon .material-symbols-rounded {
   font-size: 38px;
   color: rgba(15, 23, 42, 0.35);
 }
 
-.history-empty-title{
+.history-empty-title {
   margin: 0;
   font-size: 18px;
   font-weight: 800;
   color: #0f172a;
 }
 
-.history-empty-sub{
+.history-empty-sub {
   margin: 0 auto;
   max-width: 28ch;
   font-size: 13px;
@@ -1361,7 +1534,7 @@ html, body {
   color: #64748b;
 }
 
-.history-empty-btn{
+.history-empty-btn {
   margin-top: 12px;
   display: inline-flex;
   justify-content: center;
@@ -1369,24 +1542,35 @@ html, body {
   height: 52px;
   padding: 0 18px;
   border-radius: 18px;
-  background: var(--primary); /* #CC9A06 */
+  background: var(--primary);
+  /* #CC9A06 */
   color: #fff;
   font-weight: 800;
   letter-spacing: 0.06em;
   text-decoration: none;
-  box-shadow: 0 12px 18px rgba(15,23,42,0.14);
+  box-shadow: 0 12px 18px rgba(15, 23, 42, 0.14);
 }
 
-.history-empty-btn:hover{ background: var(--primary-hover); }
+.history-empty-btn:hover {
+  background: var(--primary-hover);
+}
+
 
 /* 編集ボタン */
-.history-actions{
+.history-actions {
   margin-top: 10px;
   display: flex;
   justify-content: flex-end;
+  gap: 10px;
+  align-items: center;
 }
 
-.history-edit-btn{
+.history-actions form {
+  margin: 0;
+  display: flex;
+}
+
+.history-edit-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -1401,43 +1585,53 @@ html, body {
   font-weight: 800;
 }
 
-.history-edit-btn .material-symbols-rounded{ font-size: 18px; }
-.history-edit-btn:hover{ background: rgba(15, 23, 42, 0.04); }
-.review-menu-row{
+.history-edit-btn .material-symbols-rounded {
+  font-size: 18px;
+}
+
+.history-edit-btn:hover {
+  background: rgba(15, 23, 42, 0.04);
+}
+
+.review-menu-row {
   display: flex;
   justify-content: center;
   padding: 10px 0 12px;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.06); /* うっすら区切り */
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  /* うっすら区切り */
 }
 
-.review-menu-btn{
+.review-menu-btn {
   height: 40px;
   padding: 0 18px;
   border-radius: 999px;
   border: 1px solid rgba(15, 23, 42, 0.08);
 
-  background: var(--btn); /* 緑（ログインと同じ） */
+  background: var(--btn);
+  /* 緑（ログインと同じ） */
   color: #fff;
 
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.14em;
 
-  box-shadow: 0 10px 18px rgba(15,23,42,0.12);
+  box-shadow: 0 10px 18px rgba(15, 23, 42, 0.12);
   cursor: pointer;
 }
 
-.review-menu-btn:active{ transform: translateY(1px); }
+.review-menu-btn:active {
+  transform: translateY(1px);
+}
+
 /* ===== History actions ===== */
-.history-actions{
+.history-actions {
   display: flex;
-  justify-content: flex-end;
   gap: 10px;
   margin-top: 12px;
 }
 
 /* 編集ボタン（既存があるなら不要。なければこれで整う） */
-.history-edit-btn{
+.history-edit-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -1451,60 +1645,72 @@ html, body {
   background: #ffffff;
   border: 1px solid rgba(15, 23, 42, 0.08);
   color: #0f172a;
-  box-shadow: 0 10px 16px rgba(15,23,42,0.06);
+  box-shadow: 0 10px 16px rgba(15, 23, 42, 0.06);
 }
 
-.history-edit-btn .material-symbols-rounded{
+.history-edit-btn .material-symbols-rounded {
   font-size: 18px;
 }
 
+.delete-form {
+  display: inline-block;
+  margin: 0;
+}
+
 /* 削除アイコン（“削除感”は出すが、過度に危険っぽくしない） */
-.history-delete-btn{
+.history-delete-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
+  width: auto;
+  min-width: 80px;
   height: 36px;
   border-radius: 999px;
-
+  padding: 0 12px;
   background: #ffffff;
   border: 1px solid rgba(15, 23, 42, 0.08);
-  color: #b91c1c; /* うっすら赤＝削除イメージ */
-  box-shadow: 0 10px 16px rgba(15,23,42,0.06);
-
+  color: #b91c1c;
+  /* うっすら赤＝削除イメージ */
+  box-shadow: 0 10px 16px rgba(15, 23, 42, 0.06);
+  font-size: 13px;
   cursor: pointer;
 }
 
-.history-delete-btn .material-symbols-rounded{
+
+.history-delete-btn .material-symbols-rounded {
   font-size: 20px;
 }
 
-.history-delete-btn:hover{
+.history-delete-btn:hover {
   filter: brightness(0.98);
 }
 
-.history-delete-btn:active{
+.history-delete-btn:active {
   transform: translateY(1px);
 }
 
-.history-delete-btn:focus-visible{
+.history-delete-btn:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 4px rgba(185,28,28,0.18), 0 10px 16px rgba(15,23,42,0.06);
+  box-shadow: 0 0 0 4px rgba(185, 28, 28, 0.18), 0 10px 16px rgba(15, 23, 42, 0.06);
 }
-.frame-title{
+
+.frame-title {
   margin: 0;
-  padding: 8px 22px 0;  /* review-create-main と揃える */
+  padding: 8px 22px 0;
+  /* review-create-main と揃える */
   font-size: 16px;
   font-weight: 800;
   color: #0f172a;
   letter-spacing: 0.04em;
 }
-.frame-title--center{
+
+.frame-title--center {
   text-align: center;
   margin: 10px 0 14px;
 }
+
 /* 店舗名（表示だけ）を控えめなラベル感に */
-.store-display{
+.store-display {
   user-select: none;
   cursor: default;
   margin-bottom: 8px;
@@ -1512,53 +1718,257 @@ html, body {
   /* 色だけ薄くする（フォント/サイズは review-label のまま） */
   opacity: 0.65;
 }
-.frame-title-center{
+
+.frame-title-center {
   text-align: center;
   margin: 18px 0 10px;
 }
+
 /* ===== Frame title (histories / edit etc.) ===== */
-.frame-title{
+.frame-title {
   margin: 10px 0 6px;
-  font-size: 22px;     /* ← create の store 見出し(22px)と同格 */
+  font-size: 22px;
+  /* ← create の store 見出し(22px)と同格 */
   font-weight: 800;
   letter-spacing: 0.02em;
   color: var(--text);
 }
 
 /* 中央寄せ用（あなたが使ってる想定） */
-.frame-title-center{
+.frame-title-center {
   text-align: center;
 }
+
 /* 履歴カード：店舗名表示 */
-.history-store{
+.history-store {
   display: flex;
+  justify-content: space-between;
+  width: 90%;
   align-items: baseline;
   gap: 8px;
 }
 
-.history-store-label{
+.history-store-label {
   font-size: 11px;
   font-weight: 700;
-  color: rgba(15, 23, 42, 0.45); /* うすめ */
+  color: rgba(15, 23, 42, 0.45);
+  /* うすめ */
   letter-spacing: 0.08em;
 }
 
-.history-store-name{
+.history-store-name {
   font-size: 14px;
   font-weight: 800;
-  color: rgba(15, 23, 42, 0.82); /* 主張しすぎない濃さ */
+  color: rgba(15, 23, 42, 0.82);
+  /* 主張しすぎない濃さ */
 }
+
 /* brand-row を左右に分ける（左：ブランド / 右：Account No） */
-.brand-row--split{
+.brand-row--split {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 /* 右上のアカウント表示 */
-.account-no{
+.account-no {
   font-size: 12px;
   font-weight: 700;
   color: var(--text);
   letter-spacing: 0.04em;
+}
+
+
+/* ----------------ここから追加してます-------------------- */
+/* バリデーション */
+.validate-wrapper {
+  margin-top: 10px;
+}
+.text-red-600 {
+  margin: 0 auto;
+  color: brown;
+  width: 90%;
+  text-align: center;
+  font-size: 12px;
+}
+
+/* マップのピン */
+.map-infowindow {
+  font-weight: bold;
+}
+
+.map-infowindow-p {
+  white-space: normal;
+}
+
+.map-infowindow,
+.map-infowindow-p {
+  padding: 8px 0;
+}
+
+.gm-style-iw-chr {
+  height: 0 !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+
+/* いいねボタン */
+.review-index-likes-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: rgba(0, 112, 74, 0.1);
+  backdrop-filter: blur(4px);
+  color: #00704A;
+
+  width: fit-content;
+  padding: 2px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+
+}
+
+.likes-icon {
+  color: #00704A;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+
+/* バリデーション */
+.toast-notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+
+  background-color: #00704A;
+  opacity: 0.6;
+
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+
+  min-width: 250px;
+  text-align: center;
+  font-weight: bold;
+
+  /* アニメーション：上から降りてくる */
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    top: -100px;
+    opacity: 0;
+  }
+
+  to {
+    top: 20px;
+    opacity: 1;
+  }
+}
+
+/* 消えるときのアニメーション用 */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* 24時間以内の投稿「New」ボタン */
+.new-arrival {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+}
+.new-arrival-badge {
+  display: inline-block;
+  background: #C5A059;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+
+/* ドロップダウンボタン */
+.select-custom {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: 30px;
+  padding: 0 30px 0 16px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #f9f8f6;
+
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  color: #475569;
+
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2300704A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 18px;
+}
+
+/* 投稿するボタン */
+.filter-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  width: 80%;
+  margin:0 auto;
+}
+
+
+#filter-form{
+  margin: 0;
+  display: flex;
+}
+
+.review-create-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  padding: 3px;
+
+  border-radius: 16px;
+  background-color: #00704A;
+  color: white;
+  border: none;
+  cursor: pointer;
+  gap: 2px;
+
+}
+
+.review-create-btn span {
+  font-size: 8px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+.review-create-btn .material-symbols-rounded {
+  font-size: 20px;
+}
+
+.logout-button {
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
 }

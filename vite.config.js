@@ -20,4 +20,18 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
   },
+    plugins: [
+        laravel({
+            input: [
+                "resources/css/app.css",
+                "resources/js/app.js",
+                "resources/css/style.css",
+                "resources/js/search.js",
+                "resources/js/validate-fade.js"
+            ],
+            refresh: true,
+        }),
+        vue(),
+    ],
+    base: "/",
 });

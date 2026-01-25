@@ -29,13 +29,20 @@ exit
 docker compose exec laravel.test bash
 ```
 
-## @Vite 使用　 Blade(HTML)表示
+## @Vite 使用 Blade(HTML)表示
 
 ```
 docker-compose exec laravel.test npm run dev
 ```
 
 Docker 立ち上げ後、`npm run dev`は必須
+
+## データベース接続確認
+
+```
+<!-- MySQL の ready を確認 -->
+docker-compose logs -f mysql
+```
 
 ## ページ
 
@@ -56,20 +63,39 @@ Docker 立ち上げ後、`npm run dev`は必須
 パスワード：password
 ```
 
+ユーザー③ ※シーダーに登録がないため作成してください
+
+```
+まったりラテ子
+john@ex.com
+password
+```
+
 | 状態   | ページ                | Views                   | リンク                         |
 | ------ | --------------------- | ----------------------- | ------------------------------ |
 | ゲスト | ログイン              | auth/top.blade.php      | http://127.0.0.1:8000/login    |
 | ゲスト | 新規登録              | auth/register.blade.php | http://127.0.0.1:8000/register |
-| ゲスト | マップ                | gest/map.blade.php      | http://127.0.0.1/map           |
-| ゲスト | マップ検索            | gest/search.blade.php   | http://127.0.0.1/search        |
-| ゲスト | 口コミ閲覧(※店舗ごと) | gest/reviews.blade.php  | http://127.0.0.1/reviews       |
+| ゲスト | マップ                | guest/map.blade.php     | http://127.0.0.1/map           |
+| ゲスト | マップ検索            | guest/search.blade.php  | http://127.0.0.1/search        |
+| ゲスト | 口コミ閲覧(※店舗ごと) | guest/reviews.blade.php | http://127.0.0.1/reviews       |
 
 ■ログインしないと見れないよ
 | 状態 | ページ | Views | リンク |
 | -------- | -------------- | ----------------- | ------------------------------------------ |
 | ユーザー | ホーム | author/map.blade.php | http://127.0.0.1:8000/map |
 | ユーザー | 自分の投稿履歴 | author/myposts.blade.php | http://127.0.0.1:8000/author-myposts |
-| ユーザー | 自分の投稿履歴編集 | author/ | http://127.0.0.1/author-myposts/{id} |
-| ユーザー | 口コミ一覧画面 | author/ | http://127.0.0.1/author-reviews/{store_id} |
-| ユーザー | 自分の投稿作成 | author/ | http://127.0.0.1:8000/author-review-create/{store_id} |
-| 未　ユーザー | アカウント編集 | profile/ edit.blade.php| http://127.0.0.1/profile |
+| ユーザー | 自分の投稿履歴編集 | author/review_edit.blade.php | http://127.0.0.1/author-myposts/{id} |
+| ユーザー | 口コミ一覧画面 | author/review.blade.php | http://127.0.0.1/author-reviews/{store_id} |
+| ユーザー | 自分の投稿作成 | author/revview_create | http://127.0.0.1:8000/author-review-create/{store_id} |
+| ユーザー | アカウント編集 | profile/ edit.blade.php| http://127.0.0.1/profile |
+
+
+## テスト
+✅Unit/Featureテスト
+```
+php artisan test
+```
+✅Laravel Pint (PHPコードのスタイル修正)
+```
+php ./vendor/bin/pint
+```

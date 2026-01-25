@@ -2,39 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Review;
 use App\Models\StarbucksStore;
-use Illuminate\Http\Request;
 
 class StarbucksStoreController extends Controller
 {
-
     // ゲスト：Google上にピンを表示する
-    public function gestMap()
+    public function guestMap()
     {
         $starbucksStores = StarbucksStore::all();
-        return view('gest.map', compact('starbucksStores'));
+
+        return view('guest.map', compact('starbucksStores'));
     }
 
-    public function gestsearchMap()
+    public function guestSearchMap()
     {
         $starbucksStores = StarbucksStore::all();
-        return view('gest.search', compact('starbucksStores'));
+
+        return view('guest.search', compact('starbucksStores'));
     }
+
     // ユーザー：Google上にピンを表示する
     public function authMap()
     {
         $starbucksStores = StarbucksStore::all();
+
         return view('author.map', compact('starbucksStores'));
     }
 
-    public function show(string $id)
+    public function authorSearchMap()
     {
-        //
-    }
+        $starbucksStores = StarbucksStore::all();
 
-    public function edit(string $id)
-    {
-        //
+        return view('author.search', compact('starbucksStores'));
     }
 }

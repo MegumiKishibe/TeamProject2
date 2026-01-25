@@ -11,7 +11,7 @@
 
         <main class="history-list">
             <div class="filter-container">
-                <form action="{{ route('author.reviews') }}" method="GET" id="filter-form">
+                <form action="{{ route('guest.reviews') }}" method="GET" id="filter-form">
                     <input type="hidden" name="starbucks_store_id" value="{{ request('starbucks_store_id') }}">
                     <select name="days" onchange="document.getElementById('filter-form').submit()"
                         class="select-custom">
@@ -22,23 +22,16 @@
                         <option value="4" {{ request('days') == '4' ? 'selected' : '' }}>4日前</option>
                     </select>
                 </form>
-
-                <a href="{{ url('/author-review-create') }}?starbucks_store_id={{ request('starbucks_store_id') }}"
-                    style="text-decoration: none;">
-                    <button class="review-create-btn">
-                        <span class="material-symbols-rounded">edit_square</span>
-                        <span>投稿する</span>
-                    </button>
-                </a>
-
             </div>
+
 
             @forelse($reviews as $review)
                 <article class="review-index-card history-card">
                     <div class="review-index-card-head">
                         <div class="history-store">
                             <p>{{ $review->user->name }}</p>
-                            <span>
+
+                            <span class="">
                                 @if ($review->created_at->gt(now()->subDay()))
                                     {{-- 24時間以内の場合 --}}
                                     <div class="new-arrival">
@@ -57,7 +50,7 @@
 
                     <div class="review-index-likes">
                         <div class="review-index-likes-btn">
-                            <form action="{{ route('reviews.like', $review) }}" method="POST">
+                            <form action="{{ route('guest.reviews.like', $review) }}" method="POST">
                                 @csrf
                                 <button type="submit"><span class="material-symbols-rounded likes-icon"
                                         aria-hidden="true">favorite</span></button>
@@ -72,6 +65,7 @@
 
                     <p class="review-index-comment">{{ $review->message }}</p>
                 </article>
+
             @empty
                 <div class="no-reviews">
                     @if (request('days'))
@@ -94,5 +88,6 @@
 
 
         </main>
+
     </x-review-frame>
 </x-app-layout>

@@ -11,7 +11,6 @@
 
 <body>
     <div id="map"></div>
-    {{-- #TODO:ログイン情報を表示するか？ --}}
     <div>
         <div class="validate-wrapper">バリデーションあるよ
             @if (session('status'))
@@ -20,18 +19,6 @@
                 </div>
             @endif
         </div>
-
-        <p>ログイン中のユーザー名：{{ Auth::user()->name }}</p>
-        <p>Account:{{ sprintf('%04d', Auth::user()->id) }}</p>
-        <a href="{{ route('profile.edit') }}"><button>アカウント編集ページへ</button></a>
-
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" class="logout-button" class="nav-item">ログアウト</button>
-        </form>
-        <a href="{{ route('author.reviews') }}"><button>口コミ一覧へ</button></a>
-
-        <a href="{{ route('author.myposts') }}"><button>History</button></a>
     </div>
 
     <button type="button" id="menuOpenBtn" class="map-menu-btn">MENU</button>
@@ -41,25 +28,32 @@
     {{-- Modal --}}
     <div id="menuModal" class="map-modal" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="map-modal-grid">
-            <a class="map-modal-item" href="search" aria-label="Search">
+            <a class="map-modal-item" href="{{ route('author.search') }}" aria-label="Search">
                 <span class="material-symbols-rounded map-icon" aria-hidden="true">search</span>
                 <span class="map-label">Search</span>
             </a>
 
-            <a class="map-modal-item" href="/reviews" aria-label="History">
+            <a class="map-modal-item" href="{{ route('author.myposts') }}" aria-label="History">
                 <span class="material-symbols-rounded map-icon" aria-hidden="true">history</span>
                 <span class="map-label">History</span>
             </a>
 
-            <a class="map-modal-item" href="/profile" aria-label="Account">
+            <a class="map-modal-item" href="{{ route('profile.edit') }}" aria-label="Account">
                 <span class="material-symbols-rounded map-icon" aria-hidden="true">person</span>
                 <span class="map-label">Account</span>
             </a>
 
-            <a class="map-modal-item" href="/" aria-label="Logout">
-                <span class="material-symbols-rounded map-icon" aria-hidden="true">logout</span>
-                <span class="map-label">Logout</span>
-            </a>
+            <div class="map-modal-item-form">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="map-modal-item logout-button">
+                        <span class="material-symbols-rounded map-icon" aria-hidden="true">logout</span>
+                        <span class="map-label">Logout</span>
+                    </button>
+                </form>
+            </div>
+
+
         </div>
     </div>
 
@@ -92,16 +86,16 @@
                         fontSize: '12px',
                         fontWeight: 'bold',
                     },
-                    // iconで好きなピンに変更可能
+
                 });
 
-                // #TODO:popup何かデザデザインできないか
+
                 // 詳細ポップアップ
                 const infoWindow = new google.maps.InfoWindow({
                     content: `
-                            <div style="min-width:200px">
-                                <h4 value="{{ old('name') }}">${ store.name }</h4>
-                                <p value="{{ old('address') }}">${ store.address }</p>
+                            <div style="max-width:200px">
+                                <h1 class="map-infowindow">${store.name}</h1>
+                                <p class="map-infowindow-p">${store.address}</p>
                                 <a href="/author-reviews?starbucks_store_id=${store.id}"><button style="color: red;">口コミを見る</button></a>
                             </div>
                             `,
@@ -121,19 +115,3 @@
 </body>
 
 </html>
-
-
-{{-- #TODO:最後消す --}}
-{{-- <div class="wrapper">
-    <div>
-        <select name="starbucks_store_id" id="store-select">
-            <option>選択してください</option>
-            @foreach ($starbucksStores as $store)
-                <option value="{{ $store->id }}" data-lat="{{ $store->lat }}" data-lng="{{ $store->lng }}"
-                    @if (old('starbucks_store_id') == $store->id) selected @endif>
-                    {{ $store->name }}
-                </option>
-            @endforeach
-        </select>
-    </div>
-</div> --}}

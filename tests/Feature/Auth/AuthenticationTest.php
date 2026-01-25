@@ -27,7 +27,7 @@ class AuthenticationTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect(route('dashboard', absolute: false));
+        $response->assertRedirect(route('author.search', absolute: false));
     }
 
     public function test_users_can_not_authenticate_with_invalid_password(): void
@@ -49,6 +49,18 @@ class AuthenticationTest extends TestCase
         $response = $this->actingAs($user)->post('/logout');
 
         $this->assertGuest();
-        $response->assertRedirect('/');
+        $response->assertRedirect('/login');
+    }
+
+    public function test_authenticated_users_are_redirected_when_accessing_login_screen(): void
+    {
+        // 1. テスト用のユーザーを作成
+        $user = User::factory()->create();
+
+        // 2. ログインした状態で、ログイン画面('/login')にアクセス
+        $response = $this->actingAs($user)->get('/login');
+
+        // 3. 地図画面('/user_search')にリダイレクトされることを確認
+        $response->assertRedirect('/user_search');
     }
 }
