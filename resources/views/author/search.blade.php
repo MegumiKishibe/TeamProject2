@@ -59,9 +59,8 @@
                 <span class="map-label">Account</span>
             </a>
 
-            {{-- #TODO:Logoutがうまく表示されません --}}
-            <div class="map-modal-item-form">
-                <form method="POST" action="{{ route('logout') }}">
+            <div class="map-modal-item">
+                <form method="POST" action="{{ route('logout') }}" class="logout-form">
                     @csrf
                     <button type="submit" class="map-modal-item logout-button">
                         <span class="material-symbols-rounded map-icon" aria-hidden="true">logout</span>

@@ -10,29 +10,35 @@
         </div>
 
         <main class="history-list">
-            <form action="{{ route('author.myposts') }}" method="GET" id="filter-form">
-                <input type="hidden" name="starbucks_store_id" value="{{ request('starbucks_store_id') }}">
+            <div class="filter-container">
+                <form action="{{ route('author.myposts') }}" method="GET" id="filter-form">
+                    <input type="hidden" name="starbucks_store_id" value="{{ request('starbucks_store_id') }}">
 
-                <label for="days">表示期間：</label>
-                <select name="days" onchange="document.getElementById('filter-form').submit()">
-                    <option value="">1週間以内をすべて表示</option>
-                    <option value="1" {{ request('days') == '1' ? 'selected' : '' }}>昨日</option>
-                    <option value="2" {{ request('days') == '2' ? 'selected' : '' }}>2日前</option>
-                    <option value="3" {{ request('days') == '3' ? 'selected' : '' }}>3日前</option>
-                    <option value="4" {{ request('days') == '4' ? 'selected' : '' }}>4日前</option>
-                </select>
-            </form>
+                    <select name="days" onchange="document.getElementById('filter-form').submit()"
+                        class="select-custom">
+                        <option value="">1週間以内をすべて表示</option>
+                        <option value="1" {{ request('days') == '1' ? 'selected' : '' }}>昨日</option>
+                        <option value="2" {{ request('days') == '2' ? 'selected' : '' }}>2日前</option>
+                        <option value="3" {{ request('days') == '3' ? 'selected' : '' }}>3日前</option>
+                        <option value="4" {{ request('days') == '4' ? 'selected' : '' }}>4日前</option>
+                    </select>
+                </form>
+            </div>
+
 
             @forelse ($reviews as $review)
                 <article class="review-index-card history-card">
                     <div class="review-index-card-head">
                         <div class="history-store">
                             <h1>{{ $review->starbucksStore->name ?? '店舗不明' }}</h1>
-                            {{-- #TODO:24時間デザインお願いします --}}
-                            <span class="">
+
+                            <span>
                                 @if ($review->created_at->gt(now()->subDay()))
                                     {{-- 24時間以内の場合 --}}
-                                    <p style="color: red; font-weight: bold; margin: 0;">🔥新着</p>
+                                    <div class="new-arrival">
+                                        <p class="new-arrival-badge">New</p>
+                                        <p>{{ $review->created_at->format('H:i') }}</p>
+                                    </div>
                                 @else
                                     {{-- 24時間より前の場合 --}}
                                     <time class="review-index-time" style="color: #666; font-size: 0.9em;">
@@ -58,13 +64,12 @@
 
                     <p class="review-index-comment">{{ $review->message }}</p>
 
-
-                    {{-- #TODO:削除するボタンが上手く表示されない --}}
                     <div class="history-actions">
                         <a href="{{ route('review.edit', ['id' => $review->id]) }}">
                             <button class="history-edit-btn">
                                 <span class="material-symbols-rounded">edit</span>編集する</button></a>
-                        <form action="{{ route('mypost.delete', ['id' => $review->id]) }}" method="POST">
+                        <form action="{{ route('mypost.delete', ['id' => $review->id]) }}" method="POST"
+                            class="delete-form">
                             @csrf
                             @method('DELETE')
                             <button type="submit" onclick="return confirm('本当に削除しますか？')" class="history-delete-btn">
