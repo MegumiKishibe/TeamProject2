@@ -16,19 +16,15 @@ Route::get('/', function () {
 });
 
 // http://127.0.0.1/map
-Route::get('/map', function () {
-    return view('gest.map');
-})->name('gest.map');
-
-Route::get('/map', [StarbucksStoreController::class, 'gestMap'])->name('gest.map');
+Route::get('/map', [StarbucksStoreController::class, 'guestMap'])->name('guest.map');
 
 // http://127.0.0.1:8000/search
-Route::get('/search', [StarbucksStoreController::class, 'gestsearchMap'])->name('search.map');
+Route::get('/search', [StarbucksStoreController::class, 'guestSearchMap'])->name('guest.search');
 
 // http://127.0.0.1/reviews
-Route::get('/reviews', [ReviewsController::class, 'gestIndex'])->name('gest.reviews');
+Route::get('/reviews', [ReviewsController::class, 'guestIndex'])->name('guest.reviews');
 
-Route::post('reviews/{reviews}/like', [LikeController::class, 'store'])->name('reviews.like');
+Route::post('reviews/{reviews}/like', [LikeController::class, 'store'])->name('guest.reviews.like');
 
 
 
@@ -36,7 +32,7 @@ Route::post('reviews/{reviews}/like', [LikeController::class, 'store'])->name('r
 Route::middleware('auth')->group(function () {
     Route::get('/user_map', [StarbucksStoreController::class, 'authMap'])->name('author.map');
 
-    Route::get('/user_search', [StarbucksStoreController::class, 'authorsearchMap'])->name('author.search');
+    Route::get('/user_search', [StarbucksStoreController::class, 'authorSearchMap'])->name('author.search');
 
     // http://127.0.0.1:8000/profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -64,8 +60,6 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/author-myposts/{id}', [ReviewsController::class, 'destroy'])->name('mypost.delete');
 });
-
-
 
 // これは最後
 require __DIR__ . '/auth.php';

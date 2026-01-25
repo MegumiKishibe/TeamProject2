@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth as FacadesAuth;
 class ReviewsController extends Controller
 {
     // ゲスト：口コミ一覧表示
-    public function gestIndex(Request $request)
+    public function guestIndex(Request $request)
     {
         $storeId = $request->input('starbucks_store_id');
         $days = $request->input('days');
@@ -32,7 +32,7 @@ class ReviewsController extends Controller
         $starbucksStores = StarbucksStore::all();
         $statuses = Status::all();
 
-        return view('gest.reviews', compact('reviews', 'statuses', 'starbucksStores', 'currentStore'));
+        return view('guest.reviews', compact('reviews', 'statuses', 'starbucksStores', 'currentStore'));
     }
 
     // ユーザー画面：口コミ一覧表示

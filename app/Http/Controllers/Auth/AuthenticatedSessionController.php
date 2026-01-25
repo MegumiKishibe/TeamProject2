@@ -20,12 +20,16 @@ class AuthenticatedSessionController extends Controller
 
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-        $request->session()->regenerate();
 
-        return redirect()->route('author.search')->with('status', 'ログインしました');
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials, true)) {
+            $request->session()->regenerate();
+            return redirect()->route('author.search')->with('status', 'ログインしました');
+        }
+
+        // 失敗した時用
+        return back()->withErrors(['email' => '認証に失敗しました']);
     }
-
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();

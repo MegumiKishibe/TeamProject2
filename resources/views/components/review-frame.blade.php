@@ -36,7 +36,7 @@
                         </a>
                     @else
                         {{-- 未ログイン --}}
-                        <a href="{{ route('search.map') }}">
+                        <a href="{{ route('guest.search') }}">
                             <button type="button" class="review-menu-btn">MENU</button>
                         </a>
                     @endauth

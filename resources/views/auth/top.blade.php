@@ -46,7 +46,7 @@
 
         <div class="links">
             <a class="link" href="{{ route('register') }}">新規登録</a>
-            <a class="link" href="{{ route('gest.map') }}">ログインせずに確認する</a>
+            <a class="link" href="{{ route('guest.map') }}">ログインせずに確認する</a>
         </div>
     </main>
 </body>
